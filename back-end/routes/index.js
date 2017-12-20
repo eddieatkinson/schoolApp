@@ -17,10 +17,12 @@ router.post('/teacherRegister', (req, res)=>{
 	const phone = req.body.phone;
 	const username = req.body.username;
 	const hash = bcrypt.hashSync(req.body.password);
-	const insertTeacher = `INSERT into teachers (firstName, lastName, password, email, phone) 
+	const insertTeacher = `INSERT INTO teachers (firstName, lastName, password, email, phone) 
 		VALUES 
 		(?,?,?,?,?);`;
-	connection.query(insertTeacher, [firstName, lastName, password, email, phone],(error, results)=>{
+	console.log("end of consts");	
+	connection.query(insertTeacher, [firstName, lastName, hash, email, phone],(error, results)=>{
+		console.log("query");
 		if(error){
 			console.log("This is broken");
 			throw error;
