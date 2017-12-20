@@ -9,8 +9,23 @@ var bcrypt = require('bcrypt-nodejs');
 var connection = mysql.createConnection(config);
 connection.connect();
 
-router.get('/', function(req, res, next) {
-	res.render('index', { title: 'Express' });
+router.post('/teacherRegister', (req, res)=>{
+	console.log('teacher');
+	res.json({
+		msg: "teacherRegistered"
+	});
+});
+router.post('/parentRegister', (req, res)=>{
+	console.log('parent');
+	res.json({
+		msg: "parentRegistered"
+	});
+});
+router.post('/studentRegister', (req, res)=>{
+	console.log('student');
+	res.json({
+		msg: "studentRegistered"
+	});
 });
 
 module.exports = router;

@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { Form, Row, Input, Button, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import RegisterAction from '../actions/RegisterAction';
+import RegisterAction from '../actions/RegisterAction';
 
 
-class Login extends Component{
+class Register extends Component{
 	constructor(){
 		super();
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,8 +14,29 @@ class Login extends Component{
 
 	handleSubmit(event){
 		event.preventDefault();
-		console.log(event.target.value);
-		// this.props.RegisterAction(this.match.params.status, formData);
+		var firstName = document.getElementById('first-name').value;
+		var lastName = document.getElementById('last-name').value;
+		var email = document.getElementById('email').value;
+		var phone = document.getElementById('phone').value;
+		var username = document.getElementById('username').value;
+		var password = document.getElementById('password').value;
+		var formData = {
+			firstName,
+			lastName,
+			email,
+			phone,
+			username,
+			password
+		}
+		// console.log(this);
+		// console.log(formData);
+		this.props.registerAction(this.props.match.params.status, formData);
+	}
+
+	componentWillReceiveProps(newProps){
+		console.log('=======NEW PROPS========');
+		console.log(newProps);
+		console.log('=======NEW PROPS========');
 	}
 
 	render(){
@@ -25,18 +46,18 @@ class Login extends Component{
 				<h2></h2>
 				<form>
 					<Row>
-						<Input s={3} label="First Name" required />
-						<Input s={3} label="Last Name" required />
+						<Input id='first-name' s={3} label="First Name" required />
+						<Input id='last-name' s={3} label="Last Name" required />
 					</Row>
 					<Row>
-						<Input s={3} label="Email" />
-						<Input s={3} label="Phone Number" />
+						<Input id='email' s={3} label="Email" />
+						<Input id='phone' s={3} label="Phone Number" />
 					</Row>
 					<Row>
-						<Input s={3} label="username" required />
-						<Input s={3} label="password" required />
+						<Input id='username' type='email' s={3} label="Username" required />
+						<Input id='password' type='password' s={3} label="Password" required />
 					</Row>
-					<Button onClick={this.handleSubmit} waves="light">Submit</Button>
+					<Button onClick={this.handleSubmit} waves="light" type='submit'>Submit</Button>
 				</form>
 			</div>
 		)
@@ -48,13 +69,13 @@ function mapStateToProps(state){
 // key = this.props.key
 // value = propety of RootReducer
 	return{
-		
+		auth: state.auth
 	}
 }
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
-		// loginAction: LoginAction
-	},dispatch);
+		registerAction: RegisterAction
+	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Login);
+export default connect(mapStateToProps,mapDispatchToProps)(Register);
