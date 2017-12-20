@@ -11,9 +11,26 @@ connection.connect();
 
 router.post('/teacherRegister', (req, res)=>{
 	console.log('teacher');
-	res.json({
-		msg: "teacherRegistered"
-	});
+	const firstName = req.body.firstName;
+	const lastName = req.body.lastName;
+	const email = req.body.email;
+	const phone = req.body.phone;
+	const username = req.body.username;
+	const hash = bcrypt.hashSync(req.body.password);
+	const insertTeacher = `INSERT into teachers (firstName, lastName, password, email, phone) 
+		VALUES 
+		(?,?,?,?,?);`;
+	connection.query(insertTeacher, [firstName, lastName, password, email, phone],(error, results)=>{
+		if(error){
+			console.log("This is broken");
+			throw error;
+		}else{
+			console.log("Your mom");
+			res.json({
+				msg: "registerSuccess"
+			})
+		}
+	})	
 });
 
 router.post('/parentRegister', (req, res)=>{
