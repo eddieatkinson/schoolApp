@@ -20,7 +20,7 @@ class Login extends Component{
 	render(){
 		return(
 			<div className="container">
-				<h2>
+				<h2></h2>
 				<form>
 					<Row>
 						<Input s={3} label="username" />
