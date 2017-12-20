@@ -11,7 +11,7 @@ class App extends Component {
 		      	<div>
 				    <NavBar />
 				    <Route exact path='/login' component={Login} />
-				    <Route exact path='/register' component={Register} />
+				    <Route path='/register/:status' component={Register} />
 		        </div>
 	      	</Router>
 	    );

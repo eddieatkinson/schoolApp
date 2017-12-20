@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Form, Row, Input, Button, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import RegisterAction from '../actions/RegisterAction';
+// import RegisterAction from '../actions/RegisterAction';
 
 
 class Login extends Component{
@@ -14,17 +14,27 @@ class Login extends Component{
 
 	handleSubmit(event){
 		event.preventDefault();
-
+		console.log(event.target.value);
+		// this.props.RegisterAction(this.match.params.status, formData);
 	}
 
 	render(){
+		console.log("You've made it this far!");
 		return(
 			<div className="container">
 				<h2></h2>
 				<form>
 					<Row>
-						<Input s={3} label="username" />
-						<Input s={3} label="password" />
+						<Input s={3} label="First Name" required />
+						<Input s={3} label="Last Name" required />
+					</Row>
+					<Row>
+						<Input s={3} label="Email" />
+						<Input s={3} label="Phone Number" />
+					</Row>
+					<Row>
+						<Input s={3} label="username" required />
+						<Input s={3} label="password" required />
 					</Row>
 					<Button onClick={this.handleSubmit} waves="light">Submit</Button>
 				</form>
@@ -43,7 +53,7 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
-		loginAction: LoginAction
+		// loginAction: LoginAction
 	},dispatch);
 }
 

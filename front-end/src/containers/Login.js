@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Form, Row, Input, Button, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import LoginAction from '../actions/LoginAction';
+// import LoginAction from '../actions/LoginAction';
 
 
 class Login extends Component{
@@ -42,7 +42,7 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
-		loginAction: LoginAction
+		// loginAction: LoginAction
 	},dispatch);
 }
 

@@ -13,7 +13,7 @@ class NavBar extends Component{
 		return(
 			<div>
 				<Link to='/login'>Login</Link>
-				<Link to='/register'>Register</Link>
+				<Link to='/registerfhg83y2w/:status'>Register</Link>
 			</div>
 		)
 	}
