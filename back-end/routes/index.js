@@ -15,12 +15,14 @@ router.post('/teacherRegister', (req, res)=>{
 		msg: "teacherRegistered"
 	});
 });
+
 router.post('/parentRegister', (req, res)=>{
 	console.log('parent');
 	res.json({
 		msg: "parentRegistered"
 	});
 });
+
 router.post('/studentRegister', (req, res)=>{
 	console.log('student');
 	res.json({
