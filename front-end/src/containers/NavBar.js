@@ -13,7 +13,9 @@ class NavBar extends Component{
 		return(
 			<div>
 				<Link to='/login'>Login</Link>
-				<Link to='/registerfhg83y2w/:status'>Register</Link>
+				<Link to='/register/parent'>Register Parent</Link>
+				<Link to='/register/student'>Register Student</Link>
+				<Link to='/register/teacher'>Register Teacher</Link>
 			</div>
 		)
 	}
