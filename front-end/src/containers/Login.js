@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 
-class NavBar extends Component{
+class Login extends Component{
 	constructor(){
 		super();
 	}
@@ -12,7 +12,9 @@ class NavBar extends Component{
 	render(){
 		return(
 			<div>
-				<Link to='/login'>Login</Link>
+				<form>
+					
+				</form>
 			</div>
 		)
 	}
@@ -32,4 +34,4 @@ function mapDispatchToProps(dispatch){
 	},dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps,mapDispatchToProps)(Login);
