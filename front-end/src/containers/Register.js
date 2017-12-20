@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Form, Row, Input, Button, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import LoginAction from '../actions/LoginAction';
+import RegisterAction from '../actions/RegisterAction';
 
 
 class Login extends Component{
@@ -20,6 +20,7 @@ class Login extends Component{
 	render(){
 		return(
 			<div className="container">
+				<h2>
 				<form>
 					<Row>
 						<Input s={3} label="username" />
