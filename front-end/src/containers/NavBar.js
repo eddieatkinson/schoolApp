@@ -12,10 +12,9 @@ class NavBar extends Component{
 	render(){
 		return(
 			<div>
-				<Link to='/login'>Login</Link>
-				<Link to='/register/parent'>Register Parent</Link>
-				<Link to='/register/student'>Register Student</Link>
-				<Link to='/register/teacher'>Register Teacher</Link>
+				<Link to='/login/parent'>Login Parent</Link>
+				<Link to='/login/student'>Login Student</Link>
+				<Link to='/login/teacher'>Login Teacher</Link>
 			</div>
 		)
 	}

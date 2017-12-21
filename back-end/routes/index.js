@@ -26,7 +26,7 @@ router.post('/teacherRegister', (req, res)=>{
 		}else{
 			res.json({
 				msg: "registerTeacherSuccess"
-			})
+			});
 		}
 	})	
 });
@@ -71,6 +71,36 @@ router.post('/studentRegister', (req, res)=>{
 			res.json({
 				msg: "registerStudentSuccess"
 			})
+		}
+	})
+});
+
+router.post('/studentLogin', (req, res)=>{
+	console.log('studentLoggedIn');
+	const username = req.body.username;
+	const password = req.body.password;
+	const checkStudent = `SELECT * FROM students WHERE username = ?;`;
+	connection.query(checkStudent, [username],(error, results)=>{
+		if(error){
+			throw error;
+		}else if(results.length == 0){
+			// username not in database
+			res.json({
+				msg: 'badUsername'
+			});
+		}else{
+			if(bcrypt.compareSync(password, results[0].password)){
+				// good password
+				res.json({
+					msg: 'loginSuccess'
+				});
+			}else{
+				// wrong password
+				res.json({
+					msg: 'badPass'
+				});
+			}
+
 		}
 	})
 });
