@@ -17,19 +17,15 @@ router.post('/teacherRegister', (req, res)=>{
 	const phone = req.body.phone;
 	const username = req.body.username;
 	const hash = bcrypt.hashSync(req.body.password);
-	const insertTeacher = `INSERT INTO teachers (firstName, lastName, password, email, phone) 
+	const insertTeacher = `INSERT INTO teachers (firstName, lastName, username, password, email, phone) 
 		VALUES 
-		(?,?,?,?,?);`;
-	console.log("end of consts");	
-	connection.query(insertTeacher, [firstName, lastName, hash, email, phone],(error, results)=>{
-		console.log("query");
+		(?,?,?,?,?,?);`;
+	connection.query(insertTeacher, [firstName, lastName, username, hash, email, phone],(error, results)=>{
 		if(error){
-			console.log("This is broken");
 			throw error;
 		}else{
-			console.log("Your mom");
 			res.json({
-				msg: "registerSuccess"
+				msg: "registerTeacherSuccess"
 			})
 		}
 	})	
@@ -37,16 +33,46 @@ router.post('/teacherRegister', (req, res)=>{
 
 router.post('/parentRegister', (req, res)=>{
 	console.log('parent');
-	res.json({
-		msg: "parentRegistered"
-	});
+	const firstName = req.body.firstName;
+	const lastName = req.body.lastName;
+	const email = req.body.email;
+	const phone = req.body.phone;
+	const username = req.body.username;
+	const hash = bcrypt.hashSync(req.body.password);
+	const insertParent = `INSERT INTO parents (firstName, lastName, username, password, email, phone) 
+		VALUES 
+		(?,?,?,?,?,?);`;
+	connection.query(insertParent, [firstName, lastName, username, hash, email, phone],(error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			res.json({
+				msg: "registerParentSuccess"
+			})
+		}
+	})
 });
 
 router.post('/studentRegister', (req, res)=>{
 	console.log('student');
-	res.json({
-		msg: "studentRegistered"
-	});
+	const firstName = req.body.firstName;
+	const lastName = req.body.lastName;
+	const email = req.body.email;
+	const phone = req.body.phone;
+	const username = req.body.username;
+	const hash = bcrypt.hashSync(req.body.password);
+	const insertStudent = `INSERT INTO students (firstName, lastName, username, password, email, phone) 
+		VALUES 
+		(?,?,?,?,?,?);`;
+	connection.query(insertStudent, [firstName, lastName, username, hash, email, phone],(error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			res.json({
+				msg: "registerStudentSuccess"
+			})
+		}
+	})
 });
 
 module.exports = router;

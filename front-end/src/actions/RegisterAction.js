@@ -12,7 +12,6 @@ export default function(status, formData){
 	// console.log(formData);
 	if(status === "teacher"){ // REMOVE THIS!!! IT IS FOR DEV PURPOSES ONLY!
 		console.log('teacher');
-		console.log(window.apiHost);
 		axiosPromise = axios({
 			url: `${window.apiHost}/teacherRegister`,
 			method: "POST",
