@@ -18,6 +18,7 @@ class Login extends Component{
 	handleSubmit(event){
 		event.preventDefault();
 		var status = this.props.match.params.status;
+		console.log(status);
 		var loginId;
 		if(status === 'student'){
 			loginId = document.getElementById('Username').value;
@@ -34,17 +35,21 @@ class Login extends Component{
 	}
 
 	componentWillReceiveProps(newProps){
+		// console.log(newProps);
 		if(newProps.auth.msg === "loginStudentSuccess"){
 			// this.setState({
 			// 	error: "This password doesn not match"
 			// });
+			this.props.history.push('/students');
 		}else if(newProps.auth.msg === "loginParentSuccess"){
 			// this.setState({
 			// 	error: "We do not have an account for this email"
 			// })
+			this.props.history.push('/parents');
 		}else if(newProps.auth.msg === "loginTeacherSuccess"){
 			// newProps.getCart(newProps.auth.token);
 			// newProps.history.push('/');
+			this.props.history.push('/teachers');
 		}else if(newProps.auth.msg === "badPass"){
 			this.setState({
 				error: "Incorrect Password"
@@ -52,7 +57,7 @@ class Login extends Component{
 		}else if(newProps.auth.msg === "badLoginId"){
 			this.setState({
 				error: "Invalid Login"
-			})
+			});
 		}
 	}
 
