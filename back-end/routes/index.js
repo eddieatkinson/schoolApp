@@ -61,10 +61,11 @@ router.post('/studentRegister', (req, res)=>{
 	const phone = req.body.phone;
 	const username = req.body.username;
 	const hash = bcrypt.hashSync(req.body.password);
-	const insertStudent = `INSERT INTO students (firstName, lastName, username, password, email, phone) 
+	const token = randToken.uid(60);
+	const insertStudent = `INSERT INTO students (firstName, lastName, username, password, email, phone, token) 
 		VALUES 
-		(?,?,?,?,?,?);`;
-	connection.query(insertStudent, [firstName, lastName, username, hash, email, phone],(error, results)=>{
+		(?,?,?,?,?,?,?);`;
+	connection.query(insertStudent, [firstName, lastName, username, hash, email, phone, token],(error, results)=>{
 		if(error){
 			throw error;
 		}else{
@@ -75,9 +76,9 @@ router.post('/studentRegister', (req, res)=>{
 	})
 });
 
-router.post('/studentLogin', (req, res)=>{
+router.post('/login/student', (req, res)=>{
 	console.log('studentLoggedIn');
-	const username = req.body.username;
+	const username = req.body.loginId;
 	const password = req.body.password;
 	const checkStudent = `SELECT * FROM students WHERE username = ?;`;
 	connection.query(checkStudent, [username],(error, results)=>{
@@ -86,13 +87,88 @@ router.post('/studentLogin', (req, res)=>{
 		}else if(results.length == 0){
 			// username not in database
 			res.json({
-				msg: 'badUsername'
+				msg: 'badLoginId'
 			});
 		}else{
-			if(bcrypt.compareSync(password, results[0].password)){
+			const checkHash = bcrypt.compareSync(password, results[0].password);
+			if(checkHash){
 				// good password
+				const newToken = randToken.uid(60);
+				const name = results[0].firstName;
 				res.json({
-					msg: 'loginSuccess'
+					msg: 'loginSuccess',
+					token: newToken,
+					name: name
+				});
+			}else{
+				// wrong password
+				res.json({
+					msg: 'badPass'
+				});
+			}
+
+		}
+	})
+});
+
+router.post('/login/parent', (req, res)=>{
+	console.log('parentLoggedIn');
+	const email = req.body.loginId;
+	const password = req.body.password;
+	const checkParent = `SELECT * FROM parents WHERE email = ?;`;
+	connection.query(checkParent, [email],(error, results)=>{
+		if(error){
+			throw error;
+		}else if(results.length == 0){
+			// email not in database
+			res.json({
+				msg: 'badLoginId'
+			});
+		}else{
+			const checkHash = bcrypt.compareSync(password, results[0].password);
+			if(checkHash){
+				// good password
+				const newToken = randToken.uid(60);
+				const name = results[0].firstName;
+				res.json({
+					msg: 'loginSuccess',
+					token: newToken,
+					name: name
+				});
+			}else{
+				// wrong password
+				res.json({
+					msg: 'badPass'
+				});
+			}
+
+		}
+	})
+});
+
+router.post('/login/teacher', (req, res)=>{
+	console.log('teacherLoggedIn');
+	const email = req.body.loginId;
+	const password = req.body.password;
+	const checkTeacher = `SELECT * FROM teachers WHERE email = ?;`;
+	connection.query(checkTeacher, [email],(error, results)=>{
+		if(error){
+			throw error;
+		}else if(results.length == 0){
+			// email not in database
+			res.json({
+				msg: 'badLoginId'
+			});
+		}else{
+			const checkHash = bcrypt.compareSync(password, results[0].password);
+			if(checkHash){
+				// good password
+				const newToken = randToken.uid(60);
+				const name = results[0].firstName;
+				res.json({
+					msg: 'loginSuccess',
+					token: newToken,
+					name: name
 				});
 			}else{
 				// wrong password

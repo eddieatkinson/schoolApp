@@ -14,13 +14,18 @@ class Login extends Component{
 
 	handleSubmit(event){
 		event.preventDefault();
-		var username = document.getElementById('username').value;
+		var status = this.props.match.params.status;
+		var loginId;
+		if(status === 'student'){
+			loginId = document.getElementById('Username').value;
+		}else{
+			loginId = document.getElementById('Email').value;
+		}
 		var password = document.getElementById('password').value;
 		var formData = {
-			username,
+			loginId,
 			password
 		}
-		var status = this.props.match.params.status;
 		console.log(this);
 		this.props.loginAction(status, formData);
 	}
@@ -32,12 +37,19 @@ class Login extends Component{
 	}
 
 	render(){
+		var status = this.props.match.params.status;
+		var inputId;
+		if(status === 'student'){
+			inputId = 'Username'
+		}else{
+			inputId = 'Email'
+		}
 		return(
 			<div className="container">
 				<form>
 					<Row>
-						<Input id="username" s={3} label="username" />
-						<Input id="password" s={3} label="password" type="password"/>
+						<Input id={inputId} s={3} label={inputId} />
+						<Input id="password" s={3} label="Password" type="password"/>
 					</Row>
 					<Button onClick={this.handleSubmit} waves="light">Submit</Button>
 				</form>
