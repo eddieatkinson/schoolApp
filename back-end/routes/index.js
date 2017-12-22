@@ -96,7 +96,7 @@ router.post('/login/student', (req, res)=>{
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
 				res.json({
-					msg: 'loginSuccess',
+					msg: 'loginStudentSuccess',
 					token: newToken,
 					name: name
 				});
@@ -131,7 +131,7 @@ router.post('/login/parent', (req, res)=>{
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
 				res.json({
-					msg: 'loginSuccess',
+					msg: 'loginParentSuccess',
 					token: newToken,
 					name: name
 				});
@@ -166,7 +166,7 @@ router.post('/login/teacher', (req, res)=>{
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
 				res.json({
-					msg: 'loginSuccess',
+					msg: 'loginTeacherSuccess',
 					token: newToken,
 					name: name
 				});

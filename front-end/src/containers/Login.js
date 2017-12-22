@@ -9,6 +9,9 @@ import LoginAction from '../actions/LoginAction';
 class Login extends Component{
 	constructor(){
 		super();
+		this.state = {
+			error: ""
+		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
@@ -31,24 +34,45 @@ class Login extends Component{
 	}
 
 	componentWillReceiveProps(newProps){
-		console.log('=======NEW LOGIN PROPS========');
-		console.log(newProps);
-		console.log('=======NEW LOGIN PROPS========');
+		if(newProps.auth.msg === "loginStudentSuccess"){
+			// this.setState({
+			// 	error: "This password doesn not match"
+			// });
+		}else if(newProps.auth.msg === "loginParentSuccess"){
+			// this.setState({
+			// 	error: "We do not have an account for this email"
+			// })
+		}else if(newProps.auth.msg === "loginTeacherSuccess"){
+			// newProps.getCart(newProps.auth.token);
+			// newProps.history.push('/');
+		}else if(newProps.auth.msg === "badPass"){
+			this.setState({
+				error: "Incorrect Password"
+			})
+		}else if(newProps.auth.msg === "badLoginId"){
+			this.setState({
+				error: "Invalid Login"
+			})
+		}
 	}
 
 	render(){
 		var status = this.props.match.params.status;
 		var inputId;
+		var inputType;
 		if(status === 'student'){
-			inputId = 'Username'
+			inputId = 'Username';
+			inputType = '';
 		}else{
-			inputId = 'Email'
+			inputId = 'Email';
+			inputType = 'email'
 		}
 		return(
 			<div className="container">
+				<h4>{this.state.error}</h4>
 				<form>
 					<Row>
-						<Input id={inputId} s={3} label={inputId} />
+						<Input id={inputId} s={3} label={inputId} type={inputType} className="validate"/>
 						<Input id="password" s={3} label="Password" type="password"/>
 					</Row>
 					<Button onClick={this.handleSubmit} waves="light">Submit</Button>
