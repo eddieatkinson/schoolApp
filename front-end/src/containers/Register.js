@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Form, Row, Input, Button, Col } from 'react-materialize';
+// import { Link } from 'react-router-dom';
+import { Form, Row, Input, Button } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import RegisterAction from '../actions/RegisterAction';
@@ -43,8 +43,7 @@ class Register extends Component{
 		console.log("You've made it this far!");
 		return(
 			<div className="container">
-				<h2></h2>
-				<form>
+				<Form>
 					<Row>
 						<Input id='first-name' s={3} label="First Name" required />
 						<Input id='last-name' s={3} label="Last Name" required />
@@ -58,7 +57,7 @@ class Register extends Component{
 						<Input id='password' type='password' s={3} label="Password" required />
 					</Row>
 					<Button onClick={this.handleSubmit} waves="light" type='submit'>Submit</Button>
-				</form>
+				</Form>
 			</div>
 		)
 	}

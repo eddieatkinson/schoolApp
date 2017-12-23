@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Form, Row, Input, Button, Col } from 'react-materialize';
+// import { Link } from 'react-router-dom';
+// import { Form, Row, Input, Button, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import RegisterAction from '../actions/RegisterAction';
+
 
 
 class Teachers extends Component{
-	constructor(){
-		super();
-	}
+	// constructor(){
+	// 	super();
+	// }
 
 	componentWillReceiveProps(newProps){
 		// console.log('=======NEW PROPS========');

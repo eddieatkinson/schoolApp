@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Form, Row, Input, Button, Col } from 'react-materialize';
+// import { Link } from 'react-router-dom';
+import { Row, Input, Button } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LoginAction from '../actions/LoginAction';
@@ -64,7 +64,7 @@ class Login extends Component{
 	render(){
 		var status = this.props.match.params.status;
 		var inputId;
-		var inputType;
+		var inputType;  
 		if(status === 'student'){
 			inputId = 'Username';
 			inputType = '';

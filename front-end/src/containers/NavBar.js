@@ -5,9 +5,9 @@ import { bindActionCreators } from 'redux';
 
 
 class NavBar extends Component{
-	constructor(){
-		super();
-	}
+	// constructor(){
+	// 	super();
+	// }
 
 	render(){
 		return(
