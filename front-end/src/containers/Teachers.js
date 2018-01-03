@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // import { Form, Row, Input, Button, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Navbar from './Navbar';
 
 
 
@@ -21,6 +22,7 @@ class Teachers extends Component{
 		console.log("You've made it this far!");
 		return(
 			<div>
+				<Navbar />
 				<h1>Teachers</h1>
 			</div>
 		)
