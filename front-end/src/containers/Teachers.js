@@ -31,7 +31,7 @@ class Teachers extends Component{
 						<Col s={2}>
 							<Navbar />
 						</Col>
-						<Col s={10}>
+						<Col offset='s3' s={9}>
 							<Route exact path='/teachers' component={Courses}/>
 							<Route path='/teachers/courses' component={Courses}/>
 							<Route path='/teachers/studentInfo' component={StudentInfo}/>
