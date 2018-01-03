@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter  as Router, Route} from 'react-router-dom';
-import NavBar from './containers/NavBar';
+// import Dropdown from './containers/Dropdown';
 import Login from './containers/Login';
 import Register from './containers/Register';
 import Students from './containers/Students';
@@ -12,7 +12,7 @@ class App extends Component {
 	    return (
 	      	<Router>
 		      	<div>
-				    <NavBar />
+				    <Route exact path='/' component={Login} />
 				    <Route path='/login/:status' component={Login} />
 				    <Route path='/register/:status' component={Register} />
 				    <Route path='/students' component={Students} />

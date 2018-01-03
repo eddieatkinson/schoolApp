@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 
-class NavBar extends Component{
+class Dropdown extends Component{
 	// constructor(){
 	// 	super();
 	// }
@@ -34,4 +34,4 @@ function mapDispatchToProps(dispatch){
 	},dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps,mapDispatchToProps)(Dropdown);

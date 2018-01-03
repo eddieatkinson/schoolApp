@@ -4,6 +4,7 @@ import { Row, Input, Button } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LoginAction from '../actions/LoginAction';
+import Dropdown from './Dropdown';
 
 
 class Login extends Component{
@@ -62,25 +63,33 @@ class Login extends Component{
 	}
 
 	render(){
-		var status = this.props.match.params.status;
-		var inputId;
-		var inputType;  
-		if(status === 'student'){
-			inputId = 'Username';
-			inputType = '';
-		}else{
-			inputId = 'Email';
-			inputType = 'email'
+		var inputId = '';
+		var inputType = '';
+		var button = '';
+		var password = '';
+		// console.log(this.props.match.params.status);
+		if(this.props.match.params.status !== undefined){	
+			var status = this.props.match.params.status;
+			password = 'password';  
+			if(status === 'student'){
+				inputId = 'Username';
+				inputType = '';
+			}else{
+				inputId = 'Email';
+				inputType = 'email'
+			}
+			button = <Button onClick={this.handleSubmit} waves="light">Submit</Button>
 		}
 		return(
 			<div className="container">
+				<Dropdown />
 				<h4>{this.state.error}</h4>
 				<form>
 					<Row>
 						<Input id={inputId} s={3} label={inputId} type={inputType} className="validate"/>
-						<Input id="password" s={3} label="Password" type="password"/>
+						<Input id={password} s={3} label="Password" type="password"/>
 					</Row>
-					<Button onClick={this.handleSubmit} waves="light">Submit</Button>
+					{button}
 				</form>
 			</div>
 		)
