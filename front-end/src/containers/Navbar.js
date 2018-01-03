@@ -7,21 +7,46 @@ import LogoutAction from '../actions/LogoutAction';
 import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
 import SvgIcon from 'react-icons-kit';
  
-import { ic_aspect_ratio } from 'react-icons-kit/md/ic_aspect_ratio';
-import { ic_business } from 'react-icons-kit/md/ic_business';
+import { book } from 'react-icons-kit/icomoon/book';
+import { drawer2 } from 'react-icons-kit/icomoon/drawer2';
+import { pacman } from 'react-icons-kit/icomoon/pacman';   
+import { calendar } from 'react-icons-kit/icomoon/calendar';
+import { exit } from 'react-icons-kit/icomoon/exit'; 
  
 //specify the base color/background of the parent container if needed 
 const MySideNav = () => (
     <div style={{background: '#2c3e50', color: '#FFF', width: 220}}> 
-        <SideNav highlightColor='#E91E63' highlightBgColor='#00bcd4' defaultSelected='sales'>       
-            <Nav id='dashboard'>
-                <NavIcon><SvgIcon size={20} icon={ic_aspect_ratio}/></NavIcon>    
-                <NavText> <Link to='/'>Dashboard</Link> </NavText>
-            </Nav>
-            <Nav id='sales'>
-                <NavIcon><SvgIcon size={20} icon={ic_business}/></NavIcon>
-                <NavText> Sales </NavText>
-            </Nav>
+        <SideNav highlightColor='#E91E63' highlightBgColor='#00bcd4' defaultSelected='courses'>       
+            <Link to='/teachers/courses' id='courses'>
+            	<Nav>
+	                <NavIcon><SvgIcon size={20} icon={book}/></NavIcon>    
+	                <NavText> Courses </NavText>
+	            </Nav>
+	        </Link>
+	        <Link to='/teachers/studentInfo'>
+	            <Nav id='students'>
+	                <NavIcon><SvgIcon size={20} icon={pacman}/></NavIcon>
+	                <NavText> Students </NavText>
+	            </Nav>
+	        </Link>
+	        <Link to='/teachers/inbox'>
+	            <Nav id='inbox'>
+	                <NavIcon><SvgIcon size={20} icon={drawer2}/></NavIcon>
+	                <NavText> Inbox </NavText>
+	            </Nav>
+	        </Link>
+	        <Link to='/teachers/calendar'>
+	            <Nav id='calendar'>
+	                <NavIcon><SvgIcon size={20} icon={calendar}/></NavIcon>
+	                <NavText> Calendar </NavText>
+	            </Nav>
+	        </Link>
+	        <Link to='/logout'>
+	            <Nav id='logout'>
+	                <NavIcon><SvgIcon size={20} icon={exit}/></NavIcon>
+	                <NavText> Logout </NavText>
+	            </Nav>
+	        </Link>
         </SideNav>
     </div>
 )

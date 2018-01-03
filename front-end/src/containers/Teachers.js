@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-// import { Form, Row, Input, Button, Col } from 'react-materialize';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Form, Row, Input, Button, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Navbar from './Navbar';
-
+import Courses from './Courses';
+import StudentInfo from './StudentInfo';
+import Inbox from './Inbox';
+import Calendar from './Calendar';
+import Logout from './Logout';
 
 
 class Teachers extends Component{
@@ -21,10 +25,23 @@ class Teachers extends Component{
 	render(){
 		console.log("You've made it this far!");
 		return(
-			<div>
-				<Navbar />
-				<h1>Teachers</h1>
-			</div>
+			<Router>
+				<div>
+					<Row>
+						<Col s={2}>
+							<Navbar />
+						</Col>
+						<Col s={10}>
+							<Route exact path='/teachers' component={Courses}/>
+							<Route path='/teachers/courses' component={Courses}/>
+							<Route path='/teachers/studentInfo' component={StudentInfo}/>
+							<Route path='/teachers/inbox' component={Inbox}/>
+							<Route path='/teachers/calendar' component={Calendar}/>
+							<Route path='/logout' component={Logout}/>
+						</Col>
+					</Row>
+				</div>
+			</Router>
 		)
 	}
 }
