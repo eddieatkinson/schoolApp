@@ -15,7 +15,7 @@ import { exit } from 'react-icons-kit/icomoon/exit';
  
 //specify the base color/background of the parent container if needed 
 const MySideNav = () => (
-    <div style={{background: '#2c3e50', color: '#FFF', width: 220}}> 
+    <div style={{background: '#2c3e50', color: '#FFF', width: 220, position: 'fixed', height: '100vh'}}> 
         <SideNav highlightColor='#E91E63' highlightBgColor='#00bcd4' defaultSelected='courses'>       
             <Link to='/teachers/courses' id='courses'>
             	<Nav>
@@ -41,12 +41,12 @@ const MySideNav = () => (
 	                <NavText> Calendar </NavText>
 	            </Nav>
 	        </Link>
-	        <Link to='/logout'>
+	        <a href='/'>
 	            <Nav id='logout'>
 	                <NavIcon><SvgIcon size={20} icon={exit}/></NavIcon>
 	                <NavText> Logout </NavText>
 	            </Nav>
-	        </Link>
+	        </a>
         </SideNav>
     </div>
 )

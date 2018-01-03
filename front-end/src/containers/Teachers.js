@@ -28,10 +28,10 @@ class Teachers extends Component{
 			<Router>
 				<div>
 					<Row>
-						<Col s={2}>
+						<Col s={2} style={{padding: 0}}>
 							<Navbar />
 						</Col>
-						<Col s={10}>
+						<Col s={10} offset="s2">
 							<Route exact path='/teachers' component={Courses}/>
 							<Route path='/teachers/courses' component={Courses}/>
 							<Route path='/teachers/studentInfo' component={StudentInfo}/>
