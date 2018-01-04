@@ -4,13 +4,13 @@ import { combineReducers } from 'redux';
 // first: AuthReducer
 import AuthReducer from './AuthReducer';
 import CoursesReducer from './CoursesReducer';
-
-
+import AssignmentsReducer from './AssignmentsReducer';
 
 //combreducers takes an object as an argument, that arg has key:value pair ... will return a value
 const rootReducer = combineReducers({	
 	auth: AuthReducer,
-	courses: CoursesReducer
+	courses: CoursesReducer,
+	assignments: AssignmentsReducer
 });
 
 

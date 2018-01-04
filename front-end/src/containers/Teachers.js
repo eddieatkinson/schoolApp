@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Form, Row, Input, Button, Col } from 'react-materialize';
+import { Row, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Navbar from './Navbar';
@@ -11,6 +11,7 @@ import Inbox from './Inbox';
 import Calendar from './Calendar';
 import Logout from './Logout';
 import GetCourses from '../actions/GetCourses';
+// import Assignments from '../components/Assignments';
 
 
 class Teachers extends Component{
@@ -22,7 +23,7 @@ class Teachers extends Component{
 		// console.log('=======NEW PROPS========');
 		// console.log(newProps);
 		// console.log('=======NEW PROPS========');
-		console.log(newProps);
+		// console.log(newProps);
 	}
 	componentDidMount(){
 		// console.log(this.props.auth)
@@ -40,7 +41,7 @@ class Teachers extends Component{
 							<Navbar />
 						</Col>
 						<Col s={10} style={{'marginleft':220}}>
-							<Route path='/courseInfo' component={CourseInfo} />
+							<Route path='/courseInfo/:courseId' component={CourseInfo} />
 							<Route exact path='/teachers' component={Courses}/>
 							<Route path='/teachers/courses' component={Courses}/>
 							<Route path='/teachers/studentInfo' component={StudentInfo}/>

@@ -8,12 +8,49 @@ connection.connect();
 
 router.get('/courses/:teacherId/get', (req, res)=>{
 	const teacherId = req.params.teacherId;
-	console.log("TEACHER ID:")
-	console.log(teacherId);
+	// console.log("TEACHER ID:")
+	// console.log(teacherId);
 	var coursesQuery = `SELECT * FROM courses
 		INNER JOIN teachers ON courses.teacherId = teachers.teacherId
 		WHERE courses.teacherId = ?;`;
 	connection.query(coursesQuery, [teacherId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			// console.log("============");
+			// console.log(results);
+			// console.log("============");
+			res.json(results);
+		}
+	});
+});
+
+router.get('/courseInfo/:courseId/get', (req, res)=>{
+	const courseId = req.params.courseId;
+	// console.log("TEACHER ID:")
+	// console.log(teacherId);
+	var coursesQuery = `SELECT * FROM courses
+		INNER JOIN teachers ON courses.teacherId = teachers.teacherId
+		WHERE courses.id = ?;`;
+	connection.query(coursesQuery, [courseId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
+
+router.get('/assignments/:courseId/get', (req, res)=>{
+	const courseId = req.params.courseId;
+	// console.log("TEACHER ID:")
+	// console.log(teacherId);
+	var assQuery = `SELECT * FROM assignments
+		WHERE cid = ?;`;
+	connection.query(assQuery, [courseId], (error, results)=>{
 		if(error){
 			throw error;
 		}else{

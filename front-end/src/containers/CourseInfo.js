@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import { Table } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import GetCourseInfo from '../actions/GetCourseInfo';
+import CourseNav from './CourseNav';
+import Assignments from './Assignments';
 // import DataTables from 'material-ui-datatables';
 
 class CourseInfo extends Component{
@@ -17,29 +20,23 @@ class CourseInfo extends Component{
 	}
 
 	componentDidMount(){
-
+		var courseId = this.props.match.params.courseId;
+		this.props.getCourseInfo(courseId);
 	}
 
 	render(){
 
-		var dataTable = '';
-		console.log(this.props.courses);
-		if(this.props.courses !== undefined){
-			dataTable = this.props.courses.map((course, index)=>{
-				return (
-					<tr>
-						<td>
-							<Link to='/courseInfo' >{course.courseName}</Link>
-						</td>
-						<td>
-							{course.desc}
-						</td>
-					</tr>
-				)
-			});
-		}
-		// 	const TABLE_COLUMNS = [
-		// 		{
+		// var dataTable = '';
+		// console.log(this.props.courses);
+		// if(this.props.courses !== undefined){
+		// 	dataTable = this.props.courses.map((course, index)=>{
+		// 		return (
+		// 			<h1>
+		// 		)
+		// 	});
+		// }
+		// // 	const TABLE_COLUMNS = [
+		// // 		{
 		// 			key: 'name',
 		// 			label: 'Course Name',
 		// 		}, {
@@ -67,20 +64,13 @@ class CourseInfo extends Component{
 		// 		/>);
 		// }
 
-		console.log("You've made it this far!");
-		console.log(this.props.courses)
+		// console.log("You've made it this far!");
+		// console.log(this.props.courses)
 		return (
-			<Table>
-				<thead>
-					<tr>
-						<th data-field="courseName">Name</th>
-						<th data-field="description">Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					{dataTable}
-				</tbody>
-			</Table>
+			<div>
+				<CourseNav courseId={this.props.match.params.courseId} />
+				<Route path='/courseInfo/:courseId/assignments' component={Assignments} />
+			</div>
 		);
 	}
 }
@@ -91,11 +81,13 @@ function mapStateToProps(state){
 // value = propety of RootReducer
 	return{
 		auth: state.auth,
-		courses: state.courses
+		courses: state.courses,
+		assignments: state.assignments
 	}
 }
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
+		getCourseInfo: GetCourseInfo
 	}, dispatch);
 }
 
