@@ -35,7 +35,7 @@ class CourseNav extends Component{
 	render(){
 		console.log(this.state);
 		return(
-			<Navbar brand={this.state.courseName} left>
+			<Navbar className="course-nav" brand={this.state.courseName} left>
 				<NavItem>Syllabus</NavItem>
 				<NavItem><Link to={`/courseInfo/${this.props.courseId}/assignments`}>Assignments</Link></NavItem>
 				<NavItem>Grades</NavItem>

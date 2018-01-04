@@ -1,37 +1,54 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
 
 
-class Dropdown extends Component{
-	// constructor(){
-	// 	super();
-	// }
+// class Dropdown extends Component{
+// 	// constructor(){
+// 	// 	super();
+// 	// }
+import React from 'react';
+import { Button, Dropdown, NavItem } from 'react-materialize';
 
-	render(){
-		return(
-			<div>
-				<Link to='/login/parent'>Login Parent</Link>
-				<Link to='/login/student'>Login Student</Link>
-				<Link to='/login/teacher'>Login Teacher</Link>
-			</div>
-		)
-	}
+
+export default function(){
+	return(
+		<Dropdown className='dropDown'trigger={
+		    <Button className="dropButton">Select:</Button>
+		  }>
+		  <NavItem><Link to='/login/parent'>Parent</Link></NavItem>
+		  <NavItem><Link to='/login/teacher'>Teacher</Link></NavItem>
+		  <NavItem divider />
+		  <NavItem><Link to='/login/student'>Student</Link></NavItem>
+		</Dropdown>
+	)
 }
 
 
-function mapStateToProps(state){
-// key = this.props.key
-// value = propety of RootReducer
-	return{
+// 	render(){
+// 		return(
+// 			<div>
+// 				<Link to='/login/parent'>Login Parent</Link>
+// 				<Link to='/login/student'>Login Student</Link>
+// 				<Link to='/login/teacher'>Login Teacher</Link>
+// 			</div>
+// 		)
+// 	}
+// }
+
+
+// function mapStateToProps(state){
+// // key = this.props.key
+// // value = propety of RootReducer
+// 	return{
 		
-	}
-}
-function mapDispatchToProps(dispatch){
-	return bindActionCreators({
+// 	}
+// }
+// function mapDispatchToProps(dispatch){
+// 	return bindActionCreators({
 		
-	},dispatch);
-}
+// 	},dispatch);
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Dropdown);
+// export default connect(mapStateToProps,mapDispatchToProps)(Dropdown);

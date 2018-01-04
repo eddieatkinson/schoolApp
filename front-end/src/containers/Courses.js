@@ -66,7 +66,7 @@ class Courses extends Component{
 		console.log("You've made it this far!");
 		console.log(this.props.courses)
 		return (
-			<Table>
+			<Table bordered='true' hoverable='true' responsive='true'>
 				<thead>
 					<tr>
 						<th data-field="courseName">Name</th>

@@ -14,4 +14,18 @@ body{
 		}
 	}
 } 
-
+.container{
+	margin: 100px;
+}
+.course-nav{
+	background-color: #b4881d;
+}
+.dropDown{
+	
+}
+.dropButton,.loginButton{
+	background-color: #2e8cd0;
+	&:hover{
+		background-color: #e2dfce;
+	}
+}

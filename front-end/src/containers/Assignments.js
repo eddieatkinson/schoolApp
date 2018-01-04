@@ -17,7 +17,7 @@ class Assignments extends Component{
 				var majorAssStuff = response.data;
 				var assStuff = majorAssStuff.map((ass, index)=>{
 					return(
-						<tr>
+						<tr key={index}>
 							<td>{ass.assName}</td>
 							<td>{ass.desc}</td>
 						</tr>
@@ -31,7 +31,7 @@ class Assignments extends Component{
 	// const product = props.product;
 	render(){
 		return(
-			<Table>
+			<Table bordered='true' hoverable='true' responsive='true'>
 				<thead>
 					<tr>
 						<th>Ass Name</th>

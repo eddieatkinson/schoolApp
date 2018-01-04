@@ -40,7 +40,7 @@ class Teachers extends Component{
 						<Col s={2} style={{padding: 0}}>
 							<Navbar />
 						</Col>
-						<Col s={10} style={{'marginleft':220}}>
+						<Col s={10} style={{'marginLeft':220}}>
 							<Route path='/courseInfo/:courseId' component={CourseInfo} />
 							<Route exact path='/teachers' component={Courses}/>
 							<Route path='/teachers/courses' component={Courses}/>

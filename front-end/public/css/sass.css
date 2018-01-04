@@ -11,4 +11,15 @@ body {
   #nav a:hover {
     color: #b4881d; }
 
+.container {
+  margin: 100px; }
+
+.course-nav {
+  background-color: #b4881d; }
+
+.dropButton, .loginButton {
+  background-color: #2e8cd0; }
+  .dropButton:hover, .loginButton:hover {
+    background-color: #e2dfce; }
+
 /*# sourceMappingURL=sass.css.map */

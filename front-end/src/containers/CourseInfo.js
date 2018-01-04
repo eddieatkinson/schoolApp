@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
-import { Table } from 'react-materialize';
+import { Route } from 'react-router-dom';
+// import { Table } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GetCourseInfo from '../actions/GetCourseInfo';

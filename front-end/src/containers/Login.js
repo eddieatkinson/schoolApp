@@ -78,7 +78,7 @@ class Login extends Component{
 				inputId = 'Email';
 				inputType = 'email'
 			}
-			button = <Button onClick={this.handleSubmit} waves="light">Submit</Button>
+			button = <Button className='loginButton'onClick={this.handleSubmit} waves="light">Login</Button>
 		}
 		return(
 			<div className="container">
