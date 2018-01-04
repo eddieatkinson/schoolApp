@@ -24,7 +24,8 @@ class Teachers extends Component{
 		console.log(newProps);
 	}
 	componentDidMount(){
-		this.props.getCourses(this.props.auth.teacherId);
+		// console.log(this.props.auth)
+		this.props.getCourses(this.props.auth);
 	}
 
 	render(){
