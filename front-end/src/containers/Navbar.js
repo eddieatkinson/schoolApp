@@ -15,8 +15,8 @@ import { exit } from 'react-icons-kit/icomoon/exit';
  
 //specify the base color/background of the parent container if needed 
 const MySideNav = () => (
-    <div style={{background: '#2c3e50', color: '#FFF', width: 220, position: 'fixed', height: '100vh'}}> 
-        <SideNav highlightColor='#E91E63' highlightBgColor='#00bcd4' defaultSelected='courses'>       
+    <div id="nav" style={{background: '#586e74', color: '#b4881d', width: 220, position: 'fixed', height: '100vh'}}> 
+        <SideNav highlightColor='#c94b23' highlightBgColor='#fdf6e4' defaultSelected='courses'>       
             <Link to='/teachers/courses' id='courses'>
             	<Nav>
 	                <NavIcon><SvgIcon size={20} icon={book}/></NavIcon>    
@@ -28,7 +28,7 @@ const MySideNav = () => (
 	                <NavIcon><SvgIcon size={20} icon={pacman}/></NavIcon>
 	                <NavText> Students </NavText>
 	            </Nav>
-	        </Link>
+	        </Link> 
 	        <Link to='/teachers/inbox'>
 	            <Nav id='inbox'>
 	                <NavIcon><SvgIcon size={20} icon={drawer2}/></NavIcon>

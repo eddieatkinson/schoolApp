@@ -3,3 +3,16 @@ p{
 	text-align: center;
 	margin: 100px;
 }
+body{
+	background-color: #fdf6e4;
+}
+#nav{
+	a{
+		color: white;
+		&:hover{
+			color: #b4881d;
+		}
+	}
+} 
+
+
