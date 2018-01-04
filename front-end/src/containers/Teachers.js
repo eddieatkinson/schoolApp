@@ -9,6 +9,7 @@ import StudentInfo from './StudentInfo';
 import Inbox from './Inbox';
 import Calendar from './Calendar';
 import Logout from './Logout';
+import GetCourses from '../actions/GetCourses';
 
 
 class Teachers extends Component{
@@ -20,10 +21,15 @@ class Teachers extends Component{
 		// console.log('=======NEW PROPS========');
 		// console.log(newProps);
 		// console.log('=======NEW PROPS========');
+		console.log(newProps);
+	}
+	componentDidMount(){
+		this.props.getCourses(this.props.auth.teacherId);
 	}
 
 	render(){
 		console.log("You've made it this far!");
+		console.log(this.props.auth.teacherId);
 		return(
 			<Router>
 				<div>
@@ -51,11 +57,13 @@ function mapStateToProps(state){
 // key = this.props.key
 // value = propety of RootReducer
 	return{
-		auth: state.auth
+		auth: state.auth,
+		courses: state.courses
 	}
 }
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
+		getCourses: GetCourses
 	}, dispatch);
 }
 
