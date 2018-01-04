@@ -17,7 +17,7 @@ class CourseInfo extends Component{
 	}
 
 	componentDidMount(){
-		
+
 	}
 
 	render(){
@@ -27,16 +27,14 @@ class CourseInfo extends Component{
 		if(this.props.courses !== undefined){
 			dataTable = this.props.courses.map((course, index)=>{
 				return (
-					<Link to='/courseInfo' >
-						<tr>
-							<td>
-								{course.courseName}
-							</td>
-							<td>
-								{course.desc}
-							</td>
-						</tr>
-					</Link>
+					<tr>
+						<td>
+							<Link to='/courseInfo' >{course.courseName}</Link>
+						</td>
+						<td>
+							{course.desc}
+						</td>
+					</tr>
 				)
 			});
 		}

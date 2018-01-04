@@ -8,6 +8,8 @@ connection.connect();
 
 router.get('/courses/:teacherId/get', (req, res)=>{
 	const teacherId = req.params.teacherId;
+	console.log("TEACHER ID:")
+	console.log(teacherId);
 	var coursesQuery = `SELECT * FROM courses
 		INNER JOIN teachers ON courses.teacherId = teachers.teacherId
 		WHERE courses.teacherId = ?;`;
@@ -15,7 +17,9 @@ router.get('/courses/:teacherId/get', (req, res)=>{
 		if(error){
 			throw error;
 		}else{
+			console.log("============");
 			console.log(results);
+			console.log("============");
 			res.json(results);
 		}
 	});
