@@ -95,9 +95,11 @@ router.post('/login/student', (req, res)=>{
 				// good password
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
+				const statusId = results[0].statusId;
 				res.json({
 					msg: 'loginStudentSuccess',
 					token: newToken,
+					statusId: statusId,
 					name: name
 				});
 			}else{
@@ -130,9 +132,11 @@ router.post('/login/parent', (req, res)=>{
 				// good password
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
+				const statusId = results[0].statusId;
 				res.json({
 					msg: 'loginParentSuccess',
 					token: newToken,
+					statusId: statusId,
 					name: name
 				});
 			}else{
@@ -166,9 +170,11 @@ router.post('/login/teacher', (req, res)=>{
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
 				const teacherId = results[0].teacherId;
+				const statusId = results[0].statusId;
 				res.json({
 					msg: 'loginTeacherSuccess',
 					token: newToken,
+					statusId: statusId,
 					name: name,
 					teacherId: teacherId
 				});
