@@ -165,10 +165,12 @@ router.post('/login/teacher', (req, res)=>{
 				// good password
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
+				const teacherId = results[0].teacherId;
 				res.json({
 					msg: 'loginTeacherSuccess',
 					token: newToken,
-					name: name
+					name: name,
+					teacherId: teacherId
 				});
 			}else{
 				// wrong password
