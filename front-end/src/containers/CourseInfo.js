@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import DataTables from 'material-ui-datatables';
 
-class Courses extends Component{
+class CourseInfo extends Component{
 	// constructor(){
 	// 	super();
 	// }
@@ -14,6 +14,10 @@ class Courses extends Component{
 		// console.log('=======NEW PROPS========');
 		// console.log(newProps);
 		// console.log('=======NEW PROPS========');
+	}
+
+	componentDidMount(){
+		
 	}
 
 	render(){
@@ -97,4 +101,4 @@ function mapDispatchToProps(dispatch){
 	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Courses);
+export default connect(mapStateToProps,mapDispatchToProps)(CourseInfo);

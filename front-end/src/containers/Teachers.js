@@ -4,6 +4,7 @@ import { Form, Row, Input, Button, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Navbar from './Navbar';
+import CourseInfo from './CourseInfo';
 import Courses from './Courses';
 import StudentInfo from './StudentInfo';
 import Inbox from './Inbox';
@@ -39,6 +40,7 @@ class Teachers extends Component{
 							<Navbar />
 						</Col>
 						<Col s={10} style={{'margin-left':220}}>
+							<Route path='/courseInfo' component={CourseInfo} />
 							<Route exact path='/teachers' component={Courses}/>
 							<Route path='/teachers/courses' component={Courses}/>
 							<Route path='/teachers/studentInfo' component={StudentInfo}/>
