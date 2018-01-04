@@ -19,9 +19,10 @@ class Courses extends Component{
 
 	render(){
 		console.log("You've made it this far!");
+		console.log(this.props.courses)
 		return(
 			<div>
-				<h1>Courses</h1>
+				
 			</div>
 		)
 	}
@@ -32,7 +33,8 @@ function mapStateToProps(state){
 // key = this.props.key
 // value = propety of RootReducer
 	return{
-		auth: state.auth
+		auth: state.auth,
+		courses: state.courses
 	}
 }
 function mapDispatchToProps(dispatch){
