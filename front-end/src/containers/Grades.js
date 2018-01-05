@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Table, Button } from 'react-materialize';
+import { Table, Button, Input } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import AddAssignmentsAction from '../actions/AddAssignmentsAction';
+import EditAction from '../actions/EditAction';
 
 class Assignments extends Component{
 	constructor(){
@@ -12,12 +13,78 @@ class Assignments extends Component{
 		this.state = {
 			grades: []
 		}
-		this.createAssignment = this.createAssignment.bind(this);
+		this.changeStatus = this.changeStatus.bind(this);
+		this.changeGrade = this.changeGrade.bind(this);
+		this.editInformation = this.editInformation.bind(this);
 	}
 
-	createAssignment(){
-		// this.props.history.push(`/teachers/${this.props.match.params.courseId}/addAssignments`);
-		// this.props.history.push(`https://www.google.com`);
+	changeStatus(){
+		console.log("Change status");
+		var newStatus = document.getElementById('newStatus').value;
+		console.log(newStatus);
+		console.log(this.state);
+		var newData = {
+			newStatus: newStatus,
+			aid: this.state.grades.aid
+		}
+		console.log(newData);
+		var axiosPromise = axios({
+			url: `${window.apiHost}/teachers/changeStatus`,
+			method: 'POST',
+			data: newData
+		});
+		console.log(axiosPromise);
+	}
+
+	changeGrade(){
+		var newGrade = document.getElementById('newGrade');
+		var axiosPromise = axios({
+			url: `${window.apiHost}/teachers/changeGrade`,
+			method: 'POST',
+			data: newGrade
+		});
+	}
+
+	editInformation(){
+		this.props.editAction();
+	}
+
+	componentWillReceiveProps(newProps){
+		console.log("componentWillReceiveProps");
+		var courseId = this.props.match.params.courseId;
+		const url = `${window.apiHost}/teachers/grades/${courseId}/get`;
+		axios.get(url)
+			.then((response)=>{
+				var gradeDataFull = response.data;
+				if(this.props.editing){
+					var gradeData = gradeDataFull.map((grade, index)=>{
+						return(
+							<tr key={index}>
+								<td>{`${grade.firstName} ${grade.lastName}`}</td>
+								<td>{grade.assName}</td>
+								<td>{grade.status}</td>
+								<td><Input id='newStatus' /><Button onClick={this.changeStatus}>Change Status</Button></td>
+								<td>{grade.grade}</td>
+								<td><Input id='newGrade' /><Button onClick={this.changeGrade}>Change Grade</Button></td>
+							</tr>
+						);
+					});
+				}else{
+					var gradeData = gradeDataFull.map((grade, index)=>{
+						return(
+							<tr key={index}>
+								<td>{`${grade.firstName} ${grade.lastName}`}</td>
+								<td>{grade.assName}</td>
+								<td>{grade.status}</td>
+								<td>{grade.grade}</td>
+							</tr>
+						);
+					});
+				}
+				this.setState({
+					grades: gradeData
+				});
+			});	
 	}
 
 	componentDidMount(){
@@ -26,16 +93,31 @@ class Assignments extends Component{
 		axios.get(url)
 			.then((response)=>{
 				var gradeDataFull = response.data;
-				var gradeData = gradeDataFull.map((grade, index)=>{
-					return(
-						<tr key={index}>
-							<td>{`${grade.firstName} ${grade.lastName}`}</td>
-							<td>{grade.assName}</td>
-							<td>{grade.status}</td>
-							<td>{grade.grade}</td>
-						</tr>
-					);
-				});
+				if(this.props.editing){
+					var gradeData = gradeDataFull.map((grade, index)=>{
+						return(
+							<tr key={index}>
+								<td>{`${grade.firstName} ${grade.lastName}`}</td>
+								<td>{grade.assName}</td>
+								<td>{grade.status}</td>
+								<td><Input id='newStatus' /><Button onClick={this.changeStatus}>Change Status</Button></td>
+								<td>{grade.grade}</td>
+								<td><Input id='newGrade' /><Button onClick={this.changeGrade}>Change Grade</Button></td>
+							</tr>
+						);
+					});
+				}else{
+					var gradeData = gradeDataFull.map((grade, index)=>{
+						return(
+							<tr key={index}>
+								<td>{`${grade.firstName} ${grade.lastName}`}</td>
+								<td>{grade.assName}</td>
+								<td>{grade.status}</td>
+								<td>{grade.grade}</td>
+							</tr>
+						);
+					});
+				}
 				this.setState({
 					grades: gradeData
 				});
@@ -43,6 +125,7 @@ class Assignments extends Component{
 	}	
 	// const product = props.product;
 	render(){
+		// console.log(this.state);
 		var addGrade = ''
 		// console.log(this.props);
 		if(this.props.auth.statusId === 1){
@@ -53,13 +136,16 @@ class Assignments extends Component{
 
 		return(
 			<div>
+				<Button onClick={this.editInformation}>Click to edit</Button>
 				<Table>
 					<thead>
 						<tr>
 							<th>Student Name</th>
 							<th>Assignment Name</th>
 							<th>Assignment Status</th>
+							<th>Change Status</th>
 							<th>Grade</th>
+							<th>Change Grade</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -77,13 +163,15 @@ class Assignments extends Component{
 function mapStateToProps(state){
 	return{
 		auth: state.auth,
-		studentInfo: state.studentInfo
+		studentInfo: state.studentInfo,
+		editing: state.editing
 	}
 }
 
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
-		addAssignmentsAction: AddAssignmentsAction
+		addAssignmentsAction: AddAssignmentsAction,
+		editAction: EditAction
 	}, dispatch);
 }
 

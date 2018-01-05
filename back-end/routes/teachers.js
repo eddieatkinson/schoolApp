@@ -140,6 +140,38 @@ router.get('/grades/:courseId/get', (req, res)=>{
 		}
 	});
 });
+
+router.post('/changeStatus', (req, res)=>{
+	const newStatus = req.body.newStatus;
+	const aid = req.body.aid;
+	const updateStatus = `UPDATE assignmentStatus
+		SET status = ?
+		WHERE aid = ?;`;
+	connection.query(updateStatus, [newStatus, aid], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			res.json({
+				msg: "statusUpdated"
+			});
+		}
+	});
+	// const assignmentName = req.body.assignmentName;
+	// const assignmentDesc = req.body.assignmentDesc;
+
+	// const insertAssignmentQuery = `INSERT INTO assignments (cid, assName, assDesc)
+	// 	VALUES
+	// 	(?, ?, ?);`;
+	// connection.query(insertAssignmentQuery, [courseId, assignmentName, assignmentDesc], (error, results)=>{
+	// 	if(error){
+	// 		throw error;
+	// 	}else{
+	// 		res.json({
+	// 			msg: "assingmentsInserted"
+	// 		});
+	// 	}
+	// });
+});
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
  
