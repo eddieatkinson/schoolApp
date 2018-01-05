@@ -71,7 +71,6 @@ class CourseInfo extends Component{
 			<div>
 				<CourseNav courseId={this.props.match.params.courseId} />
 				<Route path='/courseInfo/:courseId/assignments' component={Assignments} />
-				<Route path='/courseInfo/:teacherId/students' component={CourseStudents} />
 			</div>
 		);
 	}

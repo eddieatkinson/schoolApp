@@ -11,6 +11,7 @@ import Inbox from './Inbox';
 import Calendar from './Calendar';
 import Logout from './Logout';
 import GetCourses from '../actions/GetCourses';
+import CourseStudents from './CourseStudents';
 // import Assignments from '../components/Assignments';
 
 
@@ -42,12 +43,14 @@ class Teachers extends Component{
 						</Col>
 						<Col s={10} style={{'marginLeft':220}}>
 							<Route path='/courseInfo/:courseId' component={CourseInfo} />
+							<Route path='/studentInfo/:studentId' component={StudentInfo} />
 							<Route exact path='/teachers' component={Courses}/>
 							<Route path='/teachers/courses' component={Courses}/>
 							<Route path='/teachers/studentInfo' component={StudentInfo}/>
 							<Route path='/teachers/inbox' component={Inbox}/>
 							<Route path='/teachers/calendar' component={Calendar}/>
 							<Route path='/logout' component={Logout}/>
+							<Route path='/courseInfo/:teacherId/students' component={CourseStudents} />
 						</Col>
 					</Row>
 				</div>
