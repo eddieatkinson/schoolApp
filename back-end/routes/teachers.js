@@ -62,6 +62,24 @@ router.get('/assignments/:courseId/get', (req, res)=>{
 	});
 });
 
+router.get('/students/:teacherId/get', (req, res)=>{
+	const teacherId = req.params.teacherId;
+	// console.log("TEACHER ID:")
+	console.log(teacherId);
+	var studentsQuery = `SELECT * FROM students
+		WHERE teacherId = ?;`;
+	connection.query(studentsQuery, [teacherId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
+
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
  

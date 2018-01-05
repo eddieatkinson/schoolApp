@@ -34,34 +34,6 @@ class Courses extends Component{
 				)
 			});
 		}
-		// 	const TABLE_COLUMNS = [
-		// 		{
-		// 			key: 'name',
-		// 			label: 'Course Name',
-		// 		}, {
-		// 			key: 'description',
-		// 			label: 'Description',
-		// 		}
-		// 	];
-
-		// 	const TABLE_DATA = this.props.courses.map((course, index)=>{
-		// 		return {
-		// 			name: course.courseName,
-		// 			description: course.desc
-		// 		}
-		// 	});
-
-		// 	var dataTable = (<DataTables
-		// 			height={'auto'}
-		// 			selectable={false}
-		// 			showRowHover={true}
-		// 			columns={TABLE_COLUMNS}
-		// 			data={TABLE_DATA}
-		// 			showCheckboxes={false}
-		// 			page={1}
-		// 			count={100}
-		// 		/>);
-		// }
 
 		console.log("You've made it this far!");
 		console.log(this.props.courses)
