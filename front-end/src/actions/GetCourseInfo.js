@@ -7,7 +7,7 @@ export default function(courseId){
 	// console.log("//////////////////////")
 	const axiosPromise = axios.get(url);
 	return{
-		type: "GET_COURSES",
+		type: "GET_COURSE_INFO",
 		payload: axiosPromise
 	}
 }

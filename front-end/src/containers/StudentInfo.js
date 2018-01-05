@@ -22,13 +22,13 @@ class StudentInfo extends Component{
 			return(
 				<tr>
 					<td>
-						{`${info.firstName} ${info.lastName}`}
+						{`${info.parentFirstName} ${info.parentLastName}`}
 					</td>
 					<td>
-						{info.email}
+						{info.parentEmail}
 					</td>
 					<td>
-						{info.phone}
+						{info.parentPhone}
 					</td>
 				</tr>
 			)

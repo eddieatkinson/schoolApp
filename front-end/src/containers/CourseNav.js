@@ -29,6 +29,7 @@ class CourseNav extends Component{
 
 	componentDidMount(){
 		var courseId = this.props.courseId;
+		console.log(courseId);
 		this.getCourseName(courseId);
 	}
 

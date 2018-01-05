@@ -84,8 +84,11 @@ router.get('/studentInfo/:studentId/get', (req, res)=>{
 	const studentId = req.params.studentId;
 	// console.log("student ID:")
 	console.log(studentId);
-	var studentParentQuery = `SELECT * FROM parents
+	var studentParentQuery = `SELECT parents.firstName AS parentFirstName,
+	parents.lastName AS parentLastName, parents.email as parentEmail,
+	parents.phone as parentPhone, students.firstName, students.lastName, students.phone, students.email FROM parents
 		INNER JOIN studentParent ON parents.parentId = studentParent.parentId
+		INNER JOIN students ON studentParent.studentId = students.studentId
 		WHERE studentParent.studentId = ?;`;
 	connection.query(studentParentQuery, [studentId], (error, results)=>{
 		if(error){

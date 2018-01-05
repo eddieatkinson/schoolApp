@@ -19,9 +19,9 @@ class Courses extends Component{
 	render(){
 
 		var dataTable = '';
-		console.log(this.props.courses);
-		if(this.props.courses !== undefined){
-			dataTable = this.props.courses.map((course, index)=>{
+		// console.log(this.props.courses);
+		if(this.props.courses.list !== undefined){
+			dataTable = this.props.courses.list.map((course, index)=>{
 				return (
 					<tr key={index}>
 						<td>
