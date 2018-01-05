@@ -80,6 +80,25 @@ router.get('/students/:teacherId/get', (req, res)=>{
 	});
 });
 
+router.get('/studentInfo/:studentId/get', (req, res)=>{
+	const studentId = req.params.studentId;
+	// console.log("student ID:")
+	console.log(studentId);
+	var studentParentQuery = `SELECT * FROM parents
+		INNER JOIN studentParent ON parents.parentId = studentParent.parentId
+		WHERE studentParent.studentId = ?;`;
+	connection.query(studentParentQuery, [studentId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
+
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
  

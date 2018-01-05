@@ -1,28 +1,52 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-// import { Form, Row, Input, Button, Col } from 'react-materialize';
+import { Table } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-
+import GetStudentInfo from '../actions/GetStudentInfo';
 
 class StudentInfo extends Component{
 	// constructor(){
 	// 	super();
 	// }
 
-	componentWillReceiveProps(newProps){
-		// console.log('=======NEW PROPS========');
-		// console.log(newProps);
-		// console.log('=======NEW PROPS========');
+	componentDidMount(){
+		var studentId = this.props.match.params.studentId;
+		console.log(studentId);
+		this.props.getStudentInfo(studentId);
+
 	}
 
 	render(){
+		var studentParentInfo = this.props.studentInfo.map((info, index)=>{
+			return(
+				<tr>
+					<td>
+						{`${info.firstName} ${info.lastName}`}
+					</td>
+					<td>
+						{info.email}
+					</td>
+					<td>
+						{info.phone}
+					</td>
+				</tr>
+			)
+		});
 		console.log("You've made it this far!");
 		return(
-			<div>
-				<h1>StudentInfo</h1>
-			</div>
+			<Table bordered='true' hoverable='true' responsive='true'>
+				<thead>
+					<tr>
+						<th data-field="parentName">Parent Name</th>
+						<th data-field="parentEmail">Email</th>
+						<th data-field="parentNumber">Number</th>
+					</tr>
+				</thead>
+				<tbody>
+					{studentParentInfo}
+				</tbody>
+			</Table>
 		)
 	}
 }
@@ -32,11 +56,13 @@ function mapStateToProps(state){
 // key = this.props.key
 // value = propety of RootReducer
 	return{
-		auth: state.auth
+		auth: state.auth,
+		studentInfo: state.studentInfo
 	}
 }
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
+		getStudentInfo: GetStudentInfo
 	}, dispatch);
 }
 

@@ -12,98 +12,51 @@ import { drawer2 } from 'react-icons-kit/icomoon/drawer2';
 import { pacman } from 'react-icons-kit/icomoon/pacman';   
 import { calendar } from 'react-icons-kit/icomoon/calendar';
 import { exit } from 'react-icons-kit/icomoon/exit'; 
- 
-//specify the base color/background of the parent container if needed 
-// const MySideNav = () => (
-//     <div id="nav" style={{background: '#586e74', color: '#b4881d', width: 220, position: 'fixed', height: '100vh'}}> 
-//         <SideNav highlightColor='#c94b23' highlightBgColor='#fdf6e4' defaultSelected='courses'>       
-//             <Link to='/teachers/courses' id='courses'>
-//             	<Nav>
-// 	                <NavIcon><SvgIcon size={20} icon={book}/></NavIcon>    
-// 	                <NavText> Courses </NavText>
-// 	            </Nav>
-// 	        </Link>
-// 	        <Link to={`/courseInfo/${this.props.auth.teacherId}/students`}>
-// 	            <Nav id='students'>
-// 	                <NavIcon><SvgIcon size={20} icon={pacman}/></NavIcon>
-// 	                <NavText> Students </NavText>
-// 	            </Nav>
-// 	        </Link> 
-// 	        <Link to='/teachers/inbox'>
-// 	            <Nav id='inbox'>
-// 	                <NavIcon><SvgIcon size={20} icon={drawer2}/></NavIcon>
-// 	                <NavText> Inbox </NavText>
-// 	            </Nav>
-// 	        </Link>
-// 	        <Link to='/teachers/calendar'>
-// 	            <Nav id='calendar'>
-// 	                <NavIcon><SvgIcon size={20} icon={calendar}/></NavIcon>
-// 	                <NavText> Calendar </NavText>
-// 	            </Nav>
-// 	        </Link>
-// 	        <a href='/'>
-// 	            <Nav id='logout'>
-// 	                <NavIcon><SvgIcon size={20} icon={exit}/></NavIcon>
-// 	                <NavText> Logout </NavText>
-// 	            </Nav>
-// 	        </a>
-//         </SideNav>
-//     </div>
-// )
 
 class Navbar extends Component{
-// 	// constructor(){
-// 	// 	super();
-// 	// }
-
-// 	componentWillReceiveProps(newProps){
-// 		// console.log('=======NEW PROPS========');
-// 		// console.log(newProps);
-// 		// console.log('=======NEW PROPS========');
-// 	}
 
 	render(){
-
+	// specify the base color/background of the parent container if needed 
 		const MySideNav = () => (
-    <div id="nav" style={{background: '#586e74', color: '#b4881d', width: 220, position: 'fixed', height: '100vh'}}> 
-        <SideNav highlightColor='#c94b23' highlightBgColor='#fdf6e4' defaultSelected='courses'>       
-            <Link to='/teachers/courses' id='courses'>
-            	<Nav>
-	                <NavIcon><SvgIcon size={20} icon={book}/></NavIcon>    
-	                <NavText> Courses </NavText>
-	            </Nav>
-	        </Link>
-	        <Link to={`/courseInfo/${this.props.auth.teacherId}/students`}>
-	            <Nav id='students'>
-	                <NavIcon><SvgIcon size={20} icon={pacman}/></NavIcon>
-	                <NavText> Students </NavText>
-	            </Nav>
-	        </Link> 
-	        <Link to='/teachers/inbox'>
-	            <Nav id='inbox'>
-	                <NavIcon><SvgIcon size={20} icon={drawer2}/></NavIcon>
-	                <NavText> Inbox </NavText>
-	            </Nav>
-	        </Link>
-	        <Link to='/teachers/calendar'>
-	            <Nav id='calendar'>
-	                <NavIcon><SvgIcon size={20} icon={calendar}/></NavIcon>
-	                <NavText> Calendar </NavText>
-	            </Nav>
-	        </Link>
-	        <a href='/'>
-	            <Nav id='logout'>
-	                <NavIcon><SvgIcon size={20} icon={exit}/></NavIcon>
-	                <NavText> Logout </NavText>
-	            </Nav>
-	        </a>
-        </SideNav>
-    </div>
-)
+			<div id="nav" style={{background: '#586e74', color: '#b4881d', width: 220, position: 'fixed', height: '100vh'}}> 
+				<SideNav highlightColor='#c94b23' highlightBgColor='#fdf6e4' defaultSelected='courses'>       
+					<Link to='/teachers/courses' id='courses'>
+						<Nav>
+							<NavIcon><SvgIcon size={20} icon={book}/></NavIcon>    
+							<NavText> Courses </NavText>
+						</Nav>
+					</Link>
+					<Link to={`/courseInfo/${this.props.auth.teacherId}/students`}>
+						<Nav id='students'>
+							<NavIcon><SvgIcon size={20} icon={pacman}/></NavIcon>
+							<NavText> Students </NavText>
+						</Nav>
+					</Link> 
+					<Link to='/teachers/inbox'>
+						<Nav id='inbox'>
+							<NavIcon><SvgIcon size={20} icon={drawer2}/></NavIcon>
+							<NavText> Inbox </NavText>
+						</Nav>
+					</Link>
+					<Link to='/teachers/calendar'>
+						<Nav id='calendar'>
+							<NavIcon><SvgIcon size={20} icon={calendar}/></NavIcon>
+							<NavText> Calendar </NavText>
+						</Nav>
+					</Link>
+					<a href='/'>
+						<Nav id='logout'>
+							<NavIcon><SvgIcon size={20} icon={exit}/></NavIcon>
+							<NavText> Logout </NavText>
+						</Nav>
+					</a>
+				</SideNav>
+			</div>
+		);
 		// console.log("You've made it this far!");
 		return(
 			<MySideNav />
-		)
+		);
 	}
 }
 
