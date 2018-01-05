@@ -144,10 +144,11 @@ router.get('/grades/:courseId/get', (req, res)=>{
 router.post('/changeStatus', (req, res)=>{
 	const newStatus = req.body.newStatus;
 	const aid = req.body.aid;
+	const sid = req.body.sid;
 	const updateStatus = `UPDATE assignmentStatus
 		SET status = ?
-		WHERE aid = ?;`;
-	connection.query(updateStatus, [newStatus, aid], (error, results)=>{
+		WHERE aid = ? AND sid = ?;`;
+	connection.query(updateStatus, [newStatus, aid, sid], (error, results)=>{
 		if(error){
 			throw error;
 		}else{
