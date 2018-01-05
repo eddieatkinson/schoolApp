@@ -144,10 +144,11 @@ router.get('/grades/:courseId/get', (req, res)=>{
 router.post('/changeStatus', (req, res)=>{
 	const newStatus = req.body.newStatus;
 	const aid = req.body.aid;
+	const studentId = req.body.studentId;
 	const updateStatus = `UPDATE assignmentStatus
 		SET status = ?
-		WHERE aid = ?;`;
-	connection.query(updateStatus, [newStatus, aid], (error, results)=>{
+		WHERE aid = ? AND sid = ?;`;
+	connection.query(updateStatus, [newStatus, aid, studentId], (error, results)=>{
 		if(error){
 			throw error;
 		}else{
@@ -156,22 +157,26 @@ router.post('/changeStatus', (req, res)=>{
 			});
 		}
 	});
-	// const assignmentName = req.body.assignmentName;
-	// const assignmentDesc = req.body.assignmentDesc;
-
-	// const insertAssignmentQuery = `INSERT INTO assignments (cid, assName, assDesc)
-	// 	VALUES
-	// 	(?, ?, ?);`;
-	// connection.query(insertAssignmentQuery, [courseId, assignmentName, assignmentDesc], (error, results)=>{
-	// 	if(error){
-	// 		throw error;
-	// 	}else{
-	// 		res.json({
-	// 			msg: "assingmentsInserted"
-	// 		});
-	// 	}
-	// });
 });
+
+router.post('/changeGrade', (req, res)=>{
+	const newGrade = req.body.newGrade;
+	const aid = req.body.aid;
+	const studentId = req.body.studentId;
+	const updateGrade = `UPDATE assignmentStatus
+		SET grade = ?
+		WHERE aid = ? AND sid = ?;`;
+	connection.query(updateGrade, [newGrade, aid, studentId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			res.json({
+				msg: "gradeUpdated"
+			});
+		}
+	});
+});
+
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
  
