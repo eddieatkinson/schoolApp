@@ -12,6 +12,7 @@ import Calendar from './Calendar';
 import Logout from './Logout';
 import GetCourses from '../actions/GetCourses';
 import CourseStudents from './CourseStudents';
+import AddAssignments from './AddAssignments';
 // import Assignments from '../components/Assignments';
 
 
@@ -51,6 +52,7 @@ class Teachers extends Component{
 							<Route path='/teachers/calendar' component={Calendar}/>
 							<Route path='/logout' component={Logout}/>
 							<Route path='/courseInfo/:teacherId/students' component={CourseStudents} />
+							<Route path='/teachers/:courseId/addAssignments' component={AddAssignments} />
 						</Col>
 					</Row>
 				</div>

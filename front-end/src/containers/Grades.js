@@ -10,7 +10,7 @@ class Assignments extends Component{
 	constructor(){
 		super();
 		this.state = {
-			assignments: []
+			grades: []
 		}
 		this.createAssignment = this.createAssignment.bind(this);
 	}
@@ -22,46 +22,53 @@ class Assignments extends Component{
 
 	componentDidMount(){
 		var courseId = this.props.match.params.courseId;
-		const url = `${window.apiHost}/teachers/assignments/${courseId}/get`;
+		const url = `${window.apiHost}/teachers/grades/${courseId}/get`;
 		axios.get(url)
 			.then((response)=>{
-				var majorAssStuff = response.data;
-				var assStuff = majorAssStuff.map((ass, index)=>{
+				var gradeDataFull = response.data;
+				var gradeData = gradeDataFull.map((grade, index)=>{
 					return(
 						<tr key={index}>
-							<td>{ass.assName}</td>
-							<td>{ass.assDesc}</td>
+							<td>{`${grade.firstName} ${grade.lastName}`}</td>
+							<td>{grade.assName}</td>
+							<td>{grade.status}</td>
+							<td>{grade.grade}</td>
 						</tr>
 					);
 				});
 				this.setState({
-					assignments: assStuff
+					grades: gradeData
 				});
 			});
 	}	
 	// const product = props.product;
 	render(){
-		var addAnAssignment = ''
-		console.log(this.props);
+		var addGrade = ''
+		// console.log(this.props);
 		if(this.props.auth.statusId === 1){
-			addAnAssignment = (
-				<Link to={`/teachers/${this.props.match.params.courseId}/addAssignments`}><Button>Add assignment!</Button></Link>
+			addGrade = (
+				<Link to={`/teachers/${this.props.match.params.courseId}/addAssignments`}><Button>Add grade</Button></Link>
 			)
 		}
+
 		return(
 			<div>
-				<Table bordered='true' hoverable='true' responsive='true'>
+				<Table>
 					<thead>
 						<tr>
-							<th>Ass Name</th>
-							<th>Ass Description</th>
+							<th>Student Name</th>
+							<th>Assignment Name</th>
+							<th>Assignment Status</th>
+							<th>Grade</th>
 						</tr>
 					</thead>
 					<tbody>
-						{this.state.assignments}
+						{this.state.grades}
 					</tbody>
 				</Table>
-				{addAnAssignment}
+				<div>
+					{addGrade}
+				</div>
 			</div>
 		);
 	}

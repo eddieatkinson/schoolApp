@@ -102,6 +102,44 @@ router.get('/studentInfo/:studentId/get', (req, res)=>{
 	});
 });
 
+router.post('/addAssignments', (req, res)=>{
+	const courseId = parseInt(req.body.courseId);
+	const assignmentName = req.body.assignmentName;
+	const assignmentDesc = req.body.assignmentDesc;
+
+	const insertAssignmentQuery = `INSERT INTO assignments (cid, assName, assDesc)
+		VALUES
+		(?, ?, ?);`;
+	connection.query(insertAssignmentQuery, [courseId, assignmentName, assignmentDesc], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			res.json({
+				msg: "assingmentsInserted"
+			});
+		}
+	});
+});
+
+router.get('/grades/:courseId/get', (req, res)=>{
+	const courseId = req.params.courseId;
+	// console.log("student ID:")
+	console.log(courseId);
+	var gradesQuery = `SELECT * FROM students
+		INNER JOIN assignmentStatus ON students.studentId = assignmentStatus.sid
+		INNER JOIN assignments ON assignmentStatus.aid = assignments.id
+		WHERE assignmentStatus.cid = ?;`;
+	connection.query(gradesQuery, [courseId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
  

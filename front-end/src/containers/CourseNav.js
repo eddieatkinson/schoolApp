@@ -41,7 +41,7 @@ class CourseNav extends Component{
 			<Navbar className="course-nav" brand={this.state.courseName} left>
 				<NavItem>Syllabus</NavItem>
 				<NavItem><Link to={`/courseInfo/${this.props.courseId}/assignments`}>Assignments</Link></NavItem>
-				<NavItem>Grades</NavItem>
+				<NavItem><Link to={`/courseInfo/${this.props.courseId}/grades`}>Grades</Link></NavItem>
 				<NavItem><Link to={`/courseInfo/${this.props.auth.teacherId}/students`}>Students</Link></NavItem>
 			</Navbar>
 		)

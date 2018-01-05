@@ -6,7 +6,9 @@ import { bindActionCreators } from 'redux';
 import GetCourseInfo from '../actions/GetCourseInfo';
 import CourseNav from './CourseNav';
 import Assignments from './Assignments';
+import AddAssignments from './AddAssignments';
 import CourseStudents from './CourseStudents';
+import Grades from './Grades';
 // import DataTables from 'material-ui-datatables';
 
 class CourseInfo extends Component{
@@ -30,6 +32,8 @@ class CourseInfo extends Component{
 			<div>
 				<CourseNav courseId={this.props.match.params.courseId} />
 				<Route path='/courseInfo/:courseId/assignments' component={Assignments} />
+				<Route path='/courseInfo/:courseId/grades' component={Grades} />
+				
 			</div>
 		);
 	}
