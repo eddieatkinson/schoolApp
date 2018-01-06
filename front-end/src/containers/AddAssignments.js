@@ -45,7 +45,7 @@ class AddAssignment extends Component{
 					<Input id='assignName' s={3} label="Assignment Name"/>
 					<Input id='assignDesc' s={3} label="Description"/>
 				</Row>
-				<Button className='addAssignmentsButton' onClick={this.handleSubmit} waves="light">Add That Assignment</Button>
+				<Button className='addAssignmentsButton' onClick={this.handleSubmit} waves="light">New Assignment</Button>
 			</form>
 		);
 	}

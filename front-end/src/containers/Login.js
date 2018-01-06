@@ -85,7 +85,7 @@ class Login extends Component{
 				<Dropdown />
 				<h4>{this.state.error}</h4>
 				<form>
-					<Row>
+					<Row className='loginForm'>
 						<Input id={inputId} s={3} label={inputId} type={inputType} className="validate"/>
 						<Input id={password} s={3} label="Password" type="password"/>
 						<div>

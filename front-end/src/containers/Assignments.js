@@ -45,7 +45,7 @@ class Assignments extends Component{
 		console.log(this.props);
 		if(this.props.auth.statusId === 1){
 			addAnAssignment = (
-				<Link to={`/teachers/${this.props.match.params.courseId}/addAssignments`}><Button>Add assignment!</Button></Link>
+				<Link to={`/teachers/${this.props.match.params.courseId}/addAssignments`}><Button className='addAssignment'>New Assignment</Button></Link>
 			)
 		}
 		return(

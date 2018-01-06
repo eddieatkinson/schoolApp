@@ -21,6 +21,9 @@ body {
 nav .brand-logo.right {
   right: 3.5rem; }
 
+.loginForm {
+  position: relative; }
+
 .dropButton, .loginButton {
   background-color: #2e8cd0; }
   .dropButton:hover, .loginButton:hover {
@@ -44,12 +47,19 @@ nav .brand-logo.right {
   position: relative; }
 
 .dropButton {
-  height: 60px; }
+  height: 60px;
+  width: 300px; }
 
-.editBtn {
+.editBtn, .addAssignment {
   background-color: #b4881d;
   margin: 5px; }
-  .editBtn:hover {
+  .editBtn:hover, .addAssignment:hover {
+    background-color: #e2dfce; }
+
+.addAssignmentsButton {
+  background-color: #6c73c2;
+  margin: 5px; }
+  .addAssignmentsButton:hover {
     background-color: #e2dfce; }
 
 /*# sourceMappingURL=sass.css.map */
