@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // import { Form, Row, Input, Button, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import GetInbox from '../actions/GetInbox';
 
 
 
@@ -17,8 +18,29 @@ class Inbox extends Component{
 		// console.log('=======NEW PROPS========');
 	}
 
+	componentDidMount(){
+		var status;
+		switch(this.props.auth.statusId){
+			case 1:
+				status = 'teacher';
+				break;
+			case 2:
+				status = 'parent';
+				break;
+			case 3:
+				status = 'student';
+				break;
+			default:
+				status = 'ERROR';
+		}
+		// console.log(status);
+		var userId = `${status}id`;
+		console.log(userId);
+		this.props.getInbox(status, userId);
+	}
+
 	render(){
-		console.log("You've made it this far!");
+		// console.log(this.props.auth.statusId);
 		return(
 			<div>
 				<h1>Inbox</h1>
@@ -32,11 +54,13 @@ function mapStateToProps(state){
 // key = this.props.key
 // value = propety of RootReducer
 	return{
-		auth: state.auth
+		auth: state.auth,
+		inbox: state.inbox
 	}
 }
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
+		getInbox: GetInbox
 	}, dispatch);
 }
 

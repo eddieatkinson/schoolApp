@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import AddAssignmentsAction from '../actions/AddAssignmentsAction';
 import EditAction from '../actions/EditAction';
-import StopEditAction from '../actions/StopEditAction';
 
 class Grades extends Component{
 	constructor(){
@@ -21,33 +20,20 @@ class Grades extends Component{
 
 	changeStatus(event, aid, sid, index){
 		console.log("Change status");
-<<<<<<< HEAD
 		var newStatus = event.target.previousSibling.childNodes[0].value
 		console.log(newStatus);
 		console.log("The assignment ID, Eddie!",aid);
-=======
-		var newStatus = document.getElementById('newStatus').value;
-		var aid = document.getElementById('newStatus').getAttribute('aid');
-		var studentId = document.getElementById('newStatus').getAttribute('studentId');
-		console.log(aid);
-		console.log(newStatus);
->>>>>>> 27f5ed5a56710e289a6fc27421e2b39723e1e66a
 		// console.log(this.state);
 		var newData = {
 			newStatus: newStatus,
 			aid: aid,
-<<<<<<< HEAD
 			sid: sid
-=======
-			studentId: studentId
->>>>>>> 27f5ed5a56710e289a6fc27421e2b39723e1e66a
 		}
 		console.log(newData);
 		var axiosPromise = axios({
 			url: `${window.apiHost}/teachers/changeStatus`,
 			method: 'POST',
 			data: newData
-<<<<<<< HEAD
 		}).then((response)=>{
 			console.log(response.data);
 			if(response.data.msg === 'statusUpdated'){
@@ -84,11 +70,6 @@ class Grades extends Component{
 				})
 			}
 		})
-=======
-		});
-		console.log(axiosPromise);
-		this.props.stopEditAction();
->>>>>>> 27f5ed5a56710e289a6fc27421e2b39723e1e66a
 	}
 
 	changeGrade(){
@@ -127,7 +108,6 @@ class Grades extends Component{
 								<td>{`${grade.firstName} ${grade.lastName}`}</td>
 								<td>{grade.assName}</td>
 								<td>{grade.status}</td>
-<<<<<<< HEAD
 								<td>
 									<Input id='newStatus' />
 									<Button onClick={(event)=>{
@@ -136,9 +116,6 @@ class Grades extends Component{
 										Change Status
 									</Button>
 								</td>
-=======
-								<td><Input id='newStatus' aid={grade.aid} studentId={grade.studentId} /><Button onClick={this.changeStatus}>Change Status</Button></td>
->>>>>>> 27f5ed5a56710e289a6fc27421e2b39723e1e66a
 								<td>{grade.grade}</td>
 								<td><Input id='newGrade' aid={grade.aid} studentId={grade.studentId} /><Button onClick={this.changeGrade}>Change Grade</Button></td>
 							</tr>
@@ -169,7 +146,6 @@ class Grades extends Component{
 		axios.get(url)
 			.then((response)=>{
 				var gradeDataFull = response.data;
-<<<<<<< HEAD
 				if(this.props.editing){
 					var gradeData = gradeDataFull.map((grade, index)=>{
 						console.log(grade);
@@ -204,33 +180,6 @@ class Grades extends Component{
 						);
 					});
 				}
-=======
-				// if(this.props.editing){
-				// 	var gradeData = gradeDataFull.map((grade, index)=>{
-				// 		return(
-				// 			<tr key={index}>
-				// 				<td>{`${grade.firstName} ${grade.lastName}`}</td>
-				// 				<td>{grade.assName}</td>
-				// 				<td>{grade.status}</td>
-				// 				<td><Input id='newStatus' aid={grade.aid} studentId={grade.studentId} /><Button onClick={this.changeStatus}>Change Status</Button></td>
-				// 				<td>{grade.grade}</td>
-				// 				<td><Input id='newGrade' aid={grade.aid} studentId={grade.studentId} /><Button onClick={this.changeGrade}>Change Grade</Button></td>
-				// 			</tr>
-				// 		);
-				// 	});
-				// }else{
-				var gradeData = gradeDataFull.map((grade, index)=>{
-					return(
-						<tr key={index}>
-							<td>{`${grade.firstName} ${grade.lastName}`}</td>
-							<td>{grade.assName}</td>
-							<td>{grade.status}</td>
-							<td>{grade.grade}</td>
-						</tr>
-					);
-				});
-				// }
->>>>>>> 27f5ed5a56710e289a6fc27421e2b39723e1e66a
 				this.setState({
 					grades: gradeData
 				});
@@ -289,8 +238,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
 		addAssignmentsAction: AddAssignmentsAction,
-		editAction: EditAction,
-		stopEditAction: StopEditAction
+		editAction: EditAction
 	}, dispatch);
 }
 
