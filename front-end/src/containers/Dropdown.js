@@ -12,16 +12,20 @@ import React from 'react';
 import { Button, Dropdown, NavItem } from 'react-materialize';
 
 
+
 export default function(){
 	return(
-		<Dropdown className='dropDown'trigger={
-		    <Button className="dropButton">Select:</Button>
-		  }>
-		  <NavItem><Link to='/login/parent'>Parent</Link></NavItem>
-		  <NavItem><Link to='/login/teacher'>Teacher</Link></NavItem>
-		  <NavItem divider />
-		  <NavItem><Link to='/login/student'>Student</Link></NavItem>
-		</Dropdown>
+		<div className='dropDown'>
+			<Dropdown trigger={
+			    <Button className="dropButton">Sign in as:</Button>
+			  }>
+			  <NavItem><Link to='/login/parent'>Parent</Link></NavItem>
+			  <NavItem><Link to='/login/teacher'>Teacher</Link></NavItem>
+			  <NavItem divider />
+			  <NavItem><Link to='/login/student'>Student</Link></NavItem>
+			</Dropdown>
+		</div>		
+
 	)
 }
 

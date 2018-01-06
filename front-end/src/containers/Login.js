@@ -88,8 +88,12 @@ class Login extends Component{
 					<Row>
 						<Input id={inputId} s={3} label={inputId} type={inputType} className="validate"/>
 						<Input id={password} s={3} label="Password" type="password"/>
+						<div>
+						<span>{button}</span>
+							<img className='giraffe' src='/giraffe.png'/>	
+							<img className='logo' src='/eduCrate_logo.png'/>	
+						</div>
 					</Row>
-					{button}
 				</form>
 			</div>
 		)

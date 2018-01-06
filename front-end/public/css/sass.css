@@ -12,14 +12,44 @@ body {
     color: #b4881d; }
 
 .container {
-  margin: 100px; }
+  margin: auto; }
 
 .course-nav {
-  background-color: #b4881d; }
+  background-color: #93a1a1;
+  margin-left: -12px; }
+
+nav .brand-logo.right {
+  right: 3.5rem; }
 
 .dropButton, .loginButton {
   background-color: #2e8cd0; }
   .dropButton:hover, .loginButton:hover {
+    background-color: #e2dfce; }
+
+.dropDown {
+  margin-top: 100px;
+  padding: 20px; }
+
+.giraffe {
+  height: 250px;
+  width: 175px;
+  position: absolute; }
+
+.logo {
+  position: relative;
+  margin-top: 253px;
+  margin-left: 20px; }
+
+.loginButton {
+  position: relative; }
+
+.dropButton {
+  height: 60px; }
+
+.editBtn {
+  background-color: #b4881d;
+  margin: 5px; }
+  .editBtn:hover {
     background-color: #e2dfce; }
 
 /*# sourceMappingURL=sass.css.map */
