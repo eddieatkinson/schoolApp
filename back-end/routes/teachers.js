@@ -144,19 +144,11 @@ router.get('/grades/:courseId/get', (req, res)=>{
 router.post('/changeStatus', (req, res)=>{
 	const newStatus = req.body.newStatus;
 	const aid = req.body.aid;
-<<<<<<< HEAD
 	const sid = req.body.sid;
 	const updateStatus = `UPDATE assignmentStatus
 		SET status = ?
 		WHERE aid = ? AND sid = ?;`;
 	connection.query(updateStatus, [newStatus, aid, sid], (error, results)=>{
-=======
-	const studentId = req.body.studentId;
-	const updateStatus = `UPDATE assignmentStatus
-		SET status = ?
-		WHERE aid = ? AND sid = ?;`;
-	connection.query(updateStatus, [newStatus, aid, studentId], (error, results)=>{
->>>>>>> 27f5ed5a56710e289a6fc27421e2b39723e1e66a
 		if(error){
 			throw error;
 		}else{
