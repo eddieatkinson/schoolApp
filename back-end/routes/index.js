@@ -80,7 +80,7 @@ router.post('/login/student', (req, res)=>{
 	console.log('studentLoggedIn');
 	const username = req.body.loginId;
 	const password = req.body.password;
-	const checkStudent = `SELECT * FROM students
+	const checkStudent = `SELECT *, CONCAT(firstName, " ", lastName) AS fullName FROM students
 		INNER JOIN status ON students.statusId = status.statusId
 		WHERE username = ?;`;
 	connection.query(checkStudent, [username],(error, results)=>{
@@ -97,6 +97,7 @@ router.post('/login/student', (req, res)=>{
 				// good password
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
+				const fullName = results[0].fullName;
 				const statusId = results[0].statusId;
 				const level = results[0].level;
 				res.json({
@@ -104,6 +105,7 @@ router.post('/login/student', (req, res)=>{
 					token: newToken,
 					statusId: statusId,
 					name: name,
+					fullName: fullName,
 					level: level
 				});
 			}else{
@@ -121,7 +123,7 @@ router.post('/login/parent', (req, res)=>{
 	console.log('parentLoggedIn');
 	const email = req.body.loginId;
 	const password = req.body.password;
-	const checkParent = `SELECT * FROM parents
+	const checkParent = `SELECT *, CONCAT(firstName, " ", lastName) AS fullName FROM parents
 		INNER JOIN status ON parents.statusId = status.statusId
 		WHERE email = ?;`;
 	connection.query(checkParent, [email],(error, results)=>{
@@ -138,6 +140,7 @@ router.post('/login/parent', (req, res)=>{
 				// good password
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
+				const fullName = results[0].fullName;
 				const statusId = results[0].statusId;
 				const level = results[0].level;
 				res.json({
@@ -145,6 +148,7 @@ router.post('/login/parent', (req, res)=>{
 					token: newToken,
 					statusId: statusId,
 					name: name,
+					fullName: fullName,
 					level: level
 				});
 			}else{
@@ -162,7 +166,7 @@ router.post('/login/teacher', (req, res)=>{
 	console.log('teacherLoggedIn');
 	const email = req.body.loginId;
 	const password = req.body.password;
-	const checkTeacher = `SELECT * FROM teachers
+	const checkTeacher = `SELECT *, CONCAT(firstName, " ", lastName) AS fullName FROM teachers
 		INNER JOIN status ON teachers.statusId = status.statusId
 		WHERE email = ?;`;
 	connection.query(checkTeacher, [email],(error, results)=>{
@@ -179,6 +183,7 @@ router.post('/login/teacher', (req, res)=>{
 				// good password
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
+				const fullName = results[0].fullName;
 				const teacherId = results[0].teacherId;
 				const statusId = results[0].statusId;
 				const level = results[0].level;
@@ -187,6 +192,7 @@ router.post('/login/teacher', (req, res)=>{
 					token: newToken,
 					statusId: statusId,
 					name: name,
+					fullName: fullName,
 					teacherId: teacherId,
 					level: level
 				});

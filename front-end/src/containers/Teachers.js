@@ -8,6 +8,7 @@ import CourseInfo from './CourseInfo';
 import Courses from './Courses';
 import StudentInfo from './StudentInfo';
 import Inbox from './Inbox';
+import InboxContents from './InboxContents';
 import Calendar from './Calendar';
 import Logout from './Logout';
 import GetCourses from '../actions/GetCourses';
@@ -45,12 +46,13 @@ class Teachers extends Component{
 						<Col s={10} style={{'marginLeft':220}}>
 							<Route path='/courseInfo/:courseId' component={CourseInfo} />
 							<Route path='/studentInfo/:studentId' component={StudentInfo} />
-							<Route exact path='/teachers' component={Courses}/>
-							<Route path='/teachers/courses' component={Courses}/>
-							<Route path='/teachers/studentInfo' component={StudentInfo}/>
-							<Route path='/teachers/inbox' component={Inbox}/>
-							<Route path='/teachers/calendar' component={Calendar}/>
-							<Route path='/logout' component={Logout}/>
+							<Route exact path='/teachers' component={Courses} />
+							<Route path='/teachers/courses' component={Courses} />
+							<Route path='/teachers/studentInfo' component={StudentInfo} />
+							<Route path='/teachers/inbox' component={Inbox} />
+							<Route path='/teachers/inboxContents' component={InboxContents} />
+							<Route path='/teachers/calendar' component={Calendar} />
+							<Route path='/logout' component={Logout} />
 							<Route path='/courseInfo/:teacherId/students' component={CourseStudents} />
 							<Route path='/teachers/:courseId/addAssignments' component={AddAssignments} />
 						</Col>

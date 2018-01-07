@@ -35,8 +35,8 @@ class Courses extends Component{
 			});
 		}
 
-		console.log("You've made it this far!");
-		console.log(this.props.courses)
+		// console.log("You've made it this far!");
+		// console.log(this.props.courses)
 		return (
 			<Table bordered='true' hoverable='true' responsive='true'>
 				<thead>

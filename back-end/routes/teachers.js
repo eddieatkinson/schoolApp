@@ -177,6 +177,34 @@ router.post('/changeGrade', (req, res)=>{
 	});
 });
 
+router.get('/inbox/:userId/get', (req, res)=>{
+	const userId = req.params.userId;
+	// console.log("student ID:")
+	console.log('===========================================================');
+	console.log('===========================================================');
+	console.log('===========================================================');
+	console.log(userId);
+	console.log('===========================================================');
+	console.log('===========================================================');
+	console.log('===========================================================');
+	var inboxQuery = `SELECT inbox.id, inbox.subject, inbox.body, inbox.receiverStatus,
+		inbox.senderStatus, inbox.receiverId, inbox.senderId, inbox.senderName, inbox.date,
+		status.level AS receiverLevel, s2.level AS senderLevel
+		FROM inbox
+		INNER JOIN status ON inbox.receiverStatus = status.statusId
+		INNER JOIN status s2 ON inbox.senderStatus = s2.statusId
+		WHERE inbox.receiverId = ?;`;
+	connection.query(inboxQuery, [userId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
  

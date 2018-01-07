@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-// import { Form, Row, Input, Button, Col } from 'react-materialize';
+import { Link } from 'react-router-dom';
+import { Table } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GetInbox from '../actions/GetInbox';
@@ -19,7 +19,8 @@ class Inbox extends Component{
 	}
 
 	componentDidMount(){
-		var status = this.props.auth.level;
+		var level = this.props.auth.level;
+		var status = `${this.props.auth.level}s`;
 		console.log(status);
 		// switch(this.props.auth.statusId){
 		// 	case 1:
@@ -35,17 +36,48 @@ class Inbox extends Component{
 		// 		status = 'ERROR';
 		// }
 		// console.log(status);
-		var userId = `${status}Id`;
-		console.log(userId);
+		var whichId = `${level}Id`;
+		var userId;
+		switch(whichId){
+			case "teacherId":
+				userId = this.props.auth.teacherId;
+				break;
+			case "parentId":
+				userId = this.props.auth.parentId;
+				break;
+			case "studentId":
+				userId = this.props.auth.studentId;
+				break;
+		}
+		console.log(userId)
 		this.props.getInbox(status, userId);
 	}
 
 	render(){
-		// console.log(this.props.auth.statusId);
+		console.log(this.props.inbox);
+		var inboxContents = this.props.inbox;
+		var inboxInfo = inboxContents.map((item, index)=>{
+			return(
+				<tr>
+					<td><Link to='/teachers/inboxContents'>{item.date}</Link></td>
+					<td><Link to='/teachers/inboxContents'>{item.senderName}</Link></td>
+					<td><Link to='/teachers/inboxContents'>{item.subject}</Link></td>
+				</tr>
+			)
+		});
 		return(
-			<div>
-				<h1>Inbox</h1>
-			</div>
+			<Table>
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>From</th>
+						<th>Subject</th>
+					</tr>
+				</thead>
+				<tbody>
+					{inboxInfo}
+				</tbody>
+			</Table>
 		)
 	}
 }
