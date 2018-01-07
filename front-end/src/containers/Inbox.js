@@ -59,9 +59,9 @@ class Inbox extends Component{
 		var inboxInfo = inboxContents.map((item, index)=>{
 			return(
 				<tr>
-					<td><Link to='/teachers/inboxContents'>{item.date}</Link></td>
-					<td><Link to='/teachers/inboxContents'>{item.senderName}</Link></td>
-					<td><Link to='/teachers/inboxContents'>{item.subject}</Link></td>
+					<td>{item.date}</td>
+					<td>{item.senderName}</td>
+					<td><Link to={`/teachers/${item.id}/inboxContents`}>{item.subject}</Link></td>
 				</tr>
 			)
 		});

@@ -205,6 +205,30 @@ router.get('/inbox/:userId/get', (req, res)=>{
 		}
 	});
 });
+
+router.get('/message/:messageId/get', (req, res)=>{
+	const messageId = req.params.messageId;
+	// console.log("student ID:")
+	// console.log('===========================================================');
+	// console.log('===========================================================');
+	// console.log('===========================================================');
+	// console.log(userId);
+	// console.log('===========================================================');
+	// console.log('===========================================================');
+	// console.log('===========================================================');
+	var messageQuery = `SELECT * FROM inbox
+		WHERE id = ?;`;
+	connection.query(messageQuery, [messageId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
  

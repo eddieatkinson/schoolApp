@@ -2,15 +2,31 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import { Table } from 'react-materialize';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import GetInbox from '../actions/GetInbox';
 
 
 
 class InboxContents extends Component{
-	// constructor(){
-	// 	super();
-	// }
+	constructor(){
+		super();
+		this.state = {
+			message: []
+		}
+		this.getMessage = this.getMessage.bind(this);
+	}
+
+	getMessage(){
+		var messageId = this.props.match.params.messageId;
+		const url = `${window.apiHost}/teachers/message/${messageId}/get`;
+		axios.get(url)
+			.then((response)=>{
+				this.setState({
+					message: response.data
+				});
+			});
+	}
 
 	componentWillReceiveProps(newProps){
 		// console.log('=======NEW PROPS========');
@@ -19,6 +35,7 @@ class InboxContents extends Component{
 	}
 
 	componentDidMount(){
+		this.getMessage();
 		// var level = this.props.auth.level;
 		// var status = `${this.props.auth.level}s`;
 		// console.log(status);
@@ -41,7 +58,22 @@ class InboxContents extends Component{
 	}
 
 	render(){
-		console.log(this.props.inbox);
+		// console.log(this.props.inbox);
+		var messageContents = this.state.message[0];
+		var messageDisplay = ''
+		console.log(messageContents);
+		if(messageContents !== undefined){
+			messageDisplay = [
+				<div>
+					<h4>{messageContents.subject}</h4>
+					<hr />
+					<h5>{messageContents.senderName}</h5>
+					<h6>{messageContents.date}</h6>
+					<hr />
+					<p>{messageContents.body}</p>
+				</div>
+			]
+		}
 		// var inboxContents = this.props.inbox;
 		// var inboxInfo = inboxContents.map((item, index)=>{
 		// 	return(
@@ -54,7 +86,7 @@ class InboxContents extends Component{
 		// });
 		return(
 			<div>
-				CONTENTS HERE
+				{messageDisplay}
 			</div>
 		)
 	}

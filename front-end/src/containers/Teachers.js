@@ -50,7 +50,7 @@ class Teachers extends Component{
 							<Route path='/teachers/courses' component={Courses} />
 							<Route path='/teachers/studentInfo' component={StudentInfo} />
 							<Route path='/teachers/inbox' component={Inbox} />
-							<Route path='/teachers/inboxContents' component={InboxContents} />
+							<Route path='/teachers/:messageId/inboxContents' component={InboxContents} />
 							<Route path='/teachers/calendar' component={Calendar} />
 							<Route path='/logout' component={Logout} />
 							<Route path='/courseInfo/:teacherId/students' component={CourseStudents} />
