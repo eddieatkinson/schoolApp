@@ -35,7 +35,7 @@ class Login extends Component{
 			loginId,
 			password
 		}
-		console.log(this);
+		// console.log(this);
 		this.props.loginAction(status, formData);
 	}
 
