@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Table } from 'react-materialize';
+import { Table, Button } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GetInbox from '../actions/GetInbox';
@@ -66,18 +66,21 @@ class Inbox extends Component{
 			)
 		});
 		return(
-			<Table>
-				<thead>
-					<tr>
-						<th>Date</th>
-						<th>From</th>
-						<th>Subject</th>
-					</tr>
-				</thead>
-				<tbody>
-					{inboxInfo}
-				</tbody>
-			</Table>
+			<div>
+				<Link to='/compose'><Button>Compose Message</Button></Link>
+				<Table>
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>From</th>
+							<th>Subject</th>
+						</tr>
+					</thead>
+					<tbody>
+						{inboxInfo}
+					</tbody>
+				</Table>
+			</div>
 		)
 	}
 }
