@@ -229,6 +229,32 @@ router.get('/message/:messageId/get', (req, res)=>{
 		}
 	});
 });
+
+router.get('/messageToList/:teacherId/:target/get', (req, res)=>{
+	const targetTable = req.params.target;
+	console.log(targetTable);
+	const teacherId = req.params.teacherId;
+	var messageToQuery;
+	if(targetTable == 'parents'){
+		messageToQuery = `SELECT DISTINCT CONCAT(parents.firstName, " ", parents.lastName) AS fullName, parents.parentId FROM parents
+			INNER JOIN studentParent ON studentParent.parentId = parents.parentId
+			INNER JOIN students ON students.studentId = studentParent.studentId
+			WHERE students.teacherId = ?;`;
+	}else if(targetTable == 'students'){
+		messageToQuery = `SELECT DISTINCT CONCAT(firstName, " ", lastName) AS fullName, studentId FROM students
+			WHERE teacherId = ?;`;
+	}
+	connection.query(messageToQuery, [teacherId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
  

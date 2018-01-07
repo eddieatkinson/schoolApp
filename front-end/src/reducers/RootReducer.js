@@ -8,6 +8,7 @@ import AssignmentsReducer from './AssignmentsReducer';
 import StudentInfoReducer from './StudentInfoReducer';
 import EditingReducer from './EditingReducer';
 import InboxReducer from './InboxReducer';
+import MessageToListReducer from './MessageToListReducer';
 
 //combreducers takes an object as an argument, that arg has key:value pair ... will return a value
 const rootReducer = combineReducers({	
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
 	assignments: AssignmentsReducer,
 	studentInfo: StudentInfoReducer,
 	editing: EditingReducer,
-	inbox: InboxReducer
+	inbox: InboxReducer,
+	messageToList: MessageToListReducer
 });
 
 

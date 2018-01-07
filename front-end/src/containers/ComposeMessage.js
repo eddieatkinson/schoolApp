@@ -4,8 +4,7 @@ import { Table, Button } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GetInbox from '../actions/GetInbox';
-
-
+import GetMessageToList from '../actions/GetMessageToList';
 
 class ComposeMessage extends Component{
 	// constructor(){
@@ -19,55 +18,39 @@ class ComposeMessage extends Component{
 	}
 
 	componentDidMount(){
-	// 	var level = this.props.auth.level;
-	// 	var status = `${this.props.auth.level}s`;
-	// 	console.log(status);
-	// 	// switch(this.props.auth.statusId){
-	// 	// 	case 1:
-	// 	// 		status = 'teacher';
-	// 	// 		break;
-	// 	// 	case 2:
-	// 	// 		status = 'parent';
-	// 	// 		break;
-	// 	// 	case 3:
-	// 	// 		status = 'student';
-	// 	// 		break;
-	// 	// 	default:
-	// 	// 		status = 'ERROR';
-	// 	// }
-	// 	// console.log(status);
-	// 	var whichId = `${level}Id`;
-	// 	var userId;
-	// 	switch(whichId){
-	// 		case "teacherId":
-	// 			userId = this.props.auth.teacherId;
-	// 			break;
-	// 		case "parentId":
-	// 			userId = this.props.auth.parentId;
-	// 			break;
-	// 		case "studentId":
-	// 			userId = this.props.auth.studentId;
-	// 			break;
-	// 	}
+		var level = this.props.auth.level;
+		var messageTarget = this.props.match.params.messageTarget;
+		var status = `${level}s`;
+		var whichId = `${level}Id`;
+		var userId;
+		switch(whichId){
+			case "teacherId":
+				userId = this.props.auth.teacherId;
+				break;
+			case "parentId":
+				userId = this.props.auth.parentId;
+				break;
+			case "studentId":
+				userId = this.props.auth.studentId;
+				break;
+		}
 	// 	console.log(userId)
 	// 	this.props.getInbox(status, userId);
+	this.props.getMessageToList(messageTarget, status, userId);
 	}
 
 	render(){
-		// console.log(this.props.inbox);
+		var messageToListContents = this.props.messageToList;
+		// console.log(this.props.messageToList);
 		// var inboxContents = this.props.inbox;
-		// var inboxInfo = inboxContents.map((item, index)=>{
-		// 	return(
-		// 		<tr>
-		// 			<td>{item.date}</td>
-		// 			<td>{item.senderName}</td>
-		// 			<td><Link to={`/teachers/${item.id}/inboxContents`}>{item.subject}</Link></td>
-		// 		</tr>
-		// 	)
-		// });
+		var messageToListNames = messageToListContents.map((name, index)=>{
+			return(
+				<h6>{name.fullName}</h6>
+			)
+		});
 		return(
 			<div>
-				Compose Message
+				{messageToListNames}
 			</div>
 		)
 	}
@@ -79,12 +62,14 @@ function mapStateToProps(state){
 // value = propety of RootReducer
 	return{
 		auth: state.auth,
-		inbox: state.inbox
+		inbox: state.inbox,
+		messageToList: state.messageToList
 	}
 }
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
-		getInbox: GetInbox
+		getInbox: GetInbox,
+		getMessageToList: GetMessageToList
 	}, dispatch);
 }
 

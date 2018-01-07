@@ -34,6 +34,8 @@ class StudentInfo extends Component{
 			)
 		});
 		console.log("You've made it this far!");
+		console.log("The student info is:");
+		console.log(this.props.studentInfo);
 		return(
 			<Table bordered='true' hoverable='true' responsive='true'>
 				<thead>
