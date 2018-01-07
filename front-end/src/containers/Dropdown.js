@@ -19,10 +19,10 @@ export default function(){
 			<Dropdown trigger={
 			    <Button className="dropButton">Select<Icon id='circleDown' icon={circleDown} /></Button>
 			  }>
-			  <NavItem><Link to='/login/parent'>Parent</Link></NavItem>
-			  <NavItem><Link to='/login/teacher'>Teacher</Link></NavItem>
+			  <Link to='/login/parent'><NavItem>Parent</NavItem></Link>
+			  <Link to='/login/teacher'><NavItem>Teacher</NavItem></Link>
 			  <NavItem divider />
-			  <NavItem><Link to='/login/student'>Student</Link></NavItem>
+			  <Link to='/login/student'><NavItem>Student</NavItem></Link>
 			</Dropdown>
 		</div>		
 
