@@ -4,9 +4,6 @@ var config = require('../config/config.js');
 var mysql = require('mysql');
 var randToken = require('rand-token');
 var bcrypt = require('bcrypt-nodejs');
-var moment = require('moment');
-
-moment();format();
 
 
 var connection = mysql.createConnection(config);
