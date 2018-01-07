@@ -80,7 +80,9 @@ router.post('/login/student', (req, res)=>{
 	console.log('studentLoggedIn');
 	const username = req.body.loginId;
 	const password = req.body.password;
-	const checkStudent = `SELECT * FROM students WHERE username = ?;`;
+	const checkStudent = `SELECT * FROM students
+		INNER JOIN status ON students.statusId = status.statusId
+		WHERE username = ?;`;
 	connection.query(checkStudent, [username],(error, results)=>{
 		if(error){
 			throw error;
@@ -96,11 +98,13 @@ router.post('/login/student', (req, res)=>{
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
 				const statusId = results[0].statusId;
+				const level = results[0].level;
 				res.json({
 					msg: 'loginStudentSuccess',
 					token: newToken,
 					statusId: statusId,
-					name: name
+					name: name,
+					level: level
 				});
 			}else{
 				// wrong password
@@ -117,7 +121,9 @@ router.post('/login/parent', (req, res)=>{
 	console.log('parentLoggedIn');
 	const email = req.body.loginId;
 	const password = req.body.password;
-	const checkParent = `SELECT * FROM parents WHERE email = ?;`;
+	const checkParent = `SELECT * FROM parents
+		INNER JOIN status ON parents.statusId = status.statusId
+		WHERE email = ?;`;
 	connection.query(checkParent, [email],(error, results)=>{
 		if(error){
 			throw error;
@@ -133,11 +139,13 @@ router.post('/login/parent', (req, res)=>{
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
 				const statusId = results[0].statusId;
+				const level = results[0].level;
 				res.json({
 					msg: 'loginParentSuccess',
 					token: newToken,
 					statusId: statusId,
-					name: name
+					name: name,
+					level: level
 				});
 			}else{
 				// wrong password
@@ -154,7 +162,9 @@ router.post('/login/teacher', (req, res)=>{
 	console.log('teacherLoggedIn');
 	const email = req.body.loginId;
 	const password = req.body.password;
-	const checkTeacher = `SELECT * FROM teachers WHERE email = ?;`;
+	const checkTeacher = `SELECT * FROM teachers
+		INNER JOIN status ON teachers.statusId = status.statusId
+		WHERE email = ?;`;
 	connection.query(checkTeacher, [email],(error, results)=>{
 		if(error){
 			throw error;
@@ -171,12 +181,14 @@ router.post('/login/teacher', (req, res)=>{
 				const name = results[0].firstName;
 				const teacherId = results[0].teacherId;
 				const statusId = results[0].statusId;
+				const level = results[0].level;
 				res.json({
 					msg: 'loginTeacherSuccess',
 					token: newToken,
 					statusId: statusId,
 					name: name,
-					teacherId: teacherId
+					teacherId: teacherId,
+					level: level
 				});
 			}else{
 				// wrong password

@@ -19,22 +19,23 @@ class Inbox extends Component{
 	}
 
 	componentDidMount(){
-		var status;
-		switch(this.props.auth.statusId){
-			case 1:
-				status = 'teacher';
-				break;
-			case 2:
-				status = 'parent';
-				break;
-			case 3:
-				status = 'student';
-				break;
-			default:
-				status = 'ERROR';
-		}
+		var status = this.props.auth.level;
+		console.log(status);
+		// switch(this.props.auth.statusId){
+		// 	case 1:
+		// 		status = 'teacher';
+		// 		break;
+		// 	case 2:
+		// 		status = 'parent';
+		// 		break;
+		// 	case 3:
+		// 		status = 'student';
+		// 		break;
+		// 	default:
+		// 		status = 'ERROR';
+		// }
 		// console.log(status);
-		var userId = `${status}id`;
+		var userId = `${status}Id`;
 		console.log(userId);
 		this.props.getInbox(status, userId);
 	}
