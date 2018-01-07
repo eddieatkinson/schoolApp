@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Table, Button } from 'react-materialize';
+import { Route, Link } from 'react-router-dom';
+import { Row, Col, Table, Button } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GetInbox from '../actions/GetInbox';
 import GetMessageToList from '../actions/GetMessageToList';
+import MessageComposition from './MessageComposition';
 
 class ComposeMessage extends Component{
 	// constructor(){
@@ -45,12 +46,28 @@ class ComposeMessage extends Component{
 		// var inboxContents = this.props.inbox;
 		var messageToListNames = messageToListContents.map((name, index)=>{
 			return(
-				<h6>{name.fullName}</h6>
+				<h6 key={index}><Link to={`/compose/${this.props.match.params.messageTarget}/${name.fullName}/${name.id}`}>{name.fullName}</Link></h6>
 			)
 		});
+		var messageTo = "";
+		var messageTarget = this.props.match.params.messageTarget;
+		var messageToParams = this.props.match.params.messageTargetName;
+		if(messageToParams !== '0'){
+			messageTo = messageToParams;
+		}
 		return(
 			<div>
-				{messageToListNames}
+				<Row>
+					<Col s={10}>
+						<Route path='/compose/:messageTarget/:messageTargetName/:messageTargetId' component={MessageComposition} />
+					</Col>
+					<Col s={2}>
+						<div>
+							<h4>Choose a receiver:</h4>
+							{messageToListNames}
+						</div>
+					</Col>
+				</Row>
 			</div>
 		)
 	}

@@ -193,7 +193,7 @@ router.get('/inbox/:userId/get', (req, res)=>{
 		FROM inbox
 		INNER JOIN status ON inbox.receiverStatus = status.statusId
 		INNER JOIN status s2 ON inbox.senderStatus = s2.statusId
-		WHERE inbox.receiverId = ?;`;
+		WHERE inbox.receiverId = ? AND inbox.receiverStatus = 1;`;
 	connection.query(inboxQuery, [userId], (error, results)=>{
 		if(error){
 			throw error;
@@ -236,12 +236,12 @@ router.get('/messageToList/:teacherId/:target/get', (req, res)=>{
 	const teacherId = req.params.teacherId;
 	var messageToQuery;
 	if(targetTable == 'parents'){
-		messageToQuery = `SELECT DISTINCT CONCAT(parents.firstName, " ", parents.lastName) AS fullName, parents.parentId FROM parents
+		messageToQuery = `SELECT DISTINCT CONCAT(parents.firstName, " ", parents.lastName) AS fullName, parents.parentId AS id FROM parents
 			INNER JOIN studentParent ON studentParent.parentId = parents.parentId
 			INNER JOIN students ON students.studentId = studentParent.studentId
 			WHERE students.teacherId = ?;`;
 	}else if(targetTable == 'students'){
-		messageToQuery = `SELECT DISTINCT CONCAT(firstName, " ", lastName) AS fullName, studentId FROM students
+		messageToQuery = `SELECT DISTINCT CONCAT(firstName, " ", lastName) AS fullName, studentId AS id FROM students
 			WHERE teacherId = ?;`;
 	}
 	connection.query(messageToQuery, [teacherId], (error, results)=>{
@@ -252,6 +252,30 @@ router.get('/messageToList/:teacherId/:target/get', (req, res)=>{
 			console.log(results);
 			console.log("============");
 			res.json(results);
+		}
+	});
+});
+
+router.post('/sendMessage', (req, res)=>{
+	const subject = req.body.subject;
+	const body = req.body.body;
+	const receiverLevel = req.body.receiverLevel;
+	const receiverStatusId = req.body.receiverStatusId;
+	const receiverId = req.body.receiverId;
+	const senderLevel = req.body.senderLevel;
+	const senderName = req.body.senderName;
+	const senderStatusId = req.body.senderStatusId;
+	const senderId = req.body.senderId;
+	const updateGrade = `INSERT INTO inbox (subject, body, receiverStatus, senderStatus, receiverId, senderId, senderName)
+		VALUES
+		(?, ?, ?, ?, ?, ?, ?);`;
+	connection.query(updateGrade, [subject, body, receiverStatusId, senderStatusId, receiverId, senderId, senderName], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			res.json({
+				msg: "messageSent"
+			});
 		}
 	});
 });
