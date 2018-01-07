@@ -15,7 +15,8 @@ body{
 	}
 } 
 .container{
-	margin: auto;
+	width: 400px;
+    margin: 0 auto;
 }
 .course-nav{
 	// background-color: #b4881d;
@@ -26,10 +27,12 @@ nav .brand-logo.right {
     right: 3.5rem;
 }
 .loginForm{
-	position: relative;
+	position: absolute;
 }
-.dropButton,.loginButton{
+.dropButton{
 	background-color: #2e8cd0;
+	height: 60px;
+	width: 200px;
 	&:hover{
 		background-color: #e2dfce;
 	}
@@ -37,24 +40,33 @@ nav .brand-logo.right {
 .dropDown{
 	margin-top: 100px;
 	padding: 20px;
+	position: relative;
+	margin-left: 55px
 }
 .giraffe{
 	height: 250px;
 	width: 175px;
-	position: absolute;
-	// margin-left: 350px;
+	position: relative;
+	margin-top: -200px;
+	margin-left: 362px;
 }
 .logo{
 	position: relative;
-	margin-top: 253px;
-    margin-left: 20px;	
+	margin-top: 1px;
+    margin-left: 382px;	
 }
 .loginButton{
 	position: relative;
+	margin-left: -257px;
+    margin-top: 77px;
+    background-color: #2e8cd0;
+	&:hover{
+		background-color: #e2dfce;
+	}
 }
-.dropButton{
-	height: 60px;
-	width: 300px;
+#circleDown{
+	display: block !important;
+    margin-top: -11px;
 }
 .editBtn, .addAssignment{
 	background-color: #b4881d;

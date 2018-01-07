@@ -1,7 +1,7 @@
 // import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+import Icon from 'react-icons-kit';
+import { circleDown } from 'react-icons-kit/icomoon/circleDown'; 
 
 
 // class Dropdown extends Component{
@@ -17,7 +17,7 @@ export default function(){
 	return(
 		<div className='dropDown'>
 			<Dropdown trigger={
-			    <Button className="dropButton">Sign in as:</Button>
+			    <Button className="dropButton">Select<Icon id='circleDown' icon={circleDown} /></Button>
 			  }>
 			  <NavItem><Link to='/login/parent'>Parent</Link></NavItem>
 			  <NavItem><Link to='/login/teacher'>Teacher</Link></NavItem>

@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LoginAction from '../actions/LoginAction';
 import Dropdown from './Dropdown';
+import Icon from 'react-icons-kit';
+import { unlocked } from 'react-icons-kit/icomoon/unlocked';       
+
+   
 
 
 class Login extends Component{
@@ -78,7 +82,7 @@ class Login extends Component{
 				inputId = 'Email';
 				inputType = 'email'
 			}
-			button = <Button className='loginButton'onClick={this.handleSubmit} waves="light">Login</Button>
+			button = <Button className='loginButton'onClick={this.handleSubmit} waves="light">Log in</Button>
 		}
 		return(
 			<div className="container">
@@ -88,11 +92,9 @@ class Login extends Component{
 					<Row className='loginForm'>
 						<Input id={inputId} s={3} label={inputId} type={inputType} className="validate"/>
 						<Input id={password} s={3} label="Password" type="password"/>
-						<div>
 						<span>{button}</span>
 							<img className='giraffe' src='/giraffe.png'/>	
 							<img className='logo' src='/eduCrate_logo.png'/>	
-						</div>
 					</Row>
 				</form>
 			</div>
