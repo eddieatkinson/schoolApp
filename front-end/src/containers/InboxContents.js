@@ -24,6 +24,20 @@ class InboxContents extends Component{
 				this.setState({
 					message: response.data
 				});
+				var userId;
+				var level = this.props.auth.level;
+				switch(level){
+				case "teacher":
+					userId = this.props.auth.teacherId;
+					break;
+				case "parent":
+					userId = this.props.auth.parentId;
+					break;
+				case "student":
+					userId = this.props.auth.studentId;
+					break;
+				}
+				this.props.getMessageCount(level, userId);
 			});
 	}
 
@@ -35,20 +49,7 @@ class InboxContents extends Component{
 
 	componentDidMount(){
 		this.getMessage();
-		var userId;
-		var level = this.props.auth.level;
-		switch(level){
-			case "teacher":
-				userId = this.props.auth.teacherId;
-				break;
-			case "parent":
-				userId = this.props.auth.parentId;
-				break;
-			case "student":
-				userId = this.props.auth.studentId;
-				break;
-		}
-		this.props.getMessageCount(level, userId);
+
 		// var level = this.props.auth.level;
 		// var status = `${this.props.auth.level}s`;
 		// console.log(status);
