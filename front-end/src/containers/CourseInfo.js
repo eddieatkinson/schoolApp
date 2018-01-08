@@ -28,12 +28,12 @@ class CourseInfo extends Component{
 	}
 
 	render(){
+		// if(this.props.auth.level === "teacher")
 		return (
 			<div>
 				<CourseNav courseId={this.props.match.params.courseId} />
 				<Route path='/courseInfo/:courseId/assignments' component={Assignments} />
 				<Route path='/courseInfo/:courseId/grades' component={Grades} />
-				
 			</div>
 		);
 	}

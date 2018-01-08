@@ -20,7 +20,7 @@ class Navbar extends Component{
 		const MySideNav = () => (
 			<div id="nav" style={{background: '#586e74', color: '#b4881d', width: 220, position: 'fixed', height: '100vh'}}> 
 				<SideNav highlightColor='#c94b23' highlightBgColor='#fdf6e4' defaultSelected='courses'>       
-					<Link to='/teachers/courses' id='courses'>
+					<Link to={`/${this.props.auth.level}s/courses`} id='courses'>
 						<Nav>
 							<NavIcon><SvgIcon size={20} icon={book}/></NavIcon>    
 							<NavText> Courses </NavText>

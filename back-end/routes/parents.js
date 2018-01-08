@@ -10,6 +10,26 @@ router.get('/courses/:parentId/get', (req, res)=>{
 	const parentId = req.params.parentId;
 	// console.log("TEACHER ID:")
 	// console.log(teacherId);
+	var coursesQuery = `SELECT DISTINCT * FROM courses
+		INNER JOIN students ON courses.teacherId = students.teacherId
+		INNER JOIN studentParent ON studentParent.studentId = students.studentId
+		WHERE studentParent.parentId = ?;`;
+	connection.query(coursesQuery, [parentId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
+
+router.get('/courses/:parentId/get', (req, res)=>{
+	const parentId = req.params.parentId;
+	// console.log("TEACHER ID:")
+	// console.log(teacherId);
 	var coursesQuery = `SELECT * FROM courses
 		INNER JOIN teachers ON courses.teacherId = teachers.teacherId
 		WHERE courses.teacherId = ?;`;
@@ -20,6 +40,28 @@ router.get('/courses/:parentId/get', (req, res)=>{
 			// console.log("============");
 			// console.log(results);
 			// console.log("============");
+			res.json(results);
+		}
+	});
+});
+
+router.get('/grades/:courseId/:parentId/get', (req, res)=>{
+	const courseId = req.params.courseId;
+	const parentId = req.params.parentId;
+	// console.log("student ID:")
+	// console.log(courseId);
+	var gradesQuery = `SELECT * FROM students
+		INNER JOIN assignmentStatus ON students.studentId = assignmentStatus.sid
+		INNER JOIN assignments ON assignmentStatus.aid = assignments.id
+		INNER JOIN studentParent ON studentParent.studentId = students.studentId
+		WHERE assignmentStatus.cid = ? AND studentParent.parentId = ?;`;
+	connection.query(gradesQuery, [courseId, parentId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
 			res.json(results);
 		}
 	});

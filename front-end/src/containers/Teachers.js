@@ -31,7 +31,7 @@ class Teachers extends Component{
 	}
 	componentDidMount(){
 		// console.log(this.props.auth)
-		this.props.getCourses(this.props.auth.teacherId);
+		this.props.getCourses(this.props.auth.level, this.props.auth.teacherId);
 	}
 
 	render(){

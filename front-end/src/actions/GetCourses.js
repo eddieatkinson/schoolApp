@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export default function(teacherId){
-	const url = `${window.apiHost}/teachers/courses/${teacherId}/get`;
-	console.log("hey");
-	console.log(teacherId);
-	console.log("//////////////////////")
+export default function(level, userId){
+	const url = `${window.apiHost}/${level}s/courses/${userId}/get`;
+	console.log("GET_COURSES is running!");
+	// console.log(teacherId);
+	// console.log("//////////////////////")
 	const axiosPromise = axios.get(url);
 	return{
 		type: "GET_COURSES",

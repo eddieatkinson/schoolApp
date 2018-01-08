@@ -28,7 +28,7 @@ class Courses extends Component{
 							<Link to={`/courseInfo/${course.id}`} >{course.courseName}</Link>
 						</td>
 						<td>
-							{course.assDesc}
+							{course.courseDesc}
 						</td>
 					</tr>
 				)

@@ -22,7 +22,7 @@ class Assignments extends Component{
 
 	componentDidMount(){
 		var courseId = this.props.match.params.courseId;
-		const url = `${window.apiHost}/teachers/assignments/${courseId}/get`;
+		const url = `${window.apiHost}/teachers/assignments/${courseId}/get`; // route is for everyone, though it specifies "teachers"
 		axios.get(url)
 			.then((response)=>{
 				var majorAssStuff = response.data;

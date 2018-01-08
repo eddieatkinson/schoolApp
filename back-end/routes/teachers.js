@@ -121,7 +121,7 @@ router.post('/addAssignments', (req, res)=>{
 	});
 });
 
-router.get('/grades/:courseId/get', (req, res)=>{
+router.get('/grades/:courseId/:teacherId/get', (req, res)=>{
 	const courseId = req.params.courseId;
 	// console.log("student ID:")
 	console.log(courseId);

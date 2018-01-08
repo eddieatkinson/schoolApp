@@ -40,7 +40,8 @@ class Grades extends Component{
 				// make a copy of the grades state var so we can change the student
 				var newGrades = {...this.state.grades};
 				var courseId = this.props.match.params.courseId;
-				const url = `${window.apiHost}/teachers/grades/${courseId}/get`;
+				var teacherId = this.props.auth.teacherId;
+				const url = `${window.apiHost}/teachers/grades/${courseId}/${teacherId}/get`;
 				axios.get(url)
 					.then((response)=>{
 						var gradeDataFull = response.data;
@@ -86,7 +87,7 @@ class Grades extends Component{
 			method: 'POST',
 			data: newData
 		});
-		this.props.stopEditAction();
+		// this.props.stopEditAction();
 	}
 
 	editInformation(){
@@ -96,7 +97,19 @@ class Grades extends Component{
 	componentWillReceiveProps(newProps){
 		console.log(newProps);
 		var courseId = this.props.match.params.courseId;
-		const url = `${window.apiHost}/teachers/grades/${courseId}/get`;
+		var userId;
+		switch(this.props.auth.level){
+			case "teacher":
+				userId = this.props.auth.teacherId;
+				break;
+			case "parent":
+				userId = this.props.auth.parentId;
+				break;
+			case "student":
+				userId = this.props.auth.studentId;
+				break;
+		}
+		const url = `${window.apiHost}/${this.props.auth.level}s/grades/${courseId}/${userId}/get`;
 		axios.get(url)
 			.then((response)=>{
 				var gradeDataFull = response.data;
@@ -142,7 +155,19 @@ class Grades extends Component{
 
 	componentDidMount(){
 		var courseId = this.props.match.params.courseId;
-		const url = `${window.apiHost}/teachers/grades/${courseId}/get`;
+		var userId;
+		switch(this.props.auth.level){
+			case "teacher":
+				userId = this.props.auth.teacherId;
+				break;
+			case "parent":
+				userId = this.props.auth.parentId;
+				break;
+			case "student":
+				userId = this.props.auth.studentId;
+				break;
+		}
+		const url = `${window.apiHost}/${this.props.auth.level}s/grades/${courseId}/${userId}/get`;
 		axios.get(url)
 			.then((response)=>{
 				var gradeDataFull = response.data;
@@ -191,6 +216,12 @@ class Grades extends Component{
 		// var addGrade = '';
 		var changeStatusHeader;
 		var changeGradeHeader;
+		var editButton;
+		if(this.props.auth.level === "teacher"){
+			editButton = <Button onClick={this.editInformation}>Click to edit</Button>
+		}else{
+			editButton = '';
+		}
 		// console.log(this.props);
 		// if(this.props.auth.statusId === 1){
 		// 	addGrade = (
@@ -206,7 +237,7 @@ class Grades extends Component{
 		}
 		return(
 			<div>
-				<Button onClick={this.editInformation}>Click to edit</Button>
+				{editButton}
 				<Table>
 					<thead>
 						<tr>
