@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// // import { Link } from 'react-router-dom';
-// // import { Form, Row, Input, Button, Col } from 'react-materialize';
+import { Link } from 'react-router-dom';
+import { Form, Row, Input, Button, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import BigCalendar from 'react-big-calendar';
@@ -69,10 +69,17 @@ class Calendar extends Component{
 		// For instance, "month, week, work week, day, agenda"
 		var possibleViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
 
+		var addEventsButton;
+		if(this.props.auth.level === "teacher"){
+			addEventsButton = <Link to='/addEvents'><Button>Add Events</Button></Link>
+		}else{
+			addEventsButton = '';
+		}
 
 		return(
 			<div>
 				<h1>Calendar</h1>
+				{addEventsButton}
 			  <div className='container'>
 			    <BigCalendar
 				    events={this.state.calEventsList}
