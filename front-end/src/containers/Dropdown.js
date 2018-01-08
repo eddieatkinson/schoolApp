@@ -4,10 +4,7 @@ import Icon from 'react-icons-kit';
 import { circleDown } from 'react-icons-kit/icomoon/circleDown'; 
 
 
-// class Dropdown extends Component{
-// 	// constructor(){
-// 	// 	super();
-// 	// }
+
 import React from 'react';
 import { Button, Dropdown, NavItem } from 'react-materialize';
 
@@ -30,29 +27,3 @@ export default function(){
 }
 
 
-// 	render(){
-// 		return(
-// 			<div>
-// 				<Link to='/login/parent'>Login Parent</Link>
-// 				<Link to='/login/student'>Login Student</Link>
-// 				<Link to='/login/teacher'>Login Teacher</Link>
-// 			</div>
-// 		)
-// 	}
-// }
-
-
-// function mapStateToProps(state){
-// // key = this.props.key
-// // value = propety of RootReducer
-// 	return{
-		
-// 	}
-// }
-// function mapDispatchToProps(dispatch){
-// 	return bindActionCreators({
-		
-// 	},dispatch);
-// }
-
-// export default connect(mapStateToProps,mapDispatchToProps)(Dropdown);
