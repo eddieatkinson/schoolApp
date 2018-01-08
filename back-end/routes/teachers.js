@@ -6,6 +6,25 @@ var bcrypt = require('bcrypt-nodejs');
 var connection = mysql.createConnection(config);
 connection.connect();
 
+router.get('/countNewMessages/:teacherId/get', (req, res)=>{
+	const teacherId = req.params.teacherId;
+	// console.log("TEACHER ID:")
+	// console.log(teacherId);
+	var coursesQuery = `SELECT COUNT(messageStatus)
+		FROM inbox
+		WHERE messageStatus = "new" and receiverId = ? AND receiverStatus = 1;`;
+	connection.query(coursesQuery, [teacherId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
+
 router.get('/courses/:teacherId/get', (req, res)=>{
 	const teacherId = req.params.teacherId;
 	// console.log("TEACHER ID:")
@@ -216,18 +235,28 @@ router.get('/message/:messageId/get', (req, res)=>{
 	// console.log('===========================================================');
 	// console.log('===========================================================');
 	// console.log('===========================================================');
-	var messageQuery = `SELECT * FROM inbox
+	var updateMessageStatus = `UPDATE inbox
+		SET messageStatus = 'read'
 		WHERE id = ?;`;
-	connection.query(messageQuery, [messageId], (error, results)=>{
+	connection.query(updateMessageStatus, [messageId], (error)=>{
 		if(error){
-			throw error;
+			throw error
 		}else{
-			console.log("============");
-			console.log(results);
-			console.log("============");
-			res.json(results);
+			var messageQuery = `SELECT * FROM inbox
+				WHERE id = ?;`;
+			connection.query(messageQuery, [messageId], (error, results)=>{
+				if(error){
+					throw error;
+				}else{
+					console.log("============");
+					console.log(results);
+					console.log("============");
+					res.json(results);
+				}
+			});
 		}
 	});
+
 });
 
 router.get('/messageToList/:teacherId/:target/get', (req, res)=>{
