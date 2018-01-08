@@ -25,7 +25,7 @@ BigCalendar.setLocalizer(
 
 const events = [
   {
-    title: 'All Day Event very long title',
+    title: 'HEY!',
     allDay: true,
     start: new Date(2018, 1, 0),
     end: new Date(2018, 1, 1),
@@ -118,6 +118,9 @@ const events = [
 class Calendar extends Component{
 	constructor(){
 		super();
+		this.state = {
+			calEventsList: []
+		}
 	}
 
 // 	componentWillReceiveProps(newProps){
@@ -125,6 +128,37 @@ class Calendar extends Component{
 // 		// console.log(newProps);
 // 		// console.log('=======NEW PROPS========');
 // 	}
+	componentDidMount(){
+		var userId;
+		var level = this.props.auth.level;
+		switch(level){
+			case "teacher":
+				userId = this.props.auth.teacherId;
+				break;
+			case "parent":
+				userId = this.props.auth.parentId;
+				break;
+			case "student":
+				userId = this.props.auth.studentId;
+				break;
+		}
+		var url = `${window.apiHost}/${level}s/${userId}/calendar/get`;
+		console.log(url)
+		axios.get(url)
+		.then((results)=>{
+		// console.log(results.data)
+		const calEvents = results.data.map((event)=>{
+			event.start = new Date(event.start)
+			event.end = new Date(event.end)
+			return event 
+			})
+		console.log(calEvents)
+		this.setState({
+			calEventsList: calEvents
+		})
+		})	
+	}
+
 
 	render(){
 		// This var is for the possible "views" on the upper right part of the calendar.
@@ -137,7 +171,7 @@ class Calendar extends Component{
 				<h1>Calendar</h1>
 			  <div className='container'>
 			    <BigCalendar
-				    events={events}
+				    events={this.state.calEventsList}
 				    views={possibleViews}
 				    step={60}
 				    defaultDate={new Date()}

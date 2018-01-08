@@ -338,5 +338,21 @@ router.post('/sendMessage', (req, res)=>{
 		}
 	});
 });
+router.get('/:teacherId/calendar/get', (req, res)=>{
+	const teacherId = req.params.teacherId;
+	const getEvents = `SELECT * FROM calendar 
+		WHERE teacherId = ?;`;
+	console.log("FART")	
+	connection.query(getEvents, [teacherId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log(results)
+			res.json(results);
+		}
+	})	
+
+})
+
 
 module.exports = router;
