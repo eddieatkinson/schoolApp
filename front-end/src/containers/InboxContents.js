@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import GetInbox from '../actions/GetInbox';
-
-
+import GetMessageCount from '../actions/GetMessageCount';
 
 class InboxContents extends Component{
 	constructor(){
@@ -36,6 +35,20 @@ class InboxContents extends Component{
 
 	componentDidMount(){
 		this.getMessage();
+		var userId;
+		var level = this.props.auth.level;
+		switch(level){
+			case "teacher":
+				userId = this.props.auth.teacherId;
+				break;
+			case "parent":
+				userId = this.props.auth.parentId;
+				break;
+			case "student":
+				userId = this.props.auth.studentId;
+				break;
+		}
+		this.props.getMessageCount(level, userId);
 		// var level = this.props.auth.level;
 		// var status = `${this.props.auth.level}s`;
 		// console.log(status);
@@ -92,7 +105,6 @@ class InboxContents extends Component{
 	}
 }
 
-
 function mapStateToProps(state){
 // key = this.props.key
 // value = propety of RootReducer
@@ -103,7 +115,8 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
-		getInbox: GetInbox
+		getInbox: GetInbox,
+		getMessageCount: GetMessageCount
 	}, dispatch);
 }
 

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LogoutAction from '../actions/LogoutAction';
+import GetMessageCount from '../actions/GetMessageCount';
 import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
 import SvgIcon from 'react-icons-kit';
  
@@ -15,17 +16,41 @@ import { calendar } from 'react-icons-kit/icomoon/calendar';
 import { exit } from 'react-icons-kit/icomoon/exit'; 
 
 class Navbar extends Component{
-	constructor(){
-		super();
-		this.state = {
-			newMessages: ''
-		}
-		this.countNewMessages = this.countNewMessages.bind(this);
-	}
+	// constructor(){
+	// 	// super();
+	// 	// this.state = {
+	// 	// 	newMessages: ''
+	// 	// }
+	// 	// this.countNewMessages = this.countNewMessages.bind(this);
+	// }
 
-	countNewMessages(){
-		var level = this.props.auth.level;
+	// countNewMessages(){
+	// 	var level = this.props.auth.level;
+	// 	var userId;
+	// 	switch(level){
+	// 		case "teacher":
+	// 			userId = this.props.auth.teacherId;
+	// 			break;
+	// 		case "parent":
+	// 			userId = this.props.auth.parentId;
+	// 			break;
+	// 		case "student":
+	// 			userId = this.props.auth.studentId;
+	// 			break;
+	// 	}
+	// 	const url = `${window.apiHost}/${level}s/countNewMessages/${userId}/get`; // uses "teachers" Express route but works for everyone
+	// 	axios.get(url)
+	// 		.then((response)=>{
+	// 			this.setState({
+	// 				newMessages: response.data[0]['COUNT(messageStatus)']
+	// 			});
+	// 			// console.log(response.data[0]['COUNT(messageStatus)']);
+	// 		});
+	// }
+
+	componentDidMount(){
 		var userId;
+		var level = this.props.auth.level;
 		switch(level){
 			case "teacher":
 				userId = this.props.auth.teacherId;
@@ -37,24 +62,13 @@ class Navbar extends Component{
 				userId = this.props.auth.studentId;
 				break;
 		}
-		const url = `${window.apiHost}/${level}s/countNewMessages/${userId}/get`; // uses "teachers" Express route but works for everyone
-		axios.get(url)
-			.then((response)=>{
-				this.setState({
-					newMessages: response.data[0]['COUNT(messageStatus)']
-				});
-				// console.log(response.data[0]['COUNT(messageStatus)']);
-			});
-	}
-
-	componentDidMount(){
-		this.countNewMessages();
-		console.log(this.state.newMessages)
-		if(this.state.newMessage === 0){
-			document.getElementById('numberNewMessages').innerHTML = '';
-		}else{
-			document.getElementById('numberNewMessages').innerHTML = `(${this.state.newMessages})`;
-		}
+		this.props.getMessageCount(level, userId);
+		// console.log(this.state.newMessages)
+		// if(this.state.newMessage === 0){
+		// 	document.getElementById('numberNewMessages').innerHTML = '';
+		// }else{
+		// 	document.getElementById('numberNewMessages').innerHTML = `(${this.state.newMessages})`;
+		// }
 	}
 
 	render(){
@@ -68,6 +82,13 @@ class Navbar extends Component{
 							</Link> 
 		}else{
 			studentsLink = '';
+		}
+
+		var numMessages = '';
+		if(this.props.messageCount === 0){
+			numMessages = ''
+		}else{
+			numMessages = `(${this.props.messageCount})`;
 		}
 		
 		// var newMessages = 3;
@@ -85,7 +106,7 @@ class Navbar extends Component{
 					<Link to={`/${this.props.auth.level}s/inbox`}>
 						<Nav id='inbox'>
 							<NavIcon><SvgIcon size={20} icon={drawer2}/></NavIcon>
-							<NavText> Inbox &nbsp;<span id="numberNewMessages"></span> </NavText>
+							<NavText> Inbox &nbsp;<span id="numberNewMessages">{numMessages}</span> </NavText>
 						</Nav>
 					</Link>
 					<Link to='/teachers/calendar'>
@@ -115,12 +136,14 @@ function mapStateToProps(state){
 // key = this.props.key
 // value = propety of RootReducer
 	return{
-		auth: state.auth
+		auth: state.auth,
+		messageCount: state.messageCount
 	}
 }
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
-		logoutAction: LogoutAction
+		logoutAction: LogoutAction,
+		getMessageCount: GetMessageCount
 	}, dispatch);
 }
 
