@@ -76,8 +76,9 @@ router.get('/inbox/:userId/get', (req, res)=>{
 	console.log('===========================================================');
 	console.log('===========================================================');
 	var inboxQuery = `SELECT inbox.id, inbox.subject, inbox.body, inbox.receiverStatus,
-		inbox.senderStatus, inbox.receiverId, inbox.senderId, inbox.senderName, DATE_FORMAT(inbox.date, '%M %D\, %Y') as date,
-		status.level AS receiverLevel, s2.level AS senderLevel
+		inbox.senderStatus, inbox.receiverId, inbox.senderId, inbox.senderName, inbox.messageStatus,
+		DATE_FORMAT(inbox.date, '%M %D\, %Y') as date, status.level AS receiverLevel,
+		s2.level AS senderLevel
 		FROM inbox
 		INNER JOIN status ON inbox.receiverStatus = status.statusId
 		INNER JOIN status s2 ON inbox.senderStatus = s2.statusId
@@ -138,6 +139,22 @@ router.post('/sendMessage', (req, res)=>{
 			});
 		}
 	});
+});
+
+router.get('/:studentId/calendar/get', (req, res)=>{
+	const studentId = req.params.studentId;
+	const getEvents = `SELECT * FROM calendar
+		INNER JOIN students ON students.teacherId = calendar.teacherId
+		WHERE students.studentId = ?;`;
+	connection.query(getEvents, [studentId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log(results)
+			res.json(results);
+		}
+	})	
+
 });
 /* GET users listing. */
 // router.get('/', function(req, res, next) {

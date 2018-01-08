@@ -69,17 +69,18 @@ router.get('/grades/:courseId/:parentId/get', (req, res)=>{
 
 router.get('/inbox/:userId/get', (req, res)=>{
 	const userId = req.params.userId;
-	// console.log("student ID:")
-	console.log('===========================================================');
-	console.log('===========================================================');
-	console.log('===========================================================');
-	console.log(userId);
-	console.log('===========================================================');
-	console.log('===========================================================');
-	console.log('===========================================================');
+	// // console.log("student ID:")
+	// console.log('===========================================================');
+	// console.log('===========================================================');
+	// console.log('===========================================================');
+	// console.log(userId);
+	// console.log('===========================================================');
+	// console.log('===========================================================');
+	// console.log('===========================================================');
 	var inboxQuery = `SELECT inbox.id, inbox.subject, inbox.body, inbox.receiverStatus,
-		inbox.senderStatus, inbox.receiverId, inbox.senderId, inbox.senderName, DATE_FORMAT(inbox.date, '%M %D\, %Y') as date,
-		status.level AS receiverLevel, s2.level AS senderLevel
+		inbox.senderStatus, inbox.receiverId, inbox.senderId, inbox.senderName, inbox.messageStatus,
+		DATE_FORMAT(inbox.date, '%M %D\, %Y') as date, status.level AS receiverLevel,
+		s2.level AS senderLevel
 		FROM inbox
 		INNER JOIN status ON inbox.receiverStatus = status.statusId
 		INNER JOIN status s2 ON inbox.senderStatus = s2.statusId
@@ -138,6 +139,23 @@ router.post('/sendMessage', (req, res)=>{
 			});
 		}
 	});
+});
+
+router.get('/:parentId/calendar/get', (req, res)=>{
+	const parentId = req.params.parentId;
+	const getEvents = `SELECT * FROM calendar
+		INNER JOIN students ON students.teacherId = calendar.teacherId
+		INNER JOIN studentParent ON studentParent.studentId = students.studentId 
+		WHERE studentParent.parentId = ?;`;
+	connection.query(getEvents, [parentId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log(results)
+			res.json(results);
+		}
+	})	
+
 });
 
 module.exports = router;
