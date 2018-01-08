@@ -6,6 +6,25 @@ var bcrypt = require('bcrypt-nodejs');
 var connection = mysql.createConnection(config);
 connection.connect();
 
+router.get('/countNewMessages/:studentId/get', (req, res)=>{
+	const studentId = req.params.studentId;
+	// console.log("TEACHER ID:")
+	// console.log(teacherId);
+	var coursesQuery = `SELECT COUNT(messageStatus)
+		FROM inbox
+		WHERE messageStatus = "new" and receiverId = ? AND receiverStatus = 3;`;
+	connection.query(coursesQuery, [studentId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
+
 router.get('/courses/:studentId/get', (req, res)=>{
 	const studentId = req.params.studentId;
 	// console.log("TEACHER ID:")

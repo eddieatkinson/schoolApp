@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 // import { Form, Row, Input, Button, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -14,6 +15,41 @@ import { calendar } from 'react-icons-kit/icomoon/calendar';
 import { exit } from 'react-icons-kit/icomoon/exit'; 
 
 class Navbar extends Component{
+	constructor(){
+		super();
+		this.state = {
+			newMessages: ''
+		}
+		this.countNewMessages = this.countNewMessages.bind(this);
+	}
+
+	countNewMessages(){
+		var level = this.props.auth.level;
+		var userId;
+		switch(level){
+			case "teacher":
+				userId = this.props.auth.teacherId;
+				break;
+			case "parent":
+				userId = this.props.auth.parentId;
+				break;
+			case "student":
+				userId = this.props.auth.studentId;
+				break;
+		}
+		const url = `${window.apiHost}/${level}s/countNewMessages/${userId}/get`; // uses "teachers" Express route but works for everyone
+		axios.get(url)
+			.then((response)=>{
+				this.setState({
+					newMessages: response.data[0]['COUNT(messageStatus)']
+				});
+				// console.log(response.data[0]['COUNT(messageStatus)']);
+			});
+	}
+
+	componentDidMount(){
+		this.countNewMessages();
+	}
 
 	render(){
 		var studentsLink;
@@ -27,6 +63,7 @@ class Navbar extends Component{
 		}else{
 			studentsLink = '';
 		}
+		// var newMessages = 3;
 	// specify the base color/background of the parent container if needed 
 		const MySideNav = () => (
 			<div id="nav" style={{background: '#586e74', color: '#b4881d', width: 220, position: 'fixed', height: '100vh'}}> 
@@ -41,7 +78,7 @@ class Navbar extends Component{
 					<Link to={`/${this.props.auth.level}s/inbox`}>
 						<Nav id='inbox'>
 							<NavIcon><SvgIcon size={20} icon={drawer2}/></NavIcon>
-							<NavText> Inbox </NavText>
+							<NavText> Inbox &nbsp;<span>({this.state.newMessages})</span> </NavText>
 						</Nav>
 					</Link>
 					<Link to='/teachers/calendar'>
