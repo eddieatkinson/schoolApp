@@ -36,6 +36,8 @@ class InboxContents extends Component{
 				case "student":
 					userId = this.props.auth.studentId;
 					break;
+				default:
+					break;	
 				}
 				this.props.getMessageCount(level, userId);
 			});

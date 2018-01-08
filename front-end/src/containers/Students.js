@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import { Form, Row, Input, Button, Col } from 'react-materialize';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Row, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Navbar from './Navbar';

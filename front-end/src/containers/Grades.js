@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Button, Input } from 'react-materialize';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
@@ -39,7 +39,7 @@ class Grades extends Component{
 			console.log(response.data);
 			if(response.data.msg === 'statusUpdated'){
 				// make a copy of the grades state var so we can change the student
-				var newGrades = {...this.state.grades};
+				// var newGrades = {...this.state.grades};
 				var courseId = this.props.match.params.courseId;
 				var teacherId = this.props.auth.teacherId;
 				const url = `${window.apiHost}/teachers/grades/${courseId}/${teacherId}/get`;
@@ -100,7 +100,7 @@ class Grades extends Component{
 			console.log(response.data);
 			if(response.data.msg === 'gradeUpdated'){
 				// make a copy of the grades state var so we can change the student
-				var newGrades = {...this.state.grades};
+				// var newGrades = {...this.state.grades};
 				var courseId = this.props.match.params.courseId;
 				var teacherId = this.props.auth.teacherId;
 				const url = `${window.apiHost}/teachers/grades/${courseId}/${teacherId}/get`;
@@ -158,6 +158,8 @@ class Grades extends Component{
 			case "student":
 				userId = this.props.auth.studentId;
 				break;
+			default:
+				break;	
 		}
 		const url = `${window.apiHost}/${this.props.auth.level}s/grades/${courseId}/${userId}/get`;
 		axios.get(url)
@@ -189,7 +191,7 @@ class Grades extends Component{
 						);
 					});
 				}else{
-					var gradeData = gradeDataFull.map((grade, index)=>{
+						gradeData = gradeDataFull.map((grade, index)=>{
 						console.log(grade);
 						return(
 							<tr key={index}>
@@ -220,6 +222,8 @@ class Grades extends Component{
 			case "student":
 				userId = this.props.auth.studentId;
 				break;
+			default:
+				break;	
 		}
 		const url = `${window.apiHost}/${this.props.auth.level}s/grades/${courseId}/${userId}/get`;
 		axios.get(url)
@@ -251,7 +255,7 @@ class Grades extends Component{
 						);
 					});
 				}else{
-					var gradeData = gradeDataFull.map((grade, index)=>{
+						gradeData = gradeDataFull.map((grade, index)=>{
 						console.log(grade);
 						return(
 							<tr key={index}>

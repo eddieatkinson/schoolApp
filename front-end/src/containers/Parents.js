@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import {Col, Card, Row } from 'react-materialize';
+import {Col, Row } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Navbar from './Navbar';

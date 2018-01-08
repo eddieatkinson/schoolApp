@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Input, Row, Col, Table, Button } from 'react-materialize';
+// import { Link } from 'react-router-dom';
+import { Input, Row, Button } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GetInbox from '../actions/GetInbox';
@@ -17,7 +17,7 @@ class MessageComposition extends Component{
 		event.preventDefault();
 		var subject = document.getElementById('subject').value;
 		var body = document.getElementById('body').value;
-		var receiver = document.getElementById('to').value;
+		// var receiver = document.getElementById('to').value;
 		var receiverLevel = this.props.match.params.messageTarget;
 		receiverLevel = receiverLevel.slice(0, -1); // to remove the "s";
 		var receiverStatusId;
@@ -31,6 +31,8 @@ class MessageComposition extends Component{
 			case "student":
 				receiverStatusId = 3;
 				break;
+			default:
+				break;	
 		}
 		var receiverId = this.props.match.params.messageTargetId;
 		var senderName = this.props.auth.fullName;
@@ -46,8 +48,10 @@ class MessageComposition extends Component{
 			case "student":
 				senderId = "studentId";
 				break;
+			default:
+				break;	
 		}
-		var senderId = this.props.auth.teacherId;
+		senderId = this.props.auth.teacherId;
 		var senderStatusId = this.props.auth.statusId;
 		console.log(this.props.auth);
 		var formData = {

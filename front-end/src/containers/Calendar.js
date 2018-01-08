@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Row, Input, Button, Col } from 'react-materialize';
+import { Button } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import BigCalendar from 'react-big-calendar';
@@ -45,6 +45,8 @@ class Calendar extends Component{
 			case "student":
 				userId = this.props.auth.studentId;
 				break;
+			default:
+				break;	
 		}
 		var url = `${window.apiHost}/${level}s/${userId}/calendar/get`;
 		console.log(url)
