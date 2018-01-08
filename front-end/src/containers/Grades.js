@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import AddAssignmentsAction from '../actions/AddAssignmentsAction';
 import EditAction from '../actions/EditAction';
+import StopEditAction from '../actions/StopEditAction';
 
 class Grades extends Component{
 	constructor(){
@@ -75,6 +76,7 @@ class Grades extends Component{
 				})
 			}
 		})
+		// this.props.stopEditAction();
 	}
 
 	changeGrade(event, aid, sid, index){
@@ -135,6 +137,7 @@ class Grades extends Component{
 				})
 			}
 		})
+		// this.props.stopEditAction();
 	}
 
 	editInformation(){
@@ -273,7 +276,11 @@ class Grades extends Component{
 		var changeGradeHeader;
 		var editButton;
 		if(this.props.auth.level === "teacher"){
-			editButton = <Button onClick={this.editInformation}>Click to edit</Button>
+			if(!this.props.editing){
+				editButton = <Button onClick={this.editInformation}>Click to edit</Button>
+			}else{
+				editButton = <Button onClick={this.props.stopEditAction}>Click to Stop Editing</Button>
+			}
 		}else{
 			editButton = '';
 		}
@@ -324,7 +331,8 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
 		addAssignmentsAction: AddAssignmentsAction,
-		editAction: EditAction
+		editAction: EditAction,
+		stopEditAction: StopEditAction
 	}, dispatch);
 }
 
