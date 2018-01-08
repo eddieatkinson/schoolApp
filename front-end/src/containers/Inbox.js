@@ -22,6 +22,7 @@ class Inbox extends Component{
 		var level = this.props.auth.level;
 		var status = `${this.props.auth.level}s`;
 		console.log(status);
+		console.log(this.props.auth);
 		// switch(this.props.auth.statusId){
 		// 	case 1:
 		// 		status = 'teacher';
@@ -37,6 +38,7 @@ class Inbox extends Component{
 		// }
 		// console.log(status);
 		var whichId = `${level}Id`;
+		console.log(whichId);
 		var userId;
 		switch(whichId){
 			case "teacherId":
@@ -55,13 +57,14 @@ class Inbox extends Component{
 
 	render(){
 		console.log(this.props.inbox);
+		var level = this.props.auth.level
 		var inboxContents = this.props.inbox;
 		var inboxInfo = inboxContents.map((item, index)=>{
 			return(
 				<tr>
 					<td>{item.date}</td>
 					<td>{item.senderName}</td>
-					<td><Link to={`/teachers/${item.id}/inboxContents`}>{item.subject}</Link></td>
+					<td><Link to={`/${level}s/${item.id}/inboxContents`}>{item.subject}</Link></td>
 				</tr>
 			)
 		});

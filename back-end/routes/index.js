@@ -98,6 +98,7 @@ router.post('/login/student', (req, res)=>{
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
 				const fullName = results[0].fullName;
+				const studentId = results[0].studentId;
 				const statusId = results[0].statusId;
 				const level = results[0].level;
 				res.json({
@@ -106,6 +107,7 @@ router.post('/login/student', (req, res)=>{
 					statusId: statusId,
 					name: name,
 					fullName: fullName,
+					studentId: studentId,
 					level: level
 				});
 			}else{
@@ -141,6 +143,7 @@ router.post('/login/parent', (req, res)=>{
 				const newToken = randToken.uid(60);
 				const name = results[0].firstName;
 				const fullName = results[0].fullName;
+				const parentId = results[0].parentId;
 				const statusId = results[0].statusId;
 				const level = results[0].level;
 				res.json({
@@ -149,6 +152,7 @@ router.post('/login/parent', (req, res)=>{
 					statusId: statusId,
 					name: name,
 					fullName: fullName,
+					parentId: parentId,
 					level: level
 				});
 			}else{

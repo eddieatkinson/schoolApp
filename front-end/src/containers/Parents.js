@@ -8,7 +8,9 @@ import Navbar from './Navbar';
 import CourseInfo from './CourseInfo';
 import Courses from './Courses';
 import Inbox from './Inbox';
+import InboxContents from './InboxContents';
 import Calendar from './Calendar';
+import ComposeMessage from './ComposeMessage';
 import Logout from './Logout';
 import ParentCourseView from './ParentCourseView';
 
@@ -36,7 +38,9 @@ class Parents extends Component{
 						</Col>
 						<Col s={10} style={{'marginLeft':220}}>
 							<Route path='/courses/:parentId/get' component={ParentCourseView}/>
-							<Route path='/teachers/inbox' component={Inbox}/>
+							<Route path='/parents/inbox' component={Inbox}/>
+							<Route path='/parents/:messageId/inboxContents' component={InboxContents} />
+							<Route path='/compose/:messageTarget' component={ComposeMessage} />
 							<Route path='/teachers/calendar' component={Calendar}/>
 							<Route path='/logout' component={Logout}/>
 						</Col>

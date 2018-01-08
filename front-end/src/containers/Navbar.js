@@ -32,7 +32,7 @@ class Navbar extends Component{
 							<NavText> Students </NavText>
 						</Nav>
 					</Link> 
-					<Link to='/teachers/inbox'>
+					<Link to={`/${this.props.auth.level}s/inbox`}>
 						<Nav id='inbox'>
 							<NavIcon><SvgIcon size={20} icon={drawer2}/></NavIcon>
 							<NavText> Inbox </NavText>

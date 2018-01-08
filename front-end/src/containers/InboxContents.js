@@ -19,7 +19,7 @@ class InboxContents extends Component{
 
 	getMessage(){
 		var messageId = this.props.match.params.messageId;
-		const url = `${window.apiHost}/teachers/message/${messageId}/get`;
+		const url = `${window.apiHost}/teachers/message/${messageId}/get`; // uses "teachers" Express route but works for everyone
 		axios.get(url)
 			.then((response)=>{
 				this.setState({
