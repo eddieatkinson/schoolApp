@@ -140,4 +140,21 @@ router.post('/sendMessage', (req, res)=>{
 	});
 });
 
+router.get('/:parentId/calendar/get', (req, res)=>{
+	const parentId = req.params.parentId;
+	const getEvents = `SELECT * FROM calendar
+		INNER JOIN students ON students.teacherId = calendar.teacherId
+		INNER JOIN studentParent ON studentParent.studentId = students.studentId 
+		WHERE studentParent.parentId = ?;`;
+	connection.query(getEvents, [parentId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log(results)
+			res.json(results);
+		}
+	})	
+
+});
+
 module.exports = router;

@@ -139,6 +139,22 @@ router.post('/sendMessage', (req, res)=>{
 		}
 	});
 });
+
+router.get('/:studentId/calendar/get', (req, res)=>{
+	const studentId = req.params.studentId;
+	const getEvents = `SELECT * FROM calendar
+		INNER JOIN students ON students.teacherId = calendar.teacherId
+		WHERE students.studentId = ?;`;
+	connection.query(getEvents, [studentId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log(results)
+			res.json(results);
+		}
+	})	
+
+});
 /* GET users listing. */
 // router.get('/', function(req, res, next) {
 //   res.send('respond with a resource');
