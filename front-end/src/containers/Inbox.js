@@ -61,7 +61,7 @@ class Inbox extends Component{
 		var inboxContents = this.props.inbox;
 		var inboxInfo = inboxContents.map((item, index)=>{
 			return(
-				<tr>
+				<tr className={item.messageStatus}>
 					<td>{item.date}</td>
 					<td>{item.senderName}</td>
 					<td><Link to={`/${level}s/${item.id}/inboxContents`}>{item.subject}</Link></td>

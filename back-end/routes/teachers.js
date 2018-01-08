@@ -207,8 +207,9 @@ router.get('/inbox/:userId/get', (req, res)=>{
 	console.log('===========================================================');
 	console.log('===========================================================');
 	var inboxQuery = `SELECT inbox.id, inbox.subject, inbox.body, inbox.receiverStatus,
-		inbox.senderStatus, inbox.receiverId, inbox.senderId, inbox.senderName, DATE_FORMAT(inbox.date, '%M %D\, %Y') as date,
-		status.level AS receiverLevel, s2.level AS senderLevel
+		inbox.senderStatus, inbox.receiverId, inbox.senderId, inbox.senderName, inbox.messageStatus,
+		DATE_FORMAT(inbox.date, '%M %D\, %Y') as date, status.level AS receiverLevel,
+		s2.level AS senderLevel
 		FROM inbox
 		INNER JOIN status ON inbox.receiverStatus = status.statusId
 		INNER JOIN status s2 ON inbox.senderStatus = s2.statusId

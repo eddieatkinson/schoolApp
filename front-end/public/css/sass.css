@@ -77,4 +77,7 @@ nav .brand-logo.right {
   .addAssignmentsButton:hover {
     background-color: #e2dfce; }
 
+.new td {
+  font-weight: bold; }
+
 /*# sourceMappingURL=sass.css.map */
