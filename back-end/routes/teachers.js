@@ -181,11 +181,11 @@ router.post('/changeStatus', (req, res)=>{
 router.post('/changeGrade', (req, res)=>{
 	const newGrade = req.body.newGrade;
 	const aid = req.body.aid;
-	const studentId = req.body.studentId;
+	const sid = req.body.sid;
 	const updateGrade = `UPDATE assignmentStatus
 		SET grade = ?
 		WHERE aid = ? AND sid = ?;`;
-	connection.query(updateGrade, [newGrade, aid, studentId], (error, results)=>{
+	connection.query(updateGrade, [newGrade, aid, sid], (error, results)=>{
 		if(error){
 			throw error;
 		}else{

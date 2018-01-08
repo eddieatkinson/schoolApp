@@ -61,7 +61,11 @@ class Grades extends Component{
 										</Button>
 									</td>
 									<td>{grade.grade}</td>
-									<td><Input id='newGrade' /><Button onClick={this.changeGrade}>Change Grade</Button></td>
+									<td><Input id='newGrade' /><Button onClick={(event)=>{
+											this.changeGrade(event,grade.aid,grade.sid, index)
+										}}>
+											Change Grade
+										</Button></td>
 								</tr>
 							);
 						});
@@ -73,21 +77,64 @@ class Grades extends Component{
 		})
 	}
 
-	changeGrade(){
-		var newGrade = document.getElementById('newGrade').value;
-		var aid = document.getElementById('newGrade').getAttribute('aid');
-		var studentId = document.getElementById('newGrade').getAttribute('studentId');
+	changeGrade(event, aid, sid, index){
+		console.log("Change grade");
+		// var newGrade = document.getElementById('newGrade').value;
+		var newGrade = event.target.previousSibling.childNodes[0].value;
+		// var aid = document.getElementById('newGrade').getAttribute('aid');
+		// var studentId = document.getElementById('newGrade').getAttribute('studentId');
+		console.log(newGrade);
 		var newData = {
 			newGrade: newGrade,
 			aid: aid,
-			studentId: studentId
+			sid: sid
 		}
+		console.log(newData);
 		var axiosPromise = axios({
 			url: `${window.apiHost}/teachers/changeGrade`,
 			method: 'POST',
 			data: newData
-		});
-		// this.props.stopEditAction();
+		}).then((response)=>{
+			console.log(response.data);
+			if(response.data.msg === 'gradeUpdated'){
+				// make a copy of the grades state var so we can change the student
+				var newGrades = {...this.state.grades};
+				var courseId = this.props.match.params.courseId;
+				var teacherId = this.props.auth.teacherId;
+				const url = `${window.apiHost}/teachers/grades/${courseId}/${teacherId}/get`;
+				axios.get(url)
+					.then((response)=>{
+						var gradeDataFull = response.data;
+						console.log(gradeDataFull);
+						var gradeData = gradeDataFull.map((grade, index)=>{
+							return(
+								<tr key={index}>
+									<td>{`${grade.firstName} ${grade.lastName}`}</td>
+									<td>{grade.assName}</td>
+									<td>{grade.status}</td>
+									<td>
+										<Input id='newStatus' />
+										<Button onClick={(event)=>{
+											this.changeStatus(event,grade.aid,grade.sid, index)
+										}}>
+											Change Status
+										</Button>
+									</td>
+									<td>{grade.grade}</td>
+									<td><Input id='newGrade' /><Button onClick={(event)=>{
+											this.changeGrade(event,grade.aid,grade.sid, index)
+										}}>
+											Change Grade
+										</Button></td>
+								</tr>
+							);
+						});
+					this.setState({
+						grades: gradeData
+					});
+				})
+			}
+		})
 	}
 
 	editInformation(){
@@ -130,7 +177,11 @@ class Grades extends Component{
 									</Button>
 								</td>
 								<td>{grade.grade}</td>
-								<td><Input id='newGrade' aid={grade.aid} studentId={grade.studentId} /><Button onClick={this.changeGrade}>Change Grade</Button></td>
+								<td><Input id='newGrade' /><Button onClick={(event)=>{
+											this.changeGrade(event,grade.aid,grade.sid, index)
+										}}>
+											Change Grade
+										</Button></td>
 							</tr>
 						);
 					});
@@ -188,7 +239,11 @@ class Grades extends Component{
 									</Button>
 								</td>
 								<td>{grade.grade}</td>
-								<td><Input id='newGrade' /><Button onClick={this.changeGrade}>Change Grade</Button></td>
+								<td><Input id='newGrade' /><Button onClick={(event)=>{
+											this.changeGrade(event,grade.aid,grade.sid, index)
+										}}>
+											Change Grade
+										</Button></td>
 							</tr>
 						);
 					});
@@ -238,7 +293,7 @@ class Grades extends Component{
 		return(
 			<div>
 				{editButton}
-				<Table>
+				<Table bordered='true' hoverable='true' responsive='true' >
 					<thead>
 						<tr>
 							<th>Student Name</th>
