@@ -7,6 +7,7 @@ import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import axios from 'axios';
+// import DatePickerExample from './DatePicker';
 
 
 // The react module wants something to normalize the time based on the 
@@ -15,13 +16,6 @@ import axios from 'axios';
 BigCalendar.setLocalizer(
 	BigCalendar.momentLocalizer(moment) // or globalizeLocalizer
 );
-
-// axios.get(events).then((data)=>{
-// 	const calEvents = data.map((event)=>{
-// 		event.start = new Date(event.start)
-// 		return event 
-// 	})
-// })
 
 
 
@@ -61,11 +55,11 @@ class Calendar extends Component{
 			event.start = new Date(event.start)
 			event.end = new Date(event.end)
 			return event 
-			});
+			})
 		console.log(calEvents)
-			this.setState({
-				calEventsList: calEvents
-			});
+		this.setState({
+			calEventsList: calEvents
+		})
 		})	
 	}
 
@@ -80,12 +74,12 @@ class Calendar extends Component{
 			<div>
 				<h1>Calendar</h1>
 			  <div className='container'>
-				<BigCalendar
-					events={this.state.calEventsList}
-					views={possibleViews}
-					step={60}
-					defaultDate={new Date()}
-				/>
+			    <BigCalendar
+				    events={this.state.calEventsList}
+				    views={possibleViews}
+				    step={60}
+				    defaultDate={new Date()}
+			    />
 			  </div>
 			 </div>
 		)
