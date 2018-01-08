@@ -6,6 +6,46 @@ var bcrypt = require('bcrypt-nodejs');
 var connection = mysql.createConnection(config);
 connection.connect();
 
+router.get('/courses/:studentId/get', (req, res)=>{
+	const studentId = req.params.studentId;
+	// console.log("TEACHER ID:")
+	// console.log(teacherId);
+	var coursesQuery = `SELECT DISTINCT * FROM courses
+		INNER JOIN students ON courses.teacherId = students.teacherId
+		WHERE students.studentId = ?;`;
+	connection.query(coursesQuery, [studentId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
+
+router.get('/grades/:courseId/:studentId/get', (req, res)=>{
+	const courseId = req.params.courseId;
+	const studentId = req.params.studentId;
+	// console.log("student ID:")
+	// console.log(courseId);
+	var gradesQuery = `SELECT * FROM students
+		INNER JOIN assignmentStatus ON students.studentId = assignmentStatus.sid
+		INNER JOIN assignments ON assignmentStatus.aid = assignments.id
+		WHERE assignmentStatus.cid = ? AND students.studentId = ?;`;
+	connection.query(gradesQuery, [courseId, studentId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
+
 router.get('/inbox/:userId/get', (req, res)=>{
 	const userId = req.params.userId;
 	// console.log("student ID:")
