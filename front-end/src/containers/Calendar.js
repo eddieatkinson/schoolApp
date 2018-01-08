@@ -140,7 +140,7 @@ class Calendar extends Component{
 				    events={events}
 				    views={possibleViews}
 				    step={60}
-				    defaultDate={new Date(2015, 3, 1)}
+				    defaultDate={new Date()}
 			    />
 			  </div>
 			 </div>

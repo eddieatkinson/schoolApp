@@ -49,6 +49,12 @@ class Navbar extends Component{
 
 	componentDidMount(){
 		this.countNewMessages();
+		console.log(this.state.newMessages)
+		if(this.state.newMessage === 0){
+			document.getElementById('numberNewMessages').innerHTML = '';
+		}else{
+			document.getElementById('numberNewMessages').innerHTML = `(${this.state.newMessages})`;
+		}
 	}
 
 	render(){
@@ -63,6 +69,7 @@ class Navbar extends Component{
 		}else{
 			studentsLink = '';
 		}
+		
 		// var newMessages = 3;
 	// specify the base color/background of the parent container if needed 
 		const MySideNav = () => (
@@ -78,7 +85,7 @@ class Navbar extends Component{
 					<Link to={`/${this.props.auth.level}s/inbox`}>
 						<Nav id='inbox'>
 							<NavIcon><SvgIcon size={20} icon={drawer2}/></NavIcon>
-							<NavText> Inbox &nbsp;<span>({this.state.newMessages})</span> </NavText>
+							<NavText> Inbox &nbsp;<span id="numberNewMessages"></span> </NavText>
 						</Nav>
 					</Link>
 					<Link to='/teachers/calendar'>
