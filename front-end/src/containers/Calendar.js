@@ -17,7 +17,7 @@ BigCalendar.setLocalizer(
 // const MyCalendar = props => (
 //   <div>
 //     <BigCalendar
-//       events=
+//       events={}
 //       startAccessor='startDate'
 //       endAccessor='endDate'
 //     />
