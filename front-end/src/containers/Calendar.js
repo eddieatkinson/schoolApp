@@ -135,7 +135,7 @@ class Calendar extends Component{
 		return(
 			<div>
 				<h1>Calendar</h1>
-			  <div>
+			  <div className='container'>
 			    <BigCalendar
 				    events={events}
 				    views={possibleViews}

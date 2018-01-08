@@ -85,7 +85,7 @@ class Login extends Component{
 			button = <Button className='loginButton'onClick={this.handleSubmit} waves="light">Log in</Button>
 		}
 		return(
-			<div className="container">
+			<div id="container">
 				<Dropdown />
 				<h4>{this.state.error}</h4>
 				<form>

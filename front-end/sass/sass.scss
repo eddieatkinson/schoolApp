@@ -14,9 +14,12 @@ body{
 		}
 	}
 } 
-.container{
+#container{
 	width: 400px;
     margin: 0 auto;
+}
+.container{
+	height: 80vh;
 }
 .course-nav{
 	// background-color: #b4881d;
