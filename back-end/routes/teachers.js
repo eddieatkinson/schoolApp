@@ -216,18 +216,28 @@ router.get('/message/:messageId/get', (req, res)=>{
 	// console.log('===========================================================');
 	// console.log('===========================================================');
 	// console.log('===========================================================');
-	var messageQuery = `SELECT * FROM inbox
+	var updateMessageStatus = `UPDATE inbox
+		SET messageStatus = 'read'
 		WHERE id = ?;`;
-	connection.query(messageQuery, [messageId], (error, results)=>{
+	connection.query(updateMessageStatus, [messageId], (error)=>{
 		if(error){
-			throw error;
+			throw error
 		}else{
-			console.log("============");
-			console.log(results);
-			console.log("============");
-			res.json(results);
+			var messageQuery = `SELECT * FROM inbox
+				WHERE id = ?;`;
+			connection.query(messageQuery, [messageId], (error, results)=>{
+				if(error){
+					throw error;
+				}else{
+					console.log("============");
+					console.log(results);
+					console.log("============");
+					res.json(results);
+				}
+			});
 		}
 	});
+
 });
 
 router.get('/messageToList/:teacherId/:target/get', (req, res)=>{
