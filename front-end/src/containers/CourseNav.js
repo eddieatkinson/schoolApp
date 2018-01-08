@@ -37,12 +37,18 @@ class CourseNav extends Component{
 		// console.log(this.props.auth.teacherId);
 		// console.log(this.state);
 		// console.log(this.auth);
+		var studentItem;
+		if(this.props.auth.level === "teacher"){
+			studentItem = <NavItem><Link to={`/courseInfo/${this.props.auth.teacherId}/students`}>Students</Link></NavItem>
+		}else{
+			studentItem = '';
+		}
 		return(
 			<Navbar className="course-nav" brand={this.state.courseName} left>
 				<NavItem>Syllabus</NavItem>
 				<NavItem><Link to={`/courseInfo/${this.props.courseId}/assignments`}>Assignments</Link></NavItem>
 				<NavItem><Link to={`/courseInfo/${this.props.courseId}/grades`}>Grades</Link></NavItem>
-				<NavItem><Link to={`/courseInfo/${this.props.auth.teacherId}/students`}>Students</Link></NavItem>
+				{studentItem}
 			</Navbar>
 		)
 	}
