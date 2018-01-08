@@ -16,6 +16,17 @@ import { exit } from 'react-icons-kit/icomoon/exit';
 class Navbar extends Component{
 
 	render(){
+		var studentsLink;
+		if(this.props.auth.level === "teacher"){
+			studentsLink = <Link to={`/courseInfo/${this.props.auth.teacherId}/students`}>
+								<Nav id='students'>
+									<NavIcon><SvgIcon size={20} icon={pacman}/></NavIcon>
+									<NavText> Students </NavText>
+								</Nav>
+							</Link> 
+		}else{
+			studentsLink = '';
+		}
 	// specify the base color/background of the parent container if needed 
 		const MySideNav = () => (
 			<div id="nav" style={{background: '#586e74', color: '#b4881d', width: 220, position: 'fixed', height: '100vh'}}> 
@@ -26,12 +37,7 @@ class Navbar extends Component{
 							<NavText> Courses </NavText>
 						</Nav>
 					</Link>
-					<Link to={`/courseInfo/${this.props.auth.teacherId}/students`}>
-						<Nav id='students'>
-							<NavIcon><SvgIcon size={20} icon={pacman}/></NavIcon>
-							<NavText> Students </NavText>
-						</Nav>
-					</Link> 
+					{studentsLink} 
 					<Link to={`/${this.props.auth.level}s/inbox`}>
 						<Nav id='inbox'>
 							<NavIcon><SvgIcon size={20} icon={drawer2}/></NavIcon>
