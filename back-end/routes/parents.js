@@ -29,10 +29,10 @@ router.get('/courses/:parentId/get', (req, res)=>{
 	const parentId = req.params.parentId;
 	// console.log("TEACHER ID:")
 	// console.log(teacherId);
-	var coursesQuery = `SELECT DISTINCT * FROM courses
-		INNER JOIN students ON courses.teacherId = students.teacherId
-		INNER JOIN studentParent ON studentParent.studentId = students.studentId
-		WHERE studentParent.parentId = ?;`;
+	var coursesQuery = `SELECT DISTINCT courseName, id, courseDesc, courses.teacherID FROM courses
+			INNER JOIN students ON courses.teacherId = students.teacherId
+			INNER JOIN studentParent ON studentParent.studentId = students.studentId
+			WHERE studentParent.parentId = ?;`;
 	connection.query(coursesQuery, [parentId], (error, results)=>{
 		if(error){
 			throw error;
