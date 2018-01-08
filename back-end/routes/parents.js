@@ -45,25 +45,6 @@ router.get('/courses/:parentId/get', (req, res)=>{
 	});
 });
 
-// router.get('/courses/:parentId/get', (req, res)=>{
-// 	const parentId = req.params.parentId;
-// 	// console.log("TEACHER ID:")
-// 	// console.log(teacherId);
-// 	var coursesQuery = `SELECT * FROM courses
-// 		INNER JOIN teachers ON courses.teacherId = teachers.teacherId
-// 		WHERE courses.teacherId = ?;`;
-// 	connection.query(coursesQuery, [teacherId], (error, results)=>{
-// 		if(error){
-// 			throw error;
-// 		}else{
-// 			// console.log("============");
-// 			// console.log(results);
-// 			// console.log("============");
-// 			res.json(results);
-// 		}
-// 	});
-// });
-
 router.get('/grades/:courseId/:parentId/get', (req, res)=>{
 	const courseId = req.params.courseId;
 	const parentId = req.params.parentId;
