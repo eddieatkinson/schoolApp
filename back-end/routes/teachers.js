@@ -302,15 +302,41 @@ router.post('/sendMessage', (req, res)=>{
 		if(error){
 			throw error;
 		}else{
-			res.json({
-				msg: "messageSent"
-			});
+			if(receiverLevel === "student"){ // message also gets sent to parent(s)
+				const getParentInfo = `SELECT * FROM students
+					INNER JOIN studentParent ON studentParent.studentId = students.studentId
+					INNER JOIN parents ON parents.parentId = studentParent.parentId
+					WHERE studentParent.studentId = ?;`;
+				connection.query(getParentInfo, [receiverId], (error, results)=>{
+					if(error){
+						throw error
+					}else{
+						console.log("Parents are being located");
+						results.map((result, index)=>{
+							var parentId = result.parentId
+							var ccParentMessage = `INSERT INTO inbox (subject, body, receiverStatus, senderStatus, receiverId, senderId, senderName)
+								VALUES
+								(?, ?, 2, 1, ?, ?, ?);`;
+							connection.query(ccParentMessage, [subject, body, parentId, senderId, senderName], (error)=>{
+								if(error){
+									throw error;
+								}else{
+									console.log("Message sent to parents as well!");
+								}
+							})
+						});
+							res.json({
+								msg: "messageSent"
+							});
+					}
+				});
+			}else{ // sent to parent only
+				res.json({
+					msg: "messageSent"
+				});
+			}
 		}
 	});
 });
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
- 
-// });
 
 module.exports = router;
