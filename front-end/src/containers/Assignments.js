@@ -53,8 +53,8 @@ class Assignments extends Component{
 				<Table bordered='true' hoverable='true' responsive='true'>
 					<thead>
 						<tr>
-							<th>Ass Name</th>
-							<th>Ass Description</th>
+							<th>Assignment Name</th>
+							<th>Assignment Description</th>
 						</tr>
 					</thead>
 					<tbody>
