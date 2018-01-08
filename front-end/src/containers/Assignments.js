@@ -50,7 +50,7 @@ class Assignments extends Component{
 		}
 		return(
 			<div>
-				<Table bordered='true' hoverable='true' responsive='true'>
+				<Table bordered={true} hoverable={true} responsive={true}>
 					<thead>
 						<tr>
 							<th>Assignment Name</th>

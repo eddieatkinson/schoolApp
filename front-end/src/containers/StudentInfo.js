@@ -37,7 +37,7 @@ class StudentInfo extends Component{
 		console.log("The student info is:");
 		console.log(this.props.studentInfo);
 		return(
-			<Table bordered='true' hoverable='true' responsive='true'>
+			<Table bordered={true} hoverable={true} responsive={true}>
 				<thead>
 					<tr>
 						<th data-field="parentName">Parent Name</th>

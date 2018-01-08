@@ -33,7 +33,7 @@ class CourseStudents extends Component{
 	// const product = props.product;
 	render(){
 		return(
-			<Table bordered='true' hoverable='true' responsive='true'>
+			<Table bordered={true} hoverable={true} responsive={true}>
 				<thead>
 					<tr>
 						<th>Student Name</th>

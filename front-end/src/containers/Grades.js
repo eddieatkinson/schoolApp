@@ -300,7 +300,7 @@ class Grades extends Component{
 		return(
 			<div>
 				{editButton}
-				<Table bordered='true' hoverable='true' responsive='true' >
+				<Table bordered={true} hoverable={true} responsive={true} >
 					<thead>
 						<tr>
 							<th>Student Name</th>

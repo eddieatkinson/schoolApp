@@ -20,7 +20,8 @@ body {
 
 .course-nav {
   background-color: #93a1a1;
-  margin-left: -12px; }
+  margin-left: -12px;
+  box-shadow: none; }
 
 nav .brand-logo.right {
   right: 3.5rem; }

@@ -1,12 +1,8 @@
-// import React, { Component } from 'react';
+import React from 'react';
+import { Button, Dropdown, NavItem } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import Icon from 'react-icons-kit';
 import { circleDown } from 'react-icons-kit/icomoon/circleDown'; 
-
-
-
-import React from 'react';
-import { Button, Dropdown, NavItem } from 'react-materialize';
 
 
 

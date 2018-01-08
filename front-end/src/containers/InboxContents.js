@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Table } from 'react-materialize';
+// import { Link } from 'react-router-dom';
+// import { Table } from 'react-materialize';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
@@ -91,7 +91,7 @@ class InboxContents extends Component{
 		// var inboxContents = this.props.inbox;
 		// var inboxInfo = inboxContents.map((item, index)=>{
 		// 	return(
-		// 		<tr>
+		// 		<tr key={index}>
 		// 			<td>{item.date}</td>
 		// 			<td>{item.senderName}</td>
 		// 			<td>{item.subject}</td>
