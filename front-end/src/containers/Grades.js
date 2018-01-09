@@ -20,6 +20,7 @@ class Grades extends Component{
 		this.changeStatus = this.changeStatus.bind(this);
 		this.changeGrade = this.changeGrade.bind(this);
 		this.editInformation = this.editInformation.bind(this);
+		this.handleSearch = this.handleSearch.bind(this);
 	}
 
 	changeStatus(event, aid, sid, index){
@@ -278,11 +279,52 @@ class Grades extends Component{
 
 	handleSearch(searchValue){
 		console.log(searchValue);
-		var gradesCopy = {...this.state.grades}
-		var filteredGrades = gradesCopy.filter((grade)=>{
-			_.findIndex(grade, function(o) { return o.user == 'barney'; });
-		})
-	}
+		var courseId = this.props.match.params.courseId;
+		var userId;
+		switch(this.props.auth.level){
+			case "teacher":
+				userId = this.props.auth.teacherId;
+				break;
+			case "parent":
+				userId = this.props.auth.parentId;
+				break;
+			case "student":
+				userId = this.props.auth.studentId;
+				break;
+			default:
+				break;	
+		}
+		const url = `${window.apiHost}/${this.props.auth.level}s/grades/${courseId}/${userId}/get`;
+		axios.get(url)
+			.then((response)=>{
+				var gradeDataFull = response.data;
+				console.log(gradeDataFull)
+				var filteredGrades = gradeDataFull.filter((grade)=>{
+					for (var key in grade) {
+						console.log(key,grade)
+						if(typeof(grade[key]) === `string`){
+							if(grade[key].indexOf(searchValue) > -1){
+							return true;
+							}
+						}
+					}
+				})
+				var gradeData = filteredGrades.map((grade, index)=>{
+						console.log(grade);
+						return(
+							<tr key={index}>
+								<td>{`${grade.firstName} ${grade.lastName}`}</td>
+								<td>{grade.assName}</td>
+								<td>{grade.status}</td>
+								<td>{grade.grade}</td>
+							</tr>
+						);
+				});		
+				this.setState({
+					grades: gradeData
+				});	
+			});
+		}
 
 	render(){
 		// console.log(this.state);
