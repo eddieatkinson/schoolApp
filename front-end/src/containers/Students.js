@@ -12,7 +12,7 @@ import Calendar from './Calendar';
 import GetCourses from '../actions/GetCourses';
 import ComposeMessage from './ComposeMessage';
 import Logout from './Logout';
-import ParentCourseView from './ParentCourseView';
+
 
 
 class Students extends Component{
@@ -42,7 +42,6 @@ class Students extends Component{
 						</Col>
 						<Col s={10} style={{'marginLeft':220}}>
 							<Route path='/courseInfo/:courseId' component={CourseInfo} />
-							<Route path='/courses/:parentId/get' component={ParentCourseView}/>
 							<Route path='/students/inbox' component={Inbox}/>
 							<Route exact path='/students' component={Courses} />
 							<Route path='/students/courses' component={Courses} />

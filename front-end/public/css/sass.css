@@ -31,6 +31,12 @@ nav .brand-logo.right {
   position: absolute;
   width: 30%; }
 
+.input-field:focus + label {
+  color: #000; }
+
+.input-field label {
+  color: #000; }
+
 .dropButton {
   background-color: #2e8cd0;
   height: 60px;
