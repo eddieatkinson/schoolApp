@@ -58,9 +58,9 @@ class ComposeMessage extends Component{
 			messageTo = messageToParams;
 		}
 		return(
-			<div className='messageHeader'>
+			<div className='messageHeader  '>
 				<Col s={12} m={6}>
-					<CardPanel className="teal lighten-4 black-text">
+					<CardPanel className="card-panel">
 					<Route path='/compose/:messageTarget/:messageTargetName/:messageTargetId' component={MessageComposition} />
 					<h6>Who would you like to send a message to?</h6>
 						<span>{messageToListNames}</span>

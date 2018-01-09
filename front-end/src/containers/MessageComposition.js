@@ -115,7 +115,7 @@ class MessageComposition extends Component{
 						<Input id="subject" label="Subject" />
 						<textarea id="body" label="Message"></textarea>
 					</Row>
-					<Button onClick={this.handleSubmit}>Send</Button> 
+					<Button className='sendMessage' onClick={this.handleSubmit}>Send</Button> 
 				</form>
 			</div>
 		)

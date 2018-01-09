@@ -7,14 +7,10 @@ import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import axios from 'axios';
-// import DatePickerExample from './DatePicker';
 
 
-// The react module wants something to normalize the time based on the 
-// current geographic area and formatting. I.e., 24 hour, interational, daylight savings. etc.
-// "Moment" is the choice here.
 BigCalendar.setLocalizer(
-	BigCalendar.momentLocalizer(moment) // or globalizeLocalizer
+	BigCalendar.momentLocalizer(moment) 
 );
 
 
@@ -27,11 +23,7 @@ class Calendar extends Component{
 		}
 	}
 
-// 	componentWillReceiveProps(newProps){
-// 		// console.log('=======NEW PROPS========');
-// 		// console.log(newProps);
-// 		// console.log('=======NEW PROPS========');
-// 	}
+
 	componentDidMount(){
 		var userId;
 		var level = this.props.auth.level;
@@ -73,16 +65,16 @@ class Calendar extends Component{
 
 		var addEventsButton;
 		if(this.props.auth.level === "teacher"){
-			addEventsButton = <Link to='/addEvents'><Button>Add Events</Button></Link>
+			addEventsButton = <Link to='/addEvents'><Button className='newEvent'>New Event</Button></Link>
 		}else{
 			addEventsButton = '';
 		}
 
 		return(
 			<div>
-				<h1>Calendar</h1>
-				{addEventsButton}
+				<img className='logoBlocks' src='/eduCrateblocks.png' alt=''/>
 			  <div className='container'>
+			  {addEventsButton}
 			    <BigCalendar
 				    events={this.state.calEventsList}
 				    views={possibleViews}
@@ -97,8 +89,6 @@ class Calendar extends Component{
 
 
 function mapStateToProps(state){
-// key = this.props.key
-// value = propety of RootReducer
 	return{
 		auth: state.auth
 	}

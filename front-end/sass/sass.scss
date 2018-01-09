@@ -72,11 +72,34 @@ nav .brand-logo.right {
 	display: block !important;
     margin-top: -11px;
 }
-.editBtn, .addAssignment{
+.editBtn,.addAssignment,.sendMessage,.composeMessage,.newEvent{
 	background-color: #b4881d;
 	margin: 5px;
 	&:hover{
 		background-color: #e2dfce;
+	}
+}
+.edit{
+	background-color: #c94b23 !important;
+	margin: 5px;
+	padding: 1px;
+	height: 28px;
+	&:hover{
+		background-color: #e2dfce;
+	}
+}
+.editChanges{
+	background-color: #c94b23;
+	margin: 5px;
+	&:hover{
+		background-color: #e2dfce;
+	}
+}
+.changes,.add2Calendar{
+	background-color: #6c73c2 !important;
+	margin: 5px;
+	&:hover{
+		background-color:#e2dfce;
 	}
 }
 .addAssignmentsButton{
@@ -95,6 +118,13 @@ nav .brand-logo.right {
 	margin: auto;
 }
 .card-panel{
-	background-color: #586e74!important;
-	color: #fff !important;
+	background-color:#f6f8f9;
+	color: #686868 ;
+}
+.messageList{
+	margin: 9px;
+}
+.logoBlocks{
+	height: 100px;
+	width:200px;
 }
