@@ -18,8 +18,11 @@ body{
 	}
 } 
 #container{ //login page
-	width: 400px;
-    margin: 0 auto;
+	width: 500px;
+    // margin: 0 auto;
+    top: 10%;
+  	left: 30%;
+    position: absolute;
 }
 .container{ //calendar
 	height: 80vh;
@@ -37,8 +40,9 @@ nav .brand-logo.right {
     right: 3.5rem;
 }
 .loginForm{
-	position: absolute;
-	width: 30%;
+	position: relative;
+	width: 50%;
+	margin-left: 51px;
 }
 .input-field:focus + label {
      color: #000;
@@ -64,13 +68,13 @@ nav .brand-logo.right {
 	height: 250px;
 	width: 175px;
 	position: relative;
-	margin-top: -286px;
-	margin-left: 380px;
+	margin-top: -294px;
+    margin-left: 300px;
 }
 .logo{
 	position: relative;
-	margin-top: -28px;
-    margin-left: 403px;	
+	margin-top: -39px;
+    margin-left: 320px;	
 }
 .loginButton{
 	position: relative;
