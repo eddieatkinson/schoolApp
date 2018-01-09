@@ -5,9 +5,9 @@ export default function(state = {}, action){
 			stateCopy.list = action.payload.data;
 			return stateCopy;
 		case "GET_COURSE_INFO":
-			var stateCopy = {...state};
-			stateCopy.selectedCourse = action.payload.data;
-			return stateCopy;
+			var stateCopy2 = {...state};
+			stateCopy2.selectedCourse = action.payload.data;
+			return stateCopy2;
 		default:
 			return state;	
 	}

@@ -50,6 +50,8 @@ class Inbox extends Component{
 			case "studentId":
 				userId = this.props.auth.studentId;
 				break;
+			default:
+				break;	
 		}
 		console.log(userId)
 		this.props.getInbox(status, userId);
@@ -69,14 +71,14 @@ class Inbox extends Component{
 			)
 		});
 		var messageToButton = '';
-		var level = this.props.auth.level;
+		level = this.props.auth.level;
 		if(level === 'teacher'){
 			messageToButton = <div>
-								<Link to='/compose/students'><Button>Compose Message to Student</Button></Link>
-								<Link to='/compose/parents'><Button>Compose Message to Parent</Button></Link>
+								<Link to='/compose/students'><Button>New Student Message</Button></Link>
+								<Link to='/compose/parents'><Button>New Parent Message</Button></Link>
 							</div>
 		}else{
-			messageToButton = <Link to='/compose/teachers'><Button>Compose Message to Teacher</Button></Link>
+			messageToButton = <Link to='/compose/teachers'><Button>New Teacher Message</Button></Link>
 		}
 		return(
 			<div>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Table } from 'react-materialize';
+// import { Table } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {Col, Card, Row } from 'react-materialize';
+import {Col, Card} from 'react-materialize';
 // import DataTables from 'material-ui-datatables';
 
 class ParentCourseView extends Component{

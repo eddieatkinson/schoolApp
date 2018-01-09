@@ -81,4 +81,12 @@ nav .brand-logo.right {
 .new td {
   font-weight: bold; }
 
+.messageList, .messageHeader {
+  text-align: center;
+  margin: auto; }
+
+.card-panel {
+  background-color: #586e74 !important;
+  color: #fff !important; }
+
 /*# sourceMappingURL=sass.css.map */

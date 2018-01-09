@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LoginAction from '../actions/LoginAction';
 import Dropdown from './Dropdown';
-import Icon from 'react-icons-kit';
-import { unlocked } from 'react-icons-kit/icomoon/unlocked';       
+// import Icon from 'react-icons-kit';
+// import { unlocked } from 'react-icons-kit/icomoon/unlocked';       
 
    
 
@@ -93,8 +93,8 @@ class Login extends Component{
 						<Input id={inputId} s={3} label={inputId} type={inputType} className="validate"/>
 						<Input id={password} s={3} label="Password" type="password"/>
 						<span>{button}</span>
-							<img className='giraffe' src='/giraffe.png'/>	
-							<img className='logo' src='/eduCrate_logo.png'/>	
+							<img alt='' className='giraffe' src='/giraffe.png'/>	
+							<img alt='' className='logo' src='/eduCrate_logo.png'/>	
 					</Row>
 				</form>
 			</div>

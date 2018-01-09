@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import axios from 'axios';
+// import axios from 'axios';
 import AddAssignmentsAction from '../actions/AddAssignmentsAction';
 
 class AddAssignment extends Component{

@@ -18,7 +18,7 @@ class CourseNav extends Component{
 	getCourseName(courseId){
 		console.log(courseId);
 		const url = `${window.apiHost}/teachers/courseInfo/${courseId}/get`;
-		const axiosPromise = axios.get(url)
+		axios.get(url)
 			.then((response)=>{
 				console.log(response);
 				this.setState({
