@@ -72,7 +72,7 @@ nav .brand-logo.right {
 	display: block !important;
     margin-top: -11px;
 }
-.editBtn, .addAssignment{
+.editBtn,.addAssignment,.sendMessage,.composeMessage,.newEvent,.add2Calendar{
 	background-color: #b4881d;
 	margin: 5px;
 	&:hover{
@@ -95,6 +95,13 @@ nav .brand-logo.right {
 	margin: auto;
 }
 .card-panel{
-	background-color: #586e74!important;
-	color: #fff !important;
+	background-color:#f6f8f9;
+	color: #686868 ;
+}
+.messageList{
+	margin: 9px;
+}
+.logoBlocks{
+	height: 100px;
+	width:200px;
 }

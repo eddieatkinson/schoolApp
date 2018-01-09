@@ -36,7 +36,7 @@ class AddEvents extends Component{
 					<Input id='startDate' label="Start Date" type="date"/>
 					<Input id='endDate' label="End Date" type="date"/>
 					<textarea id='description'></textarea>
-					<Button onClick={this.handleSubmit}>Submit</Button>	
+					<Button className='add2Calendar' onClick={this.handleSubmit}>Add</Button>	
 				</Row>
 			</form>
 		)
