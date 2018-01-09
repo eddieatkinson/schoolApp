@@ -66,10 +66,30 @@ nav .brand-logo.right {
   display: block !important;
   margin-top: -11px; }
 
-.editBtn, .addAssignment, .sendMessage, .composeMessage, .newEvent, .add2Calendar {
+.editBtn, .addAssignment, .sendMessage, .composeMessage, .newEvent {
   background-color: #b4881d;
   margin: 5px; }
-  .editBtn:hover, .addAssignment:hover, .sendMessage:hover, .composeMessage:hover, .newEvent:hover, .add2Calendar:hover {
+  .editBtn:hover, .addAssignment:hover, .sendMessage:hover, .composeMessage:hover, .newEvent:hover {
+    background-color: #e2dfce; }
+
+.edit {
+  background-color: #c94b23 !important;
+  margin: 5px;
+  padding: 1px;
+  height: 28px; }
+  .edit:hover {
+    background-color: #e2dfce; }
+
+.editChanges {
+  background-color: #c94b23;
+  margin: 5px; }
+  .editChanges:hover {
+    background-color: #e2dfce; }
+
+.changes, .add2Calendar {
+  background-color: #6c73c2 !important;
+  margin: 5px; }
+  .changes:hover, .add2Calendar:hover {
     background-color: #e2dfce; }
 
 .addAssignmentsButton {

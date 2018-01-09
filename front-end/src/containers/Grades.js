@@ -58,14 +58,14 @@ class Grades extends Component{
 										<Button onClick={(event)=>{
 											this.changeStatus(event,grade.aid,grade.sid, index)
 										}}>
-											Change Status
+											Edit
 										</Button>
 									</td>
 									<td>{grade.grade}</td>
 									<td><Input id='newGrade' /><Button onClick={(event)=>{
 											this.changeGrade(event,grade.aid,grade.sid, index)
 										}}>
-											Change Grade
+											Edit
 										</Button></td>
 								</tr>
 							);
@@ -123,7 +123,7 @@ class Grades extends Component{
 										</Button>
 									</td>
 									<td>{grade.grade}</td>
-									<td><Input id='newGrade' /><Button onClick={(event)=>{
+									<td><Input id='newGrade' /><Button className='edit' onClick={(event)=>{
 											this.changeGrade(event,grade.aid,grade.sid, index)
 										}}>
 											Change Grade
@@ -175,17 +175,17 @@ class Grades extends Component{
 								<td>{grade.status}</td>
 								<td>
 									<Input id='newStatus' />
-									<Button onClick={(event)=>{
+									<Button  className='edit' onClick={(event)=>{
 										this.changeStatus(event,grade.aid,grade.sid, index)
 									}}>
-										Change Status
+										Edit
 									</Button>
 								</td>
 								<td>{grade.grade}</td>
-								<td><Input id='newGrade' /><Button onClick={(event)=>{
+								<td><Input id='newGrade' /><Button className='edit' onClick={(event)=>{
 											this.changeGrade(event,grade.aid,grade.sid, index)
 										}}>
-											Change Grade
+											Edit
 										</Button></td>
 							</tr>
 						);
@@ -281,9 +281,9 @@ class Grades extends Component{
 		var editButton;
 		if(this.props.auth.level === "teacher"){
 			if(!this.props.editing){
-				editButton = <Button onClick={this.editInformation}>Click to edit</Button>
+				editButton = <Button className='editChanges' onClick={this.editInformation}>Edit</Button>
 			}else{
-				editButton = <Button onClick={this.props.stopEditAction}>Click to Stop Editing</Button>
+				editButton = <Button className='changes' onClick={this.props.stopEditAction}>Accept Changes</Button>
 			}
 		}else{
 			editButton = '';

@@ -10,11 +10,11 @@ export default (props)=> {
 				<Button onClick={(event)=>{
 					this.changeStatus(event,grade.aid,grade.sid, index)
 				}}>
-					Change Status
+					Edit
 				</Button>
 			</td>
 			<td>{grade.grade}</td>
-			<td><Input id='newGrade' /><Button onClick={this.changeGrade}>Change Grade</Button></td>
+			<td><Input id='newGrade' /><Button onClick={this.changeGrade}>Edit</Button></td>
 		</tr>
 	)
 }
