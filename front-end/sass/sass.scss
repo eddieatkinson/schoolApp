@@ -1,10 +1,13 @@
-p{
-	color: purple;
-	text-align: center;
-	margin: 100px;
-}
+// p{
+// 	color: purple;
+// 	text-align: center;
+// 	margin: 100px;
+// }
 body{
 	background-color: #fdf6e4;
+}
+*{
+	font-family: 'Roboto', sans-serif;
 }
 #nav{
 	a{
@@ -14,11 +17,11 @@ body{
 		}
 	}
 } 
-#container{
+#container{ //login page
 	width: 400px;
     margin: 0 auto;
 }
-.container{
+.container{ //calendar
 	height: 80vh;
 }
 .course-nav{
@@ -27,11 +30,15 @@ body{
 	margin-left: -12px;
 	box-shadow: none;
 }
+.courseInfo a{
+	color:#6c73c2;
+}
 nav .brand-logo.right {
     right: 3.5rem;
 }
 .loginForm{
 	position: absolute;
+	width: 30%;
 }
 .dropButton{
 	background-color: #2e8cd0;
@@ -51,18 +58,16 @@ nav .brand-logo.right {
 	height: 250px;
 	width: 175px;
 	position: relative;
-	margin-top: -200px;
+	margin-top: -286px;
 	margin-left: 362px;
 }
 .logo{
 	position: relative;
-	margin-top: 1px;
-    margin-left: 382px;	
+	margin-top: -28px;
+    margin-left: 384px;	
 }
 .loginButton{
 	position: relative;
-	margin-left: -257px;
-    margin-top: 77px;
     background-color: #2e8cd0;
 	&:hover{
 		background-color: #e2dfce;
@@ -71,6 +76,10 @@ nav .brand-logo.right {
 #circleDown{
 	display: block !important;
     margin-top: -11px;
+}
+.loginError{
+	color: #c94b23; 
+	text-align: center;
 }
 .editBtn,.addAssignment,.sendMessage,.composeMessage,.newEvent{
 	background-color: #b4881d;
@@ -117,14 +126,26 @@ nav .brand-logo.right {
 	text-align: center;
 	margin: auto;
 }
+.messageTitle{
+	color: #6c73c2;
+}
 .card-panel{
 	background-color:#f6f8f9;
 	color: #686868 ;
 }
 .messageList{
 	margin: 9px;
+	a{
+		color: #6c73c2;
+	}
 }
 .logoBlocks{
 	height: 100px;
 	width:200px;
+}
+.read td a{
+	color: #6c73c2;
+}
+.studentLink a{
+	color: #6c73c2;
 }

@@ -24,7 +24,7 @@ class Courses extends Component{
 			dataTable = this.props.courses.list.map((course, index)=>{
 				return (
 					<tr key={index}>
-						<td>
+						<td className='courseInfo'>
 							<Link to={`/courseInfo/${course.id}`} >{course.courseName}</Link>
 						</td>
 						<td>

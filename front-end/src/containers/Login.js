@@ -87,15 +87,15 @@ class Login extends Component{
 		return(
 			<div id="container">
 				<Dropdown />
-				<h4>{this.state.error}</h4>
+				<h5 className="loginError">{this.state.error}</h5>
 				<form>
-					<Row className='loginForm'>
+					<div className='loginForm'>
 						<Input id={inputId} s={3} label={inputId} type={inputType} className="validate"/>
 						<Input id={password} s={3} label="Password" type="password"/>
 						<span>{button}</span>
 							<img alt='' className='giraffe' src='/giraffe.png'/>	
 							<img alt='' className='logo' src='/eduCrate_logo.png'/>	
-					</Row>
+					</div>
 				</form>
 			</div>
 		)
