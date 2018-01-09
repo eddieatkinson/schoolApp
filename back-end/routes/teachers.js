@@ -243,7 +243,9 @@ router.get('/message/:messageId/get', (req, res)=>{
 		if(error){
 			throw error
 		}else{
-			var messageQuery = `SELECT * FROM inbox
+			var messageQuery = `SELECT id, subject, body, receiverStatus, senderStatus,
+				receiverId, senderId, senderName, DATE_FORMAT(date, '%M %D\, %Y') as date,
+				messageStatus FROM inbox
 				WHERE id = ?;`;
 			connection.query(messageQuery, [messageId], (error, results)=>{
 				if(error){

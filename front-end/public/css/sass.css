@@ -1,10 +1,8 @@
-p {
-  color: purple;
-  text-align: center;
-  margin: 100px; }
-
 body {
   background-color: #fdf6e4; }
+
+* {
+  font-family: 'Roboto', sans-serif; }
 
 #nav a {
   color: white; }
@@ -110,6 +108,9 @@ nav .brand-logo.right {
 .messageList, .messageHeader {
   text-align: center;
   margin: auto; }
+
+.messageTitle {
+  color: #6c73c2; }
 
 .card-panel {
   background-color: #f6f8f9;

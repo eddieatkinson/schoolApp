@@ -81,7 +81,7 @@ class InboxContents extends Component{
 		if(messageContents !== undefined){
 			messageDisplay = [
 				<div>
-					<h4>{messageContents.subject}</h4>
+					<h4 className='messageTitle'>{messageContents.subject}</h4>
 					<hr />
 					<h5>{messageContents.senderName}</h5>
 					<h6>{messageContents.date}</h6>
