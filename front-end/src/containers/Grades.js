@@ -7,6 +7,8 @@ import axios from 'axios';
 import AddAssignmentsAction from '../actions/AddAssignmentsAction';
 import EditAction from '../actions/EditAction';
 import StopEditAction from '../actions/StopEditAction';
+import SearchBar from './SearchBar';
+
 
 class Grades extends Component{
 	constructor(){
@@ -303,6 +305,7 @@ class Grades extends Component{
 		}
 		return(
 			<div>
+				<SearchBar />
 				{editButton}
 				<Table bordered={true} hoverable={true} responsive={true} >
 					<thead>
