@@ -11,11 +11,20 @@ class AddEvents extends Component{
 	constructor(){
 		super();
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.state = {
+
+		}
 	}
 
 	handleSubmit(event){
 		console.log("You tried to add an event");
 		event.preventDefault();
+		var title = document.getElementById('title').value;
+		var start = document.getElementById('startDate').value;
+		var end = document.getElementById('endDate').value;
+		var desc = document.getElementById('description').value;
+		var teacherId = this.props.auth.teacherId;
+
 	}
 
 	componentWillReceiveProps(newProps){
@@ -25,7 +34,7 @@ class AddEvents extends Component{
 	}
 
 	componentDidMount(){
-
+		console.log(this.props.courses.list);
 	}
 
 	render(){
@@ -49,7 +58,8 @@ function mapStateToProps(state){
 // value = propety of RootReducer
 	return{
 		auth: state.auth,
-		inbox: state.inbox
+		inbox: state.inbox,
+		courses: state.courses
 	}
 }
 function mapDispatchToProps(dispatch){
