@@ -19,7 +19,7 @@ class CourseStudents extends Component{
 				var studentList = studentInfo.map((student, index)=>{
 					return(
 						<tr key={index}>
-							<td><Link to={`/studentInfo/${student.studentId}`}>{`${student.firstName} ${student.lastName}`}</Link></td>
+							<td className='studentLink'><Link to={`/studentInfo/${student.studentId}`}>{`${student.firstName} ${student.lastName}`}</Link></td>
 							<td>{student.email}</td>
 							<td>{student.phone}</td>
 						</tr>

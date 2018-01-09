@@ -27,11 +27,15 @@ body{
 	margin-left: -12px;
 	box-shadow: none;
 }
+.courseInfo a{
+	color:#6c73c2;
+}
 nav .brand-logo.right {
     right: 3.5rem;
 }
 .loginForm{
 	position: absolute;
+	width: 30%;
 }
 .dropButton{
 	background-color: #2e8cd0;
@@ -51,18 +55,16 @@ nav .brand-logo.right {
 	height: 250px;
 	width: 175px;
 	position: relative;
-	margin-top: -200px;
+	margin-top: -286px;
 	margin-left: 362px;
 }
 .logo{
 	position: relative;
-	margin-top: 1px;
-    margin-left: 382px;	
+	margin-top: -28px;
+    margin-left: 384px;	
 }
 .loginButton{
 	position: relative;
-	margin-left: -257px;
-    margin-top: 77px;
     background-color: #2e8cd0;
 	&:hover{
 		background-color: #e2dfce;
@@ -127,4 +129,10 @@ nav .brand-logo.right {
 .logoBlocks{
 	height: 100px;
 	width:200px;
+}
+.read td a{
+	color: #6c73c2;
+}
+.studentLink a{
+	color: #6c73c2;
 }
