@@ -8,6 +8,7 @@ import AddAssignmentsAction from '../actions/AddAssignmentsAction';
 import EditAction from '../actions/EditAction';
 import StopEditAction from '../actions/StopEditAction';
 import SearchBar from './SearchBar';
+import _ from 'lodash';
 
 
 class Grades extends Component{
@@ -275,9 +276,18 @@ class Grades extends Component{
 			});
 	}	
 
+	handleSearch(searchValue){
+		console.log(searchValue);
+		var gradesCopy = {...this.state.grades}
+		var filteredGrades = gradesCopy.filter((grade)=>{
+			_.findIndex(grade, function(o) { return o.user == 'barney'; });
+		})
+	}
+
 	render(){
 		// console.log(this.state);
 		// var addGrade = '';
+
 		var changeStatusHeader;
 		var changeGradeHeader;
 		var editButton;
@@ -305,7 +315,7 @@ class Grades extends Component{
 		}
 		return(
 			<div>
-				<SearchBar />
+				<SearchBar handleSearch={this.handleSearch}/>
 				{editButton}
 				<Table bordered={true} hoverable={true} responsive={true} >
 					<thead>

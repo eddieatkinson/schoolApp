@@ -19,7 +19,7 @@ class SearchBar extends Component{
         			<div class="searchBarInput">
         				<input 
 						value={this.state.data} 
-						onChange={event => this.setState({value: event.target.value})} />
+						onChange={event => this.props.handleSearch(event.target.value)} />
           				<label class="label-icon" for="search"><i class="material-icons">search</i></label>
        			 	</div>
       			</form>
