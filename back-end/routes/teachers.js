@@ -104,7 +104,7 @@ router.get('/studentInfo/:studentId/get', (req, res)=>{
 	// console.log("student ID:")
 	console.log(studentId);
 	var studentParentQuery = `SELECT parents.firstName AS parentFirstName,
-	parents.lastName AS parentLastName, parents.email as parentEmail,
+	parents.lastName AS parentLastName, parents.email as parentEmail, parents.parentId AS parentsId,
 	parents.phone as parentPhone, students.firstName, students.lastName, students.phone, students.email FROM parents
 		INNER JOIN studentParent ON parents.parentId = studentParent.parentId
 		INNER JOIN students ON studentParent.studentId = students.studentId
@@ -215,6 +215,28 @@ router.get('/inbox/:userId/get', (req, res)=>{
 		INNER JOIN status s2 ON inbox.senderStatus = s2.statusId
 		WHERE inbox.receiverId = ? AND inbox.receiverStatus = 1;`;
 	connection.query(inboxQuery, [userId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
+
+router.get('/sentMessages/:userId/get', (req, res)=>{
+	const userId = req.params.userId;
+	var sentMessageQuery = `SELECT inbox.id, inbox.subject, inbox.body, inbox.receiverStatus,
+		inbox.senderStatus, inbox.receiverId, inbox.senderId, inbox.senderName, inbox.messageStatus,
+		DATE_FORMAT(inbox.date, '%M %D\, %Y') as date, status.level AS receiverLevel,
+		s2.level AS senderLevel
+		FROM inbox
+		INNER JOIN status ON inbox.receiverStatus = status.statusId
+		INNER JOIN status s2 ON inbox.senderStatus = s2.statusId
+		WHERE inbox.senderId = ? AND inbox.receiverStatus = 1;`;
+	connection.query(sentMessageQuery, [userId], (error, results)=>{
 		if(error){
 			throw error;
 		}else{

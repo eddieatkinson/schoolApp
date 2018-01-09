@@ -51,6 +51,7 @@ class Teachers extends Component{
 							<Route path='/teachers/courses' component={Courses} />
 							<Route path='/teachers/studentInfo' component={StudentInfo} />
 							<Route path='/teachers/inbox' component={Inbox} />
+							<Route path='/sentMessages' component={Inbox} />
 							<Route path='/teachers/:messageId/inboxContents' component={InboxContents} />
 							<Route path='/compose/:messageTarget' component={ComposeMessage} />
 							<Route path='/teachers/calendar' component={Calendar} />

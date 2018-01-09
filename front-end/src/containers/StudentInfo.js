@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Table } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -19,10 +19,13 @@ class StudentInfo extends Component{
 
 	render(){
 		var studentParentInfo = this.props.studentInfo.map((info, index)=>{
+			console.log(info);
 			return(
 				<tr>
 					<td>
+					<Link to={`/compose/parents/${info.parentFirstName} ${info.parentLastName}/${info.parentsId}`}>
 						{`${info.parentFirstName} ${info.parentLastName}`}
+					</Link>
 					</td>
 					<td>
 						{info.parentEmail}

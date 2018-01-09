@@ -13,16 +13,18 @@ class Inbox extends Component{
 	// }
 
 	componentWillReceiveProps(newProps){
-		// console.log('=======NEW PROPS========');
-		// console.log(newProps);
-		// console.log('=======NEW PROPS========');
-	}
-
-	componentDidMount(){
 		var level = this.props.auth.level;
 		var status = `${this.props.auth.level}s`;
 		console.log(status);
 		console.log(this.props.auth);
+		var sent;
+		console.log(this.props.match);
+		if(this.props.match.path === '/sentMessages'){
+			sent = true;
+		}else{
+			sent = false;
+		}
+		// console.log(sent);
 		// switch(this.props.auth.statusId){
 		// 	case 1:
 		// 		status = 'teacher';
@@ -54,7 +56,60 @@ class Inbox extends Component{
 				break;	
 		}
 		console.log(userId)
-		this.props.getInbox(status, userId);
+		this.props.getInbox(status, userId, sent);
+		sent = false;
+		this.props.history.push('/sentMessages');
+		// console.log('=======NEW PROPS========');
+		// console.log(newProps);
+		// console.log('=======NEW PROPS========');
+	}
+
+	componentDidMount(){
+		var level = this.props.auth.level;
+		var status = `${this.props.auth.level}s`;
+		console.log(status);
+		console.log(this.props.auth);
+		var sent;
+		console.log(this.props.match);
+		if(this.props.match.path === '/sentMessages'){
+			sent = true;
+		}else{
+			sent = false;
+		}
+		// console.log(sent);
+		// switch(this.props.auth.statusId){
+		// 	case 1:
+		// 		status = 'teacher';
+		// 		break;
+		// 	case 2:
+		// 		status = 'parent';
+		// 		break;
+		// 	case 3:
+		// 		status = 'student';
+		// 		break;
+		// 	default:
+		// 		status = 'ERROR';
+		// }
+		// console.log(status);
+		var whichId = `${level}Id`;
+		console.log(whichId);
+		var userId;
+		switch(whichId){
+			case "teacherId":
+				userId = this.props.auth.teacherId;
+				break;
+			case "parentId":
+				userId = this.props.auth.parentId;
+				break;
+			case "studentId":
+				userId = this.props.auth.studentId;
+				break;
+			default:
+				break;	
+		}
+		console.log(userId)
+		this.props.getInbox(status, userId, sent);
+		sent = false;
 	}
 
 	render(){
@@ -83,6 +138,7 @@ class Inbox extends Component{
 		return(
 			<div>
 				{messageToButton}
+				<Link to='/sentMessages'><Button>Sent Messages</Button></Link>
 				<Table bordered={true} hoverable={true} responsive={true}>
 					<thead>
 						<tr>
