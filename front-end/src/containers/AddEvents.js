@@ -34,6 +34,21 @@ class AddEvents extends Component{
 	}
 
 	handleSubmit(event){
+		var userId;
+		var level = this.props.auth.level;
+		switch(level){
+			case "teacher":
+				userId = this.props.auth.teacherId;
+				break;
+			case "parent":
+				userId = this.props.auth.parentId;
+				break;
+			case "student":
+				userId = this.props.auth.studentId;
+				break;
+			default:
+				break;	
+		}		
 		console.log("You tried to add an event");
 		event.preventDefault();
 		var courseId = this.getRadioValues(document.getElementById('addEventsForm'), "course");
@@ -54,19 +69,15 @@ class AddEvents extends Component{
 		}
 		console.log(eventData);
 
-		var addEventsPromise = new Promise((resolve, reject)=>{
-			this.props.addEventsAction(eventData);
-			resolve();
-		});
-		addEventsPromise.then(()=>{
-			this.props.history.push('/teachers/calendar');	
-		});
+		this.props.addEventsAction(eventData,level, userId);
 	}
 
 	componentWillReceiveProps(newProps){
-		// console.log('=======NEW PROPS========');
-		// console.log(newProps);
-		// console.log('=======NEW PROPS========');
+		console.log(newProps.calEventsList)
+		console.log(this.props.calEventsList)
+		if(newProps.calEventsList.length !== this.props.calEventsList.length){
+			this.props.history.push('/teachers/calendar');				
+		}
 	}
 
 	componentDidMount(){
@@ -74,6 +85,7 @@ class AddEvents extends Component{
 	}
 
 	render(){
+		console.log(this.props.calEventsList)
 		var classList = this.props.courses.list.map((course, index)=>{
 			return(
 				<label><Input type="radio" name="course" value={course.id} />{course.courseName}</label>
@@ -103,7 +115,9 @@ function mapStateToProps(state){
 	return{
 		auth: state.auth,
 		inbox: state.inbox,
-		courses: state.courses
+		courses: state.courses,
+		calEventsList: state.calEventsList
+
 	}
 }
 function mapDispatchToProps(dispatch){
