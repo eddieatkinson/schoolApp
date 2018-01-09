@@ -362,7 +362,7 @@ router.post('/addEvents', (req, res)=>{
 	const end = req.body.end;
 	const desc = req.body.desc;
 	const teacherId = parseInt(req.body.teacherId);
-	const addEvent = `INSERT INTO calendar (courseId, title, start, end, desc, teacherId)
+	const addEvent = `INSERT INTO calendar (courseId, title, start, end, eventDesc, teacherId)
 		VALUES
 		(?, ?, ?, ?, ?, ?)`;
 	connection.query(addEvent, [courseId, title, start, end, desc, teacherId], (error, results)=>{

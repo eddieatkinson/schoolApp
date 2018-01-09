@@ -38,8 +38,10 @@ class AddEvents extends Component{
 		event.preventDefault();
 		var courseId = this.getRadioValues(document.getElementById('addEventsForm'), "course");
 		var title = document.getElementById('title').value;
-		var start = document.getElementById('startDate').value;
-		var end = document.getElementById('endDate').value;
+		var startStamp = Date.parse(document.getElementById('startDate').value);
+		var start = new Date(startStamp);
+		var endStamp = Date.parse(document.getElementById('endDate').value);
+		var end = new Date(endStamp);
 		var desc = document.getElementById('description').value;
 		var teacherId = this.props.auth.teacherId;
 		var eventData = {
