@@ -351,8 +351,27 @@ router.get('/:teacherId/calendar/get', (req, res)=>{
 			res.json(results);
 		}
 	})	
-
 });
 
+router.post('/addEvents', (req, res)=>{
+	const courseId = parseInt(req.body.courseId);
+	const title = req.body.title;
+	const start = req.body.start;
+	const end = req.body.end;
+	const desc = req.body.desc;
+	const teacherId = parseInt(req.body.teacherId);
+	const addEvent = `INSERT INTO calendar (courseId, title, start, end, desc, teacherId)
+		VALUES
+		(?, ?, ?, ?, ?, ?)`;
+	connection.query(addEvent, [courseId, title, start, end, desc, teacherId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			res.json({
+				msg: "eventAdded"
+			});
+		}
+	});
+});
 
 module.exports = router;

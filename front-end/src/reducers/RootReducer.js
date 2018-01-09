@@ -10,6 +10,7 @@ import EditingReducer from './EditingReducer';
 import InboxReducer from './InboxReducer';
 import MessageToListReducer from './MessageToListReducer';
 import MessageCountReducer from './MessageCountReducer';
+import EventsReducer from './EventsReducer';
 
 //combreducers takes an object as an argument, that arg has key:value pair ... will return a value
 const rootReducer = combineReducers({	
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
 	editing: EditingReducer,
 	inbox: InboxReducer,
 	messageToList: MessageToListReducer,
-	messageCount: MessageCountReducer
+	messageCount: MessageCountReducer,
+	events: EventsReducer
 });
 
 
