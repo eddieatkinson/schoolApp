@@ -41,8 +41,8 @@ class Courses extends Component{
 			<Table bordered={true} hoverable={true} responsive={true}>
 				<thead>
 					<tr>
-						<th data-field="courseName">Name</th>
-						<th data-field="description">Description</th>
+						<th data-field="courseName">Course</th>
+						<th data-field="description">Course Description</th>
 					</tr>
 				</thead>
 				<tbody>

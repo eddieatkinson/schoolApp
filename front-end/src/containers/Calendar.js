@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-materialize';
+import { Button, Col, Row } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import BigCalendar from 'react-big-calendar';
@@ -8,6 +8,7 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import axios from 'axios';
 import GetCalendarEvents from '../actions/GetCalendarEvents';
+import _ from 'lodash';
 
 
 BigCalendar.setLocalizer(
@@ -60,22 +61,25 @@ class Calendar extends Component{
 	}
 
 	componentWillReceiveProps(newProps){
-		var userId;
-		var level = this.props.auth.level;
-		switch(level){
-			case "teacher":
-				userId = this.props.auth.teacherId;
-				break;
-			case "parent":
-				userId = this.props.auth.parentId;
-				break;
-			case "student":
-				userId = this.props.auth.studentId;
-				break;
-			default:
-				break;	
+		const same = (newProps.calEventsList.length === this.props.calEventsList.length);
+		if(!same){
+			var userId;
+			var level = this.props.auth.level;
+			switch(level){
+				case "teacher":
+					userId = this.props.auth.teacherId;
+					break;
+				case "parent":
+					userId = this.props.auth.parentId;
+					break;
+				case "student":
+					userId = this.props.auth.studentId;
+					break;
+				default:
+					break;	
+			}
+			this.props.getCalendarEvents(level, userId);
 		}
-		this.props.getCalendarEvents(level, userId);
 	}
 
 
@@ -91,7 +95,7 @@ class Calendar extends Component{
 			addEventsButton = '';
 		}
 
-		console.log(this.props.calEventsList);
+		// console.log(this.props.calEventsList);
 
 		const calEvents = this.props.calEventsList.map((event)=>{
 			event.start = new Date(event.start)
@@ -101,16 +105,20 @@ class Calendar extends Component{
 
 		return(
 			<div>
-				<img className='logoBlocks' src='/eduCrateblocks.png' alt=''/>
-			  <div className='container'>
-			  {addEventsButton}
-			    <BigCalendar
-				    events={this.props.calEventsList}
-				    views={possibleViews}
-				    step={60}
-				    defaultDate={new Date()}
-			    />
-			  </div>
+				<Row>
+					<Col s={4}>
+						<img className='logoBlocks' src='/eduCrateblocks.png' alt=''/>
+					</Col>
+				</Row>
+		  		<div className='container'>
+		  			{addEventsButton}
+		    			<BigCalendar
+			   				events={this.props.calEventsList}
+			   				views={possibleViews}
+			    			step={60}
+			    			defaultDate={new Date()}
+		    			/>
+		  		</div>
 			 </div>
 		)
 	}

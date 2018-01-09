@@ -131,8 +131,9 @@ nav .brand-logo.right {
     color: #6c73c2; }
 
 .logoBlocks {
-  height: 100px;
-  width: 200px; }
+  height: 124px;
+  width: 200px;
+  margin-left: 50px; }
 
 .read td a {
   color: #6c73c2; }
