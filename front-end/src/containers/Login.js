@@ -87,7 +87,7 @@ class Login extends Component{
 		return(
 			<div id="container">
 				<Dropdown />
-				<h4>{this.state.error}</h4>
+				<h5 className="loginError">{this.state.error}</h5>
 				<form>
 					<div className='loginForm'>
 						<Input id={inputId} s={3} label={inputId} type={inputType} className="validate"/>

@@ -68,6 +68,10 @@ nav .brand-logo.right {
   display: block !important;
   margin-top: -11px; }
 
+.loginError {
+  color: #c94b23;
+  text-align: center; }
+
 .editBtn, .addAssignment, .sendMessage, .composeMessage, .newEvent {
   background-color: #b4881d;
   margin: 5px; }
@@ -113,6 +117,8 @@ nav .brand-logo.right {
 
 .messageList {
   margin: 9px; }
+  .messageList a {
+    color: #6c73c2; }
 
 .logoBlocks {
   height: 100px;

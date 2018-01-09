@@ -55,17 +55,17 @@ class Grades extends Component{
 									<td>{grade.status}</td>
 									<td>
 										<Input id='newStatus' />
-										<Button onClick={(event)=>{
+										<Button  className='edit' onClick={(event)=>{
 											this.changeStatus(event,grade.aid,grade.sid, index)
 										}}>
-											Edit
+											Change
 										</Button>
 									</td>
 									<td>{grade.grade}</td>
-									<td><Input id='newGrade' /><Button onClick={(event)=>{
+									<td><Input id='newGrade' /><Button  className='edit' onClick={(event)=>{
 											this.changeGrade(event,grade.aid,grade.sid, index)
 										}}>
-											Edit
+											Change
 										</Button></td>
 								</tr>
 							);
@@ -116,17 +116,17 @@ class Grades extends Component{
 									<td>{grade.status}</td>
 									<td>
 										<Input id='newStatus' />
-										<Button onClick={(event)=>{
+										<Button className='edit' onClick={(event)=>{
 											this.changeStatus(event,grade.aid,grade.sid, index)
 										}}>
-											Change Status
+											Change 
 										</Button>
 									</td>
 									<td>{grade.grade}</td>
 									<td><Input id='newGrade' /><Button className='edit' onClick={(event)=>{
 											this.changeGrade(event,grade.aid,grade.sid, index)
 										}}>
-											Change Grade
+											Change
 										</Button></td>
 								</tr>
 							);
@@ -178,14 +178,14 @@ class Grades extends Component{
 									<Button  className='edit' onClick={(event)=>{
 										this.changeStatus(event,grade.aid,grade.sid, index)
 									}}>
-										Edit
+										Change
 									</Button>
 								</td>
 								<td>{grade.grade}</td>
 								<td><Input id='newGrade' /><Button className='edit' onClick={(event)=>{
 											this.changeGrade(event,grade.aid,grade.sid, index)
 										}}>
-											Edit
+											Change
 										</Button></td>
 							</tr>
 						);

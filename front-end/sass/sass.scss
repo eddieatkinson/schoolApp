@@ -14,11 +14,11 @@ body{
 		}
 	}
 } 
-#container{
+#container{ //login page
 	width: 400px;
     margin: 0 auto;
 }
-.container{
+.container{ //calendar
 	height: 80vh;
 }
 .course-nav{
@@ -74,6 +74,10 @@ nav .brand-logo.right {
 	display: block !important;
     margin-top: -11px;
 }
+.loginError{
+	color: #c94b23; 
+	text-align: center;
+}
 .editBtn,.addAssignment,.sendMessage,.composeMessage,.newEvent{
 	background-color: #b4881d;
 	margin: 5px;
@@ -125,6 +129,9 @@ nav .brand-logo.right {
 }
 .messageList{
 	margin: 9px;
+	a{
+		color: #6c73c2;
+	}
 }
 .logoBlocks{
 	height: 100px;
