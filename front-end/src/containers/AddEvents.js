@@ -53,7 +53,14 @@ class AddEvents extends Component{
 			teacherId
 		}
 		console.log(eventData);
-		this.props.addEventsAction(eventData);
+
+		var addEventsPromise = new Promise((resolve, reject)=>{
+			this.props.addEventsAction(eventData);
+			resolve();
+		});
+		addEventsPromise.then(()=>{
+			this.props.history.push('/teachers/calendar');	
+		});
 	}
 
 	componentWillReceiveProps(newProps){

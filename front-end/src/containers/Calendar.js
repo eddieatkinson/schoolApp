@@ -7,6 +7,7 @@ import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import axios from 'axios';
+import GetCalendarEvents from '../actions/GetCalendarEvents';
 
 
 BigCalendar.setLocalizer(
@@ -18,9 +19,9 @@ BigCalendar.setLocalizer(
 class Calendar extends Component{
 	constructor(){
 		super();
-		this.state = {
-			calEventsList: []
-		}
+		// this.state = {
+		// 	calEventsList: []
+		// }
 	}
 
 
@@ -40,21 +41,41 @@ class Calendar extends Component{
 			default:
 				break;	
 		}
-		var url = `${window.apiHost}/${level}s/${userId}/calendar/get`;
-		console.log(url)
-		axios.get(url)
-		.then((results)=>{
-		// console.log(results.data)
-		const calEvents = results.data.map((event)=>{
-			event.start = new Date(event.start)
-			event.end = new Date(event.end)
-			return event 
-			})
-		console.log(calEvents)
-		this.setState({
-			calEventsList: calEvents
-		})
-		})	
+		this.props.getCalendarEvents(level, userId);
+		// var url = `${window.apiHost}/${level}s/${userId}/calendar/get`;
+		// console.log(url)
+		// axios.get(url)
+		// .then((results)=>{
+		// // console.log(results.data)
+		// const calEvents = results.data.map((event)=>{
+		// 	event.start = new Date(event.start)
+		// 	event.end = new Date(event.end)
+		// 	return event 
+		// 	});
+		// // console.log(calEvents)
+		// // this.setState({
+		// // 	calEventsList: calEvents
+		// // })
+		// });	
+	}
+
+	componentWillReceiveProps(newProps){
+		var userId;
+		var level = this.props.auth.level;
+		switch(level){
+			case "teacher":
+				userId = this.props.auth.teacherId;
+				break;
+			case "parent":
+				userId = this.props.auth.parentId;
+				break;
+			case "student":
+				userId = this.props.auth.studentId;
+				break;
+			default:
+				break;	
+		}
+		this.props.getCalendarEvents(level, userId);
 	}
 
 
@@ -70,13 +91,21 @@ class Calendar extends Component{
 			addEventsButton = '';
 		}
 
+		console.log(this.props.calEventsList);
+
+		const calEvents = this.props.calEventsList.map((event)=>{
+			event.start = new Date(event.start)
+			event.end = new Date(event.end)
+			return event 
+		});
+
 		return(
 			<div>
 				<img className='logoBlocks' src='/eduCrateblocks.png' alt=''/>
 			  <div className='container'>
 			  {addEventsButton}
 			    <BigCalendar
-				    events={this.state.calEventsList}
+				    events={this.props.calEventsList}
 				    views={possibleViews}
 				    step={60}
 				    defaultDate={new Date()}
@@ -90,11 +119,13 @@ class Calendar extends Component{
 
 function mapStateToProps(state){
 	return{
-		auth: state.auth
+		auth: state.auth,
+		calEventsList: state.calEventsList
 	}
 }
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({
+		getCalendarEvents: GetCalendarEvents
 	}, dispatch);
 }
 
