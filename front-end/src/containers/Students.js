@@ -32,7 +32,7 @@ class Students extends Component{
 	}
 
 	render(){
-		console.log("You've made it this far!");
+		// console.log("You've made it this far!");
 		return(
 			<Router>
 				<div>

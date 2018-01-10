@@ -85,6 +85,12 @@ nav .brand-logo.right {
   .editBtn:hover, .addAssignment:hover, .sendMessage:hover, .composeMessage:hover, .newEvent:hover {
     background-color: #e2dfce; }
 
+.composePmail a button {
+  background-color: #b4881d;
+  margin: 5px; }
+  .composePmail a button:hover {
+    background-color: #e2dfce; }
+
 .edit {
   background-color: #c94b23 !important;
   margin: 5px;
@@ -104,6 +110,48 @@ nav .brand-logo.right {
   margin: 5px; }
   .changes:hover, .add2Calendar:hover {
     background-color: #e2dfce; }
+
+.logoBlocks {
+  height: 124px;
+  width: 200px;
+  margin-left: 50px; }
+
+.picker__weekday-display {
+  background-color: #b4881d;
+  padding: 10px;
+  font-weight: 200;
+  letter-spacing: .5;
+  font-size: 1rem;
+  margin-bottom: 15px; }
+
+.picker__date-display {
+  text-align: center;
+  background-color: #6c73c2;
+  color: #fff;
+  padding-bottom: 15px;
+  font-weight: 300; }
+
+.picker__day.picker__day--today {
+  color: #c94b23; }
+
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
+  border-radius: 50%;
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+  background-color: #6c73c2;
+  color: #ffffff; }
+
+.picker__close, .picker__today {
+  font-size: 1.1rem;
+  padding: 0 1rem;
+  color: #6c73c2; }
+
+.rbc-event {
+  cursor: pointer;
+  padding: 2px 5px;
+  background-color: #586e74 !important;
+  border-radius: 5px;
+  color: #fff; }
 
 .searchBarInput {
   width: 50%; }
@@ -132,11 +180,6 @@ nav .brand-logo.right {
   margin: 9px; }
   .messageList a {
     color: #6c73c2; }
-
-.logoBlocks {
-  height: 124px;
-  width: 200px;
-  margin-left: 50px; }
 
 .read td a {
   color: #6c73c2; }

@@ -35,8 +35,8 @@ class Teachers extends Component{
 	}
 
 	render(){
-		console.log("You've made it this far!");
-		console.log(this.props.auth.teacherId);
+		// console.log("You've made it this far!");
+		// console.log(this.props.auth.teacherId);
 		return(
 			<Router>
 				<div>

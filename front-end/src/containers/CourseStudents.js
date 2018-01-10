@@ -22,7 +22,7 @@ class CourseStudents extends Component{
 							<td className='studentLink'><Link to={`/compose/students/${student.firstName} ${student.lastName}/${student.studentId}`}>{`${student.firstName} ${student.lastName}`}</Link></td>
 							<td>{student.email}</td>
 							<td>{student.phone}</td>
-							<td><Link to={`/studentInfo/${student.studentId}`}><Button>Get Info</Button></Link></td>
+							<td className='composePmail'><Link to={`/studentInfo/${student.studentId}`}><Button>Get Info</Button></Link></td>
 						</tr>
 					);
 				});
