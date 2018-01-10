@@ -9,6 +9,7 @@ import Assignments from './Assignments';
 // import AddAssignments from './AddAssignments';
 // import CourseStudents from './CourseStudents';
 import Grades from './Grades';
+import Syllabus from './Syllabus';
 // import DataTables from 'material-ui-datatables';
 
 class CourseInfo extends Component{
@@ -32,6 +33,7 @@ class CourseInfo extends Component{
 		return (
 			<div>
 				<CourseNav courseId={this.props.match.params.courseId} />
+				<Route path='/syllabus' component={Syllabus} />
 				<Route path='/courseInfo/:courseId/assignments' component={Assignments} />
 				<Route path='/courseInfo/:courseId/grades' component={Grades} />
 			</div>

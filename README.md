@@ -19,10 +19,12 @@ eduCrate, a learning management system, offers a streamlined infrastructure adva
 * Teachers and Parents log in using their email, a hashed password, and a generated token 
 * Students log in using a username, hashed password, and a generated token
 
+****
+
 **Features for Teachers**
- *This application was designed for ease of use among teachers and parents, particularly teachers*
- *Teachers have administrative control over the information that is uploaded and disseminated*
- *The teacher's Dashboard and Navigation Bar will have more features than both parents and students*
+* *This application was designed for ease of use among teachers and parents, particularly teachers*
+  *Teachers have administrative control over the information that is uploaded and disseminated*
+  *The teacher's Dashboard and Navigation Bar will have more features than both parents and students*
 * Dashboard Nav routes users to __Courses__, __Students__, __Inbox__, __Calendar__, and __Log out__
 * __Courses__ view displays a list of that user's courses and course descriptions
 * Clickable __Course__ Name generates a __Course__ Navigation Bar
@@ -42,6 +44,8 @@ eduCrate, a learning management system, offers a streamlined infrastructure adva
 * The teacher's calendar features, exclusively, an 'add event' button
 * The __Add Event__ display allows teacher to name the event, chose a start and end time from a date picker, enter notes about or a description of the event, and assign the event to a specific course
 * __Log Out__ destroys the users token
+
+****
 
 **Features for everyone**
 * Dashboard Nav routes users to __Courses__, __Inbox__, __Calendar__, and __Log out__

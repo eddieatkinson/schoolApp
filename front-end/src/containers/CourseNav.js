@@ -45,9 +45,9 @@ class CourseNav extends Component{
 		}
 		return(
 			<Navbar className="course-nav" brand={this.state.courseName} left>
-				<NavItem>Syllabus</NavItem>
-				<NavItem><Link to={`/courseInfo/${this.props.courseId}/assignments`}>Assignments</Link></NavItem>
-				<NavItem><Link to={`/courseInfo/${this.props.courseId}/grades`}>Grades</Link></NavItem>
+				<Link to={`/syllabus`}><NavItem>Syllabus</NavItem></Link>
+				<Link to={`/courseInfo/${this.props.courseId}/assignments`}><NavItem>Assignments</NavItem></Link>
+				<Link to={`/courseInfo/${this.props.courseId}/grades`}><NavItem>Grades</NavItem></Link>
 				{studentItem}
 			</Navbar>
 		)
