@@ -18,7 +18,8 @@ eduCrate, a learning management system, offers a streamlined infrastructure adva
 * Software accepts log in from three distinct registered users: *teachers*, *parents*, and *students*
 * Teachers and Parents log in using their email, a hashed password, and a generated token 
 * Students log in using a username, hashed password, and a generated token
-**Features for Teachers**
+
+## Features for Teachers
 * *This application was designed for ease of use among teachers and parents, particularly teachers*
 * *Teachers have administrative control over the information that is uploaded and disseminated*
 * *The teacher's Dashboard and Navigation Bar will have more features than both parents and students*
