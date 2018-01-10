@@ -91,7 +91,7 @@ class Login extends Component{
 				<form>
 					<div className='loginForm'>
 						<Input id={inputId} s={3} label={inputId} type={inputType} className="validate input-field"/>
-						<Input id={password} s={3} label="Password" type="password"/>
+						<Input id={password} s={3} label="Password" type="password" class="validate"/>
 						<span>{button}</span>
 							<img alt='' className='giraffe' src='/giraffe.png'/>	
 							<img alt='' className='logo' src='/eduCrate_logo.png'/>	

@@ -44,7 +44,7 @@ __eduCrate__, a learning management system, offers a streamlined infrastructure 
 * The __Inbox__ ...
 * The __Calendar__ displays and paginates through months, weeks, work weeks (M-F), days, and agenda tables
 * The teacher's calendar features, exclusively, an 'add event' button
-* The __Add Event__ display allows teacher to name the event, chose a start and end time from a date picker, enter notes about or a description of the event, and assign the event to a specific course
+* The __Add Event__ display allows teachers to name the event, chose a start and end time from a date picker, enter notes about or a description of the event, and assign the event to a specific course
 * __Log Out__ destroys the users token
 
 ****
