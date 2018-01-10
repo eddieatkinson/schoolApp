@@ -19,7 +19,8 @@
     "react-scripts": "^1.0.17",
     "react-sidenav": "^2.1.2",
     "redux": "^3.7.2",
-    "redux-promise": "^0.5.3"
+    "redux-promise": "^0.5.3",
+    "sweetalert-react": "^0.4.11"
   },
   "scripts": {
     "start": "react-scripts start",

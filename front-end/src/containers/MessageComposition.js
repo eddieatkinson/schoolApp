@@ -69,7 +69,7 @@ class MessageComposition extends Component{
 		}
 		console.log(formData);
 		this.props.sendMessage(formData);
-		this.props.history.push(`/${senderLevel}s/inbox`);
+		this.props.history.push(`/${senderLevel}s/inbox/sent`);
 	}
 
 	componentWillReceiveProps(newProps){

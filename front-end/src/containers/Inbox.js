@@ -5,15 +5,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import GetInbox from '../actions/GetInbox';
-
+import SweetAlert from 'sweetalert-react';
+import 'sweetalert/dist/sweetalert.css'
 
 
 class Inbox extends Component{
 	constructor(){
 		super();
-		// this.state = ({
-		// 	receiverNameList: []
-		// });
+		this.state = ({
+			show: false
+		});
 	}
 
 	componentWillReceiveProps(newProps){
@@ -73,6 +74,12 @@ class Inbox extends Component{
 	}
 
 	componentDidMount(){
+		console.log(this.props.match.params.status)
+		if(this.props.match.params.status === "sent"){
+			this.setState({
+				show: true
+			})
+		}
 		var level = this.props.auth.level;
 		var status = `${this.props.auth.level}s`;
 		console.log(status);
@@ -194,8 +201,15 @@ class Inbox extends Component{
 		}else{
 			messageToButton = <Link to='/compose/teachers'><Button className='composeMessage'>New Message</Button></Link>
 		}
+		console.log(this.state.show)
 		return(
 			<div>
+				<SweetAlert
+				        show={this.state.show}
+				        title="Status"
+				        text="Message Sent"
+				        onConfirm={() => this.setState({ show: false })}
+				      />				
 				{messageToButton}
 				<Link to='/sentMessages'><Button className='sentMessage'>Sent Messages</Button></Link>
 				<Table bordered={true} hoverable={true} responsive={true}>
