@@ -44,7 +44,8 @@ class Parents extends Component{
 							<Route path='/courseInfo/:courseId' component={CourseInfo} />
 							<Route exact path='/parents' component={Courses} />
 							<Route path='/parents/courses' component={Courses} />
-							<Route path='/parents/inbox' component={Inbox}/>
+							<Route exact path='/parents/inbox' component={Inbox}/>
+							<Route path='/parents/inbox/:status' component={Inbox}/>
 							<Route path='/parents/:messageId/inboxContents' component={InboxContents} />
 							<Route path='/compose/:messageTarget' component={ComposeMessage} />
 							<Route path='/teachers/calendar' component={Calendar}/>

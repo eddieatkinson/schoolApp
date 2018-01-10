@@ -42,7 +42,8 @@ class Students extends Component{
 						</Col>
 						<Col s={10} style={{'marginLeft':220}}>
 							<Route path='/courseInfo/:courseId' component={CourseInfo} />
-							<Route path='/students/inbox' component={Inbox}/>
+							<Route exact path='/students/inbox' component={Inbox}/>
+							<Route path='/students/inbox/:status' component={Inbox}/>
 							<Route exact path='/students' component={Courses} />
 							<Route path='/students/courses' component={Courses} />
 							<Route path='/students/:messageId/inboxContents' component={InboxContents} />
