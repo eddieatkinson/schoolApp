@@ -42,6 +42,7 @@ class Calendar extends Component{
 			default:
 				break;	
 		}
+		console.log("Calendar mounted");
 		this.props.getCalendarEvents(level, userId);
 		// var url = `${window.apiHost}/${level}s/${userId}/calendar/get`;
 		// console.log(url)
@@ -62,7 +63,9 @@ class Calendar extends Component{
 
 	componentWillReceiveProps(newProps){
 		const same = (newProps.calEventsList.length === this.props.calEventsList.length);
-		if(!same){
+		console.log(newProps.calEventsList);
+		console.log(this.props.calEventsList);
+		// if(!same){
 			var userId;
 			var level = this.props.auth.level;
 			switch(level){
@@ -79,8 +82,9 @@ class Calendar extends Component{
 					break;	
 			}
 			this.props.getCalendarEvents(level, userId);
-		}
-	}
+			}
+		// }
+	
 
 
 	render(){

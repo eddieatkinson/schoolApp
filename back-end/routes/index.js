@@ -211,4 +211,39 @@ router.post('/login/teacher', (req, res)=>{
 	})
 });
 
+router.get('/receiverNames/:messageId/:receiverStatus/get', (req, res)=>{
+	console.log("HHHHEEEERRRREEE!")
+	const messageId = req.params.messageId;
+	const receiverStatus = req.params.receiverStatus;
+	var receiverNameQuery;
+	switch(receiverStatus){
+		case "1":
+			receiverNameQuery = `SELECT CONCAT(teachers.firstName, " ", teachers.lastName) AS fullName FROM inbox
+				INNER JOIN teachers ON inbox.receiverId = teachers.teacherId
+				WHERE inbox.id = ?;`;
+			break;
+		case "2":
+			receiverNameQuery = `SELECT CONCAT(parents.firstName, " ", parents.lastName) AS fullName FROM inbox
+				INNER JOIN parents ON inbox.receiverId = parents.parentId
+				WHERE inbox.id = ?;`;
+			break;
+		case "3":
+			receiverNameQuery = `SELECT CONCAT(students.firstName, " ", students.lastName) AS fullName FROM inbox
+				INNER JOIN students ON inbox.receiverId = students.studentId
+				WHERE inbox.id = ?;`;
+			break;
+	}
+	
+	connection.query(receiverNameQuery, [messageId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
+
 module.exports = router;
