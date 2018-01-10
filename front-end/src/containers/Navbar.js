@@ -120,7 +120,7 @@ class Navbar extends Component{
 					<a href='/'>
 						<Nav id='logout'>
 							<NavIcon><SvgIcon size={20} icon={exit}/></NavIcon>
-							<NavText> Logout </NavText>
+							<NavText> Log Out </NavText>
 						</Nav>
 					</a>
 				</SideNav>
