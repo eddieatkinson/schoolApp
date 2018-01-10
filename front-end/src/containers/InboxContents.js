@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from 'react-materialize';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -81,13 +81,26 @@ class InboxContents extends Component{
 		var messageContents = this.state.message[0];
 		var messageDisplay = ''
 		console.log(messageContents);
+		var senderLevel;
 		if(messageContents !== undefined){
+			switch(messageContents.senderStatus){
+				case 1:
+					senderLevel = "teachers";
+					break;
+				case 2:
+					senderLevel = "parents";
+					break;
+				case 3:
+					senderLevel = "students";
+					break;
+			}
+			// console.log(messageContents);
 			messageDisplay = [
 				<div>
 					<h5 className='messageTitle'>{messageContents.subject}</h5>
 					<hr />
 					<div>
-						<h5>{messageContents.senderName}&nbsp;&nbsp;&nbsp;&nbsp;<Button right>Reply</Button></h5>
+						<h5>{messageContents.senderName}&nbsp;&nbsp;&nbsp;&nbsp;<Link to={`/compose/${senderLevel}/${messageContents.senderName}/${messageContents.senderId}`}><Button right>Reply</Button></Link></h5>
 					</div>
 					<h6>{messageContents.date}</h6>
 					<hr />
