@@ -13,12 +13,12 @@ eduCrate, a learning management system, offers a streamlined infrastructure adva
 * [Valerie Jane Thoma](https://github.com/ValerieThoma)
 **Charming ~~Genius~~|Likes Giraffes|Lives for Hugs|can now officially say she's a React Developer**
 
-##Features
+## Features:
 **Registration and Log In**
 * Software accepts log in from three distinct registered users: *teachers*, *parents*, and *students*
 * Teachers and Parents log in using their email, a hashed password, and a generated token 
 * Students log in using a username, hashed password, and a generated token
-**Features for Teachers**
+** Features for Teachers**
 * *This application was designed for ease of use among teachers and parents, particularly teachers*
 * *Teachers have administrative control over the information that is uploaded and disseminated*
 * *The teacher's Dashboard and Navigation Bar will have more features than both parents and students*
@@ -36,14 +36,14 @@ eduCrate, a learning management system, offers a streamlined infrastructure adva
 * __Grades__ view displays student name, assignment name, assignment status, and grade
 * Because the teacher will have a  multitude of grades data, the __Grades__ table is searchable
 * The teacher also has an 'edit' option to update a student's assignment status or grade
-<!-- * The __Inbox__  -->
+* The __Inbox__ ...
 * The __Calendar__ displays and paginates through months, weeks, work weeks (M-F), days, and agenda tables
 * The teacher's calendar features, exclusively, an 'add event' button
 * The __Add Event__ display allows teacher to name the event, chose a start and end time from a date picker, enter notes about or a description of the event, and assign the event to a specific course
 * __Log Out__ destroys the users token
 
 
-**Features for everyone**
+##Features for everyone##
 * Dashboard Nav routes users to __Courses__, __Inbox__, __Calendar__, and __Log out__
 * __Courses__ view displays a list of that user's courses and course descriptions
 * Clickable __Course__ Name generates a __Course__ Navigation Bar
@@ -52,7 +52,7 @@ eduCrate, a learning management system, offers a streamlined infrastructure adva
 * __Assignments__ view displays name and description of current assignments for the selected course
 * __Grades__ view displays student name, assignment name, assignment status, and grade
 * To best serve the many instances of parents with multiple students, the __Grades__ table is searchable
-<!-- * The __Inbox__  -->
+* The __Inbox__ ...
 * The __Calendar__ displays and paginates through months, weeks, work weeks (M-F), days, and agenda tables
 * __Log Out__ destroys the users token     
 
@@ -74,10 +74,10 @@ eduCrate, a learning management system, offers a streamlined infrastructure adva
 <!-- ![Flowchart](public/images/ShoeBoxProject_FlowChart.png) -->
 
 
-## URL:
+##URL:
 <!-- [eduCrate](https://www.educrate.eddieandvalerieareawesome.com) -->
 
-## Code snippets:
+##Code snippets:
 ...coming
 
 Secure validation process? 
