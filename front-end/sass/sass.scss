@@ -1,8 +1,4 @@
-// p{
-// 	color: purple;
-// 	text-align: center;
-// 	margin: 100px;
-// }
+///page///
 body{
 	background-color: #fdf6e4;
 }
@@ -17,6 +13,7 @@ body{
 		}
 	}
 } 
+///login///
 #container{ //login page
 	width: 500px;
     // margin: 0 auto;
@@ -91,7 +88,7 @@ nav .brand-logo.right {
 	color: #c94b23; 
 	text-align: center;
 }
-.editBtn,.addAssignment,.sendMessage,.composeMessage,.newEvent{
+.editBtn,.addAssignment,.sendMessage,.composeMessage,.newEvent,.sentMessage{
 	background-color: #b4881d;
 	margin: 5px;
 	&:hover{

@@ -1,7 +1,7 @@
 # eduCrate
 
 ## Overview:
-eduCrate, a learning management system, offers a streamlined infrastructure advantageous for the blended learning environments of grade-school aged students. The software provides educators an authoring tool in which to deliver assignments, document the progress of students, record correspondence with parents, and otherwise manage and administer all other miscellaneous instructional content directly to the parents and students.
+__eduCrate__, a learning management system, offers a streamlined infrastructure advantageous for the blended learning environments of grade-school aged students. The software provides educators an authoring tool in which to deliver assignments, document the progress of students, record correspondence with parents, and otherwise manage and administer all other miscellaneous instructional content directly to the parents and students.
 
 
 ## Github Link:
@@ -25,7 +25,7 @@ eduCrate, a learning management system, offers a streamlined infrastructure adva
 * *This application was designed for ease of use among teachers and parents, particularly teachers*
 
   *Teachers have administrative control over the information that is uploaded and disseminated*
-  
+
   *The teacher's Dashboard and Navigation Bar will have more features than both parents and students*
 * Dashboard Nav routes users to __Courses__, __Students__, __Inbox__, __Calendar__, and __Log out__
 * __Courses__ view displays a list of that user's courses and course descriptions
