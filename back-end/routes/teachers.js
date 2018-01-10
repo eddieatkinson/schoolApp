@@ -262,23 +262,23 @@ router.get('/message/:messageId/:doNotChange/get', (req, res)=>{
 	console.log('===========================================================');
 	console.log('===========================================================');
 	console.log('===========================================================');
-	if(doNotChange === '0'){
-		messageQuery = `SELECT id, subject, body, receiverStatus, senderStatus,
-			receiverId, senderId, senderName, DATE_FORMAT(date, '%M %D\, %Y') as date,
-			messageStatus FROM inbox
-			WHERE id = ?;`;
-		connection.query(messageQuery, [messageId], (error, results)=>{
-			if(error){
-				throw error;
-			}else{
-				console.log("============");
-				console.log(results);
-				console.log("============");
-				res.json(results);
-			}
-		});
+	// if(doNotChange === '0'){
+	// 	messageQuery = `SELECT id, subject, body, receiverStatus, senderStatus,
+	// 		receiverId, senderId, senderName, DATE_FORMAT(date, '%M %D\, %Y') as date,
+	// 		messageStatus FROM inbox
+	// 		WHERE id = ?;`;
+	// 	connection.query(messageQuery, [messageId], (error, results)=>{
+	// 		if(error){
+	// 			throw error;
+	// 		}else{
+	// 			console.log("============");
+	// 			console.log(results);
+	// 			console.log("============");
+	// 			res.json(results);
+	// 		}
+	// 	});
 
-	}else{
+	// }else{
 		var updateMessageStatus = `UPDATE inbox
 			SET messageStatus = 'read'
 			WHERE id = ?;`;
@@ -303,7 +303,7 @@ router.get('/message/:messageId/:doNotChange/get', (req, res)=>{
 			}
 		});
 
-	}
+	// }
 });
 
 router.get('/messageToList/:teacherId/:target/get', (req, res)=>{
