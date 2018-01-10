@@ -79,10 +79,10 @@ nav .brand-logo.right {
   color: #c94b23;
   text-align: center; }
 
-.editBtn, .addAssignment, .sendMessage, .composeMessage, .newEvent {
+.editBtn, .addAssignment, .sendMessage, .composeMessage, .newEvent, .sentMessage {
   background-color: #b4881d;
   margin: 5px; }
-  .editBtn:hover, .addAssignment:hover, .sendMessage:hover, .composeMessage:hover, .newEvent:hover {
+  .editBtn:hover, .addAssignment:hover, .sendMessage:hover, .composeMessage:hover, .newEvent:hover, .sentMessage:hover {
     background-color: #e2dfce; }
 
 .composePmail a button {

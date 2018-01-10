@@ -177,8 +177,8 @@ class Inbox extends Component{
 		level = this.props.auth.level;
 		if(level === 'teacher'){
 			messageToButton = <div>
-								<Link to='/compose/students'><Button className='composeMessage'>New Student Message</Button></Link>
-								<Link to='/compose/parents'><Button className='composeMessage'>New Parent Message</Button></Link>
+								<Link to='/compose/students'><Button className='composeMessage'>Compose to Student</Button></Link>
+								<Link to='/compose/parents'><Button className='composeMessage'>Compose to Parent</Button></Link>
 							</div>
 		}else{
 			messageToButton = <Link to='/compose/teachers'><Button className='composeMessage'>New Message</Button></Link>
@@ -186,7 +186,7 @@ class Inbox extends Component{
 		return(
 			<div>
 				{messageToButton}
-				<Link to='/sentMessages'><Button>Sent Messages</Button></Link>
+				<Link to='/sentMessages'><Button className='sentMessage'>Sent Messages</Button></Link>
 				<Table bordered={true} hoverable={true} responsive={true}>
 					<thead>
 						<tr>
