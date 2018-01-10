@@ -156,7 +156,7 @@ class Inbox extends Component{
 		// 	});
 		// 	console.log(receiverNameList);
 		// }else{
-		// 	toOrFrom = <th>From</th>
+			toOrFrom = <th>From</th>
 			inboxInfo = inboxContents.map((item, index)=>{
 				return(
 					<tr key={index} className={item.messageStatus}>
