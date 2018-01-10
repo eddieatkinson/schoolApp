@@ -9,9 +9,12 @@ import GetInbox from '../actions/GetInbox';
 
 
 class Inbox extends Component{
-	// constructor(){
-	// 	super();
-	// }
+	constructor(){
+		super();
+		this.state = ({
+			receiverNameList: []
+		});
+	}
 
 	componentWillReceiveProps(newProps){
 		console.log(this.props);
@@ -128,7 +131,7 @@ class Inbox extends Component{
 		var url;
 		var whichId = `${this.props.auth.level}Id`;
 		var userId;
-		var receiverNameList = [];
+		var receiverNameArray = [];
 		var receiverName;
 		switch(whichId){
 			case "teacherId":
@@ -143,19 +146,20 @@ class Inbox extends Component{
 			default:
 				break;	
 		}
-		// if(this.props.match.path === '/sentMessages'){
-		// 	toOrFrom = <th>To</th>
-		// 	inboxInfo = inboxContents.map((item, index)=>{
-		// 		url = `${window.apiHost}/receiverNames/${item.id}/${item.receiverStatus}/get`;
-		// 		receiverName = axios.get(url);
-		// 			// .then((response)=>{
-		// 			// 	console.log(response.data);
-		// 			// 	receiverNameList.push(response.data[0].fullName);
-		// 			// });
-		// 		console.log(receiverName);
-		// 	});
-		// 	console.log(receiverNameList);
-		// }else{
+		if(this.props.match.path === '/sentMessages'){
+			toOrFrom = <th>To</th>
+			inboxInfo = inboxContents.map((item, index)=>{
+				url = `${window.apiHost}/receiverNames/${item.id}/${item.receiverStatus}/get`;
+				axios.get(url);
+					.then((response)=>{
+						console.log(response.data);
+
+						receiverNameList.push(response.data[0].fullName);
+					});
+				// console.log(receiverName);
+			});
+			// console.log(receiverNameList);
+		}else{
 			toOrFrom = <th>From</th>
 			inboxInfo = inboxContents.map((item, index)=>{
 				return(
