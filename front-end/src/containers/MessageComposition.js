@@ -35,6 +35,7 @@ class MessageComposition extends Component{
 				break;	
 		}
 		var receiverId = this.props.match.params.messageTargetId;
+		var receiverName = this.props.match.params.messageTargetName;
 		var senderName = this.props.auth.fullName;
 		var senderLevel = this.props.auth.level;
 		var senderId;
@@ -57,6 +58,7 @@ class MessageComposition extends Component{
 		var formData = {
 			subject,
 			body,
+			receiverName,
 			receiverId,
 			receiverLevel,
 			receiverStatusId,

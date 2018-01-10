@@ -16,9 +16,11 @@ class InboxContents extends Component{
 		this.getMessage = this.getMessage.bind(this);
 	}
 
-	getMessage(){
+	getMessage(doNotChange){
 		var messageId = this.props.match.params.messageId;
-		const url = `${window.apiHost}/teachers/message/${messageId}/get`; // uses "teachers" Express route but works for everyone
+		var doNotChange = this.props.match.params.doNotChange;
+		console.log(doNotChange);
+		const url = `${window.apiHost}/teachers/message/${messageId}/${doNotChange}/get`; // uses "teachers" Express route but works for everyone
 		axios.get(url)
 			.then((response)=>{
 				this.setState({
@@ -50,7 +52,8 @@ class InboxContents extends Component{
 	}
 
 	componentDidMount(){
-		this.getMessage();
+		var doNotChange = this.props.match.params.doNotChange;
+		this.getMessage(doNotChange);
 
 		// var level = this.props.auth.level;
 		// var status = `${this.props.auth.level}s`;

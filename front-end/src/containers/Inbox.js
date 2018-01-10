@@ -11,9 +11,9 @@ import GetInbox from '../actions/GetInbox';
 class Inbox extends Component{
 	constructor(){
 		super();
-		this.state = ({
-			receiverNameList: []
-		});
+		// this.state = ({
+		// 	receiverNameList: []
+		// });
 	}
 
 	componentWillReceiveProps(newProps){
@@ -149,13 +149,24 @@ class Inbox extends Component{
 		if(this.props.match.path === '/sentMessages'){
 			toOrFrom = <th>To</th>
 			inboxInfo = inboxContents.map((item, index)=>{
-				url = `${window.apiHost}/receiverNames/${item.id}/${item.receiverStatus}/get`;
-				axios.get(url);
-					.then((response)=>{
-						console.log(response.data);
-
-						receiverNameList.push(response.data[0].fullName);
-					});
+				console.log(item);
+				return(
+					<tr key={index}>
+						<td>{item.date}</td>
+						<td>{item.receiverName}</td>
+						<td><Link to={`/${level}s/${item.id}/inboxContents/1`}>{item.subject}</Link></td>
+					</tr>
+				)
+				// url = `${window.apiHost}/receiverNames/${item.id}/${item.receiverStatus}/get`;
+				// var getNamePromise = new Promise((resolve, reject)=>{
+				// 	axios.get(url)
+				// 		.then((response)=>{
+				// 			console.log(response.data);
+				// 			receiverNameList.push(response.data[0].fullName);
+				// 			resolve
+				// 		});
+				// })
+				
 				// console.log(receiverName);
 			});
 			// console.log(receiverNameList);
@@ -166,11 +177,11 @@ class Inbox extends Component{
 					<tr key={index} className={item.messageStatus}>
 						<td>{item.date}</td>
 						<td>{item.senderName}</td>
-						<td><Link to={`/${level}s/${item.id}/inboxContents`}>{item.subject}</Link></td>
+						<td><Link to={`/${level}s/${item.id}/inboxContents/0`}>{item.subject}</Link></td>
 					</tr>
 				)
 			});
-		// }
+		}
 		
 
 		var messageToButton = '';
