@@ -213,7 +213,8 @@ router.get('/inbox/:userId/get', (req, res)=>{
 		FROM inbox
 		INNER JOIN status ON inbox.receiverStatus = status.statusId
 		INNER JOIN status s2 ON inbox.senderStatus = s2.statusId
-		WHERE inbox.receiverId = ? AND inbox.receiverStatus = 1;`;
+		WHERE inbox.receiverId = ? AND inbox.receiverStatus = 1
+		ORDER BY inbox.date DESC;`;
 	connection.query(inboxQuery, [userId], (error, results)=>{
 		if(error){
 			throw error;
@@ -235,7 +236,8 @@ router.get('/sentMessages/:userId/get', (req, res)=>{
 		FROM inbox
 		INNER JOIN status ON inbox.receiverStatus = status.statusId
 		INNER JOIN status s2 ON inbox.senderStatus = s2.statusId
-		WHERE inbox.senderId = ? AND inbox.senderStatus = 1;`;
+		WHERE inbox.senderId = ? AND inbox.senderStatus = 1
+		ORDER BY inbox.date DESC;`;
 	connection.query(sentMessageQuery, [userId], (error, results)=>{
 		if(error){
 			throw error;

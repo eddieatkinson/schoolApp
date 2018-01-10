@@ -84,8 +84,32 @@ router.get('/inbox/:userId/get', (req, res)=>{
 		FROM inbox
 		INNER JOIN status ON inbox.receiverStatus = status.statusId
 		INNER JOIN status s2 ON inbox.senderStatus = s2.statusId
-		WHERE inbox.receiverId = ? AND inbox.receiverStatus = 2;`;
+		WHERE inbox.receiverId = ? AND inbox.receiverStatus = 2
+		ORDER BY inbox.date DESC;`;
 	connection.query(inboxQuery, [userId], (error, results)=>{
+		if(error){
+			throw error;
+		}else{
+			console.log("============");
+			console.log(results);
+			console.log("============");
+			res.json(results);
+		}
+	});
+});
+
+router.get('/sentMessages/:userId/get', (req, res)=>{
+	const userId = req.params.userId;
+	var sentMessageQuery = `SELECT inbox.id, inbox.subject, inbox.body, inbox.receiverStatus,
+		inbox.senderStatus, inbox.receiverName, inbox.receiverId, inbox.senderId, inbox.senderName, inbox.messageStatus,
+		DATE_FORMAT(inbox.date, '%M %D\, %Y') as date, status.level AS receiverLevel,
+		s2.level AS senderLevel
+		FROM inbox
+		INNER JOIN status ON inbox.receiverStatus = status.statusId
+		INNER JOIN status s2 ON inbox.senderStatus = s2.statusId
+		WHERE inbox.senderId = ? AND inbox.senderStatus = 1
+		ORDER BY inbox.date DESC;`;
+	connection.query(sentMessageQuery, [userId], (error, results)=>{
 		if(error){
 			throw error;
 		}else{

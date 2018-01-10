@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-// import { Table } from 'react-materialize';
+import { Button } from 'react-materialize';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
@@ -84,9 +84,11 @@ class InboxContents extends Component{
 		if(messageContents !== undefined){
 			messageDisplay = [
 				<div>
-					<h4 className='messageTitle'>{messageContents.subject}</h4>
+					<h5 className='messageTitle'>{messageContents.subject}</h5>
 					<hr />
-					<h5>{messageContents.senderName}</h5>
+					<div>
+						<h5>{messageContents.senderName}&nbsp;&nbsp;&nbsp;&nbsp;<Button right>Reply</Button></h5>
+					</div>
 					<h6>{messageContents.date}</h6>
 					<hr />
 					<p>{messageContents.body}</p>
