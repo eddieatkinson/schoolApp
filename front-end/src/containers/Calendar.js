@@ -65,7 +65,7 @@ class Calendar extends Component{
 		const same = (newProps.calEventsList.length === this.props.calEventsList.length);
 		console.log(newProps.calEventsList);
 		console.log(this.props.calEventsList);
-		// if(!same){
+		if(!same){
 			var userId;
 			var level = this.props.auth.level;
 			switch(level){
@@ -83,7 +83,7 @@ class Calendar extends Component{
 			}
 			this.props.getCalendarEvents(level, userId);
 			}
-		// }
+		}
 	
 
 
