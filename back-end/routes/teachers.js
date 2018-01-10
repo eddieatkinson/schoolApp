@@ -229,7 +229,7 @@ router.get('/inbox/:userId/get', (req, res)=>{
 router.get('/sentMessages/:userId/get', (req, res)=>{
 	const userId = req.params.userId;
 	var sentMessageQuery = `SELECT inbox.id, inbox.subject, inbox.body, inbox.receiverStatus,
-		inbox.senderStatus, inbox.receiverId, inbox.senderId, inbox.senderName, inbox.messageStatus,
+		inbox.senderStatus, inbox.receiverName, inbox.receiverId, inbox.senderId, inbox.senderName, inbox.messageStatus,
 		DATE_FORMAT(inbox.date, '%M %D\, %Y') as date, status.level AS receiverLevel,
 		s2.level AS senderLevel
 		FROM inbox
@@ -248,40 +248,60 @@ router.get('/sentMessages/:userId/get', (req, res)=>{
 	});
 });
 
-router.get('/message/:messageId/get', (req, res)=>{
+router.get('/message/:messageId/:doNotChange/get', (req, res)=>{
 	const messageId = req.params.messageId;
+	const doNotChange = req.params.doNotChange;
+	var messageQuery;
 	// console.log("student ID:")
-	// console.log('===========================================================');
-	// console.log('===========================================================');
-	// console.log('===========================================================');
-	// console.log(userId);
-	// console.log('===========================================================');
-	// console.log('===========================================================');
-	// console.log('===========================================================');
-	var updateMessageStatus = `UPDATE inbox
-		SET messageStatus = 'read'
-		WHERE id = ?;`;
-	connection.query(updateMessageStatus, [messageId], (error)=>{
-		if(error){
-			throw error
-		}else{
-			var messageQuery = `SELECT id, subject, body, receiverStatus, senderStatus,
-				receiverId, senderId, senderName, DATE_FORMAT(date, '%M %D\, %Y') as date,
-				messageStatus FROM inbox
-				WHERE id = ?;`;
-			connection.query(messageQuery, [messageId], (error, results)=>{
-				if(error){
-					throw error;
-				}else{
-					console.log("============");
-					console.log(results);
-					console.log("============");
-					res.json(results);
-				}
-			});
-		}
-	});
+	console.log('===========================================================');
+	console.log('===========================================================');
+	console.log('===========================================================');
+	console.log(doNotChange);
+	console.log('===========================================================');
+	console.log('===========================================================');
+	console.log('===========================================================');
+	if(doNotChange === '0'){
+		messageQuery = `SELECT id, subject, body, receiverStatus, senderStatus,
+			receiverId, senderId, senderName, DATE_FORMAT(date, '%M %D\, %Y') as date,
+			messageStatus FROM inbox
+			WHERE id = ?;`;
+		connection.query(messageQuery, [messageId], (error, results)=>{
+			if(error){
+				throw error;
+			}else{
+				console.log("============");
+				console.log(results);
+				console.log("============");
+				res.json(results);
+			}
+		});
 
+	}else{
+		var updateMessageStatus = `UPDATE inbox
+			SET messageStatus = 'read'
+			WHERE id = ?;`;
+		connection.query(updateMessageStatus, [messageId], (error)=>{
+			if(error){
+				throw error
+			}else{
+				messageQuery = `SELECT id, subject, body, receiverStatus, senderStatus,
+					receiverId, senderId, senderName, DATE_FORMAT(date, '%M %D\, %Y') as date,
+					messageStatus FROM inbox
+					WHERE id = ?;`;
+				connection.query(messageQuery, [messageId], (error, results)=>{
+					if(error){
+						throw error;
+					}else{
+						console.log("============");
+						console.log(results);
+						console.log("============");
+						res.json(results);
+					}
+				});
+			}
+		});
+
+	}
 });
 
 router.get('/messageToList/:teacherId/:target/get', (req, res)=>{
@@ -313,6 +333,7 @@ router.get('/messageToList/:teacherId/:target/get', (req, res)=>{
 router.post('/sendMessage', (req, res)=>{
 	const subject = req.body.subject;
 	const body = req.body.body;
+	const receiverName = req.body.receiverName;
 	const receiverLevel = req.body.receiverLevel;
 	const receiverStatusId = req.body.receiverStatusId;
 	const receiverId = req.body.receiverId;
@@ -320,10 +341,10 @@ router.post('/sendMessage', (req, res)=>{
 	const senderName = req.body.senderName;
 	const senderStatusId = req.body.senderStatusId;
 	const senderId = req.body.senderId;
-	const updateGrade = `INSERT INTO inbox (subject, body, receiverStatus, senderStatus, receiverId, senderId, senderName)
+	const updateGrade = `INSERT INTO inbox (subject, body, receiverStatus, senderStatus, receiverId, receiverName, senderId, senderName)
 		VALUES
-		(?, ?, ?, ?, ?, ?, ?);`;
-	connection.query(updateGrade, [subject, body, receiverStatusId, senderStatusId, receiverId, senderId, senderName], (error, results)=>{
+		(?, ?, ?, ?, ?, ?, ?, ?);`;
+	connection.query(updateGrade, [subject, body, receiverStatusId, senderStatusId, receiverId, receiverName, senderId, senderName], (error, results)=>{
 		if(error){
 			throw error;
 		}else{
