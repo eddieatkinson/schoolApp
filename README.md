@@ -18,7 +18,7 @@ eduCrate, a learning management system, offers a streamlined infrastructure adva
 * Software accepts log in from three distinct registered users: *teachers*, *parents*, and *students*
 * Teachers and Parents log in using their email, a hashed password, and a generated token 
 * Students log in using a username, hashed password, and a generated token
-** Features for Teachers**
+**Features for Teachers**
 * *This application was designed for ease of use among teachers and parents, particularly teachers*
 * *Teachers have administrative control over the information that is uploaded and disseminated*
 * *The teacher's Dashboard and Navigation Bar will have more features than both parents and students*
@@ -43,7 +43,7 @@ eduCrate, a learning management system, offers a streamlined infrastructure adva
 * __Log Out__ destroys the users token
 
 
-##Features for everyone##
+## Features for everyone 
 * Dashboard Nav routes users to __Courses__, __Inbox__, __Calendar__, and __Log out__
 * __Courses__ view displays a list of that user's courses and course descriptions
 * Clickable __Course__ Name generates a __Course__ Navigation Bar
@@ -58,14 +58,14 @@ eduCrate, a learning management system, offers a streamlined infrastructure adva
 
 
 
-##Challenges and Solutions:
+## Challenges and Solutions:
 
 ## Architecture: 
 * Frontend: React, Redux, JSX, Sass, React-Materialize
 * Backend API: Node.js, Express, MySQL
 * Server: AWS EC2
 
-##Live Demo:
+## Live Demo:
 
 ## Screenshots:
 <!-- ![Homepage](public/images/screen-shots/mobile-home.jpg)
@@ -74,10 +74,10 @@ eduCrate, a learning management system, offers a streamlined infrastructure adva
 <!-- ![Flowchart](public/images/ShoeBoxProject_FlowChart.png) -->
 
 
-##URL:
+## URL:
 <!-- [eduCrate](https://www.educrate.eddieandvalerieareawesome.com) -->
 
-##Code snippets:
+## Code snippets:
 ...coming
 
 Secure validation process? 
@@ -96,7 +96,7 @@ Another something...
 
 ```
 
-## Project History:
+## Project History: 
 12/19/2017 - Project Start
 01/10/2018 - DigitaCrafts September '17 cohort Demo Day
 
