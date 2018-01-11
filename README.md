@@ -74,7 +74,7 @@ __eduCrate__, a learning management system, offers a streamlined infrastructure 
 ## Live Demo:
 
 ## Screenshots:
-![Log in Page](public/ss/courseView.png)
+![Log in Page](ss/courseView.png)
 <!-- ![Map](public/images/screen-shots/map.png)
 <!-- ![Forms](public/images/screen-shots/volunteer_form.jpg) -->
 <!-- ![Flowchart](public/images/ShoeBoxProject_FlowChart.png) -->
