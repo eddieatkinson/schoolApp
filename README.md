@@ -67,15 +67,15 @@ __eduCrate__, a learning management system, offers a streamlined infrastructure 
 ## Challenges and Solutions:
 
 ## Architecture: 
-* Frontend: React, Redux, JSX, Sass, React-Materialize
+* Frontend: React, Redux, JSX, Sass, React-Materialize, Material-UI
 * Backend API: Node.js, Express, MySQL
 * Server: AWS EC2
 
 ## Live Demo:
 
 ## Screenshots:
-<!-- ![Homepage](public/images/screen-shots/mobile-home.jpg)
-<!-- ![Map](public/images/screen-shots/map.png) -->
+![Log in Page](public/ss/courseView.png)
+<!-- ![Map](public/images/screen-shots/map.png)
 <!-- ![Forms](public/images/screen-shots/volunteer_form.jpg) -->
 <!-- ![Flowchart](public/images/ShoeBoxProject_FlowChart.png) -->
 
@@ -101,6 +101,9 @@ Another something...
 
 
 ```
+
+## Acknowledgments:
+* Special thank you Robert Bunch, our Ambassador of Quan. 
 
 ## Project History: 
 12/19/2017 - Project Start
