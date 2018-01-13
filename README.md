@@ -72,6 +72,7 @@ __eduCrate__, a learning management system, offers a streamlined infrastructure 
 * Server: AWS EC2
 
 ## Live Demo:
+[eduCrate](https://youtu.be/38bW-8KEB_A)
 
 ## Screenshots:
 Log in page:
