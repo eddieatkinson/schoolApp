@@ -191,4 +191,13 @@ nav .brand-logo.right {
 .studentLink a {
   color: #6c73c2; }
 
+.rbc-month-view, .rbc-header {
+  border-bottom: 1px solid #DDD;
+  background-color: white; }
+
+.rbc-btn-group {
+  display: inline-block;
+  white-space: nowrap;
+  background-color: white; }
+
 /*# sourceMappingURL=sass.css.map */
