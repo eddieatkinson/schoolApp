@@ -89,7 +89,7 @@ Compose Message:
 
 
 ## URL:
-[eduCrate](http://schoolapp.eddiebatkinson.com)
+[Watch on Youtube](http://schoolapp.eddiebatkinson.com)
 
 ## Code snippets:
 Dashboard Navbar inbox icon indicates how many unread messages a user has. This number decrements when read. 
