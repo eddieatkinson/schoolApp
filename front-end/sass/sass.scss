@@ -213,10 +213,17 @@ nav .brand-logo.right {
 .studentLink a{
 	color: #6c73c2;
 }
-.rbc-month-view, .rbc-header {
+.rbc-month-view, .rbc-header,.rbc-time-view {
   border-bottom: 1px solid #DDD;
   background-color: white;
 }
+.rbc-today{
+	background-color: #e2dfce !important;
+}
+.rbc-date-cell.rbc-now{
+    font-weight: bold;
+    color: #6c73c2;
+}    
 .rbc-btn-group {
     display: inline-block;
     white-space: nowrap;
