@@ -154,10 +154,7 @@ router.get('/sentMessages/:userId/get', (req, res)=>{
 		}
 		var level = this.props.auth.level;
 		var status = `${this.props.auth.level}s`;
-		console.log(status);
-		console.log(this.props.auth);
 		var sent;
-		console.log(this.props.match);
 		if(this.props.match.path === '/sentMessages'){
 			sent = true;
 		}else{
@@ -199,7 +196,6 @@ class Grades extends Component{
 	}
 
 changeGrade(event, aid, sid, index){
-		console.log("Change grade");
 		var newGrade = event.target.previousSibling.childNodes[0].value;
 		console.log(newGrade);
 		var newData = {
@@ -207,13 +203,11 @@ changeGrade(event, aid, sid, index){
 			aid: aid,
 			sid: sid
 		}
-		console.log(newData);
 		var axiosPromise = axios({
 			url: `${window.apiHost}/teachers/changeGrade`,
 			method: 'POST',
 			data: newData
 		}).then((response)=>{
-			console.log(response.data);
 			if(response.data.msg === 'gradeUpdated'){
 				// make a copy of the grades state var so we can change the student
 				// var newGrades = {...this.state.grades};
