@@ -82,7 +82,7 @@ __eduCrate__, a learning management system, offers a streamlined infrastructure 
 Log in page:
 ![Log in page](https://github.com/eddieatkinson/schoolApp/blob/master/loginPage.png)
 Assignment view from Dashboard: 
-![Assignment View](https://github.com/eddieatkinson/schoolApp/blob/master/courseView.png)
+![Assignment View](/front-end/public/ss/courseView.png)
 Calendar: 
 ![Calendar](calendar.png)
 Compose Message:
