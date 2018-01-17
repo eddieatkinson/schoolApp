@@ -1,5 +1,5 @@
 # eduCrate
-![logo](eduCrateblocks.png)
+![logo](/eduCrateblocks.png)
 
 ## Overview:
 __eduCrate__, a learning management system, offers a streamlined infrastructure advantageous for the blended learning environments of grade-school aged students. The software provides educators an authoring tool in which to deliver assignments, document the progress of students, record correspondence with parents, and otherwise manage and administer all other miscellaneous instructional content directly to the parents and students.
@@ -80,13 +80,13 @@ __eduCrate__, a learning management system, offers a streamlined infrastructure 
 
 ## Screenshots:
 Log in page:
-![Log in page](https://github.com/eddieatkinson/schoolApp/blob/master/loginPage.png)
+![Log in page](/loginPage.png)
 Assignment view from Dashboard: 
-![Assignment View](/front-end/public/ss/courseView.png)
+![Assignment View](/courseView.png)
 Calendar: 
-![Calendar](calendar.png)
+![Calendar](/calendar.png)
 Compose Message:
-![Inbox](inbox.png)
+![Inbox](/inbox.png)
 
 
 
