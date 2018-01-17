@@ -1,4 +1,5 @@
 # eduCrate
+![logo](eduCrateblocks.png)
 
 ## Overview:
 __eduCrate__, a learning management system, offers a streamlined infrastructure advantageous for the blended learning environments of grade-school aged students. The software provides educators an authoring tool in which to deliver assignments, document the progress of students, record correspondence with parents, and otherwise manage and administer all other miscellaneous instructional content directly to the parents and students.
@@ -64,7 +65,7 @@ __eduCrate__, a learning management system, offers a streamlined infrastructure 
 
 
 
-## Challenges and Solutions:
+<!-- ## Challenges and Solutions: -->
 
 ## Architecture: 
 * Frontend: React, Redux, JSX, Sass, React-Materialize, Material-UI
@@ -81,13 +82,13 @@ Assignment view from Dashboard:
 ![Assignment View](https://github.com/eddieatkinson/schoolApp/blob/master/courseView.png)
 Calendar: 
 ![Calendar](calendar.png)
-<!-- ![Map](public/images/screen-shots/map.png)
-<!-- ![Forms](public/images/screen-shots/volunteer_form.jpg) -->
-<!-- ![Flowchart](public/images/ShoeBoxProject_FlowChart.png) -->
+Compose Message:
+![Inbox](inbox.png)
+
 
 
 ## URL:
-<!-- [eduCrate](https://www.educrate.eddieandvalerieareawesome.com) -->
+[eduCrate](http://schoolapp.eddiebatkinson.com)
 
 ## Code snippets:
 Dashboard Navbar inbox icon indicates how many unread messages a user has. This number decrements when read. 
@@ -180,8 +181,76 @@ router.get('/sentMessages/:userId/get', (req, res)=>{
 
 
 ```
-...
+Teachers can edit grades, change status of assignment, search grades, etc.
 ``` javascript
+class Grades extends Component{
+	constructor(){
+		super();
+		this.state = {
+			grades: []
+		}
+		this.changeStatus = this.changeStatus.bind(this);
+		this.changeGrade = this.changeGrade.bind(this);
+		this.editInformation = this.editInformation.bind(this);
+		this.handleSearch = this.handleSearch.bind(this);
+	}
+
+changeGrade(event, aid, sid, index){
+		console.log("Change grade");
+		var newGrade = event.target.previousSibling.childNodes[0].value;
+		console.log(newGrade);
+		var newData = {
+			newGrade: newGrade,
+			aid: aid,
+			sid: sid
+		}
+		console.log(newData);
+		var axiosPromise = axios({
+			url: `${window.apiHost}/teachers/changeGrade`,
+			method: 'POST',
+			data: newData
+		}).then((response)=>{
+			console.log(response.data);
+			if(response.data.msg === 'gradeUpdated'){
+				// make a copy of the grades state var so we can change the student
+				// var newGrades = {...this.state.grades};
+				var courseId = this.props.match.params.courseId;
+				var teacherId = this.props.auth.teacherId;
+				const url = `${window.apiHost}/teachers/grades/${courseId}/${teacherId}/get`;
+				axios.get(url)
+					.then((response)=>{
+						var gradeDataFull = response.data;
+						var gradeData = gradeDataFull.map((grade, index)=>{
+							return(
+								<tr key={index}>
+									<td>{`${grade.firstName} ${grade.lastName}`}</td>
+									<td>{grade.assName}</td>
+									<td>{grade.status}</td>
+									<td>
+										<Input id='newStatus' />
+										<Button className='edit' onClick={(event)=>{
+											this.changeStatus(event,grade.aid,grade.sid, index)
+										}}>
+											Change 
+										</Button>
+									</td>
+									<td>{grade.grade}</td>
+									<td><Input id='newGrade' /><Button className='edit' onClick={(event)=>{
+											this.changeGrade(event,grade.aid,grade.sid, index)
+										}}>
+											Change
+										</Button></td>
+								</tr>
+							);
+						});
+					this.setState({
+						grades: gradeData
+					});
+				})
+			}
+		})
+	}
+}	
 
 
 ```
