@@ -73,7 +73,7 @@ __eduCrate__, a learning management system, offers a streamlined infrastructure 
 * Server: AWS EC2
 
 ## Live Demo:
-[eduCrate](https://youtu.be/38bW-8KEB_A)
+[Watch on Youtube](https://youtu.be/38bW-8KEB_A)
 ![demo](https://media.giphy.com/media/xULW8Kkp3P2eXJMBsQ/giphy.gif)
 
 ## Screenshots:
@@ -89,7 +89,7 @@ Compose Message:
 
 
 ## URL:
-[Watch on Youtube](http://schoolapp.eddiebatkinson.com)
+[eduCrate](http://schoolapp.eddiebatkinson.com)
 
 ## Code snippets:
 Dashboard Navbar inbox icon indicates how many unread messages a user has. This number decrements when read. 
