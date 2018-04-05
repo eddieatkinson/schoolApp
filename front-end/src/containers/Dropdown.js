@@ -12,7 +12,7 @@ export default function(){
 			<Dropdown trigger={
 			    <Button className="dropButton">Select<Icon id='circleDown' icon={circleDown} /></Button>
 			  }>
-			  <Link to='/login/parent'><NavItem>Parent</NavItem></Link>
+			  <Link to='/login/parent' data-cy="parent"><NavItem>Parent</NavItem></Link>
 			  <Link to='/login/teacher'><NavItem>Teacher</NavItem></Link>
 			  <NavItem divider />
 			  <Link to='/login/student'><NavItem>Student</NavItem></Link>
