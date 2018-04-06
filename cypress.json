@@ -1,3 +1,4 @@
 {
-  "watchForFileChanges": false
+  "baseUrl" : "http://localhost:3000",
+  "watchForFileChanges" : false
 }
