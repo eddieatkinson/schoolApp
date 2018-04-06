@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GetCourseInfo from '../actions/GetCourseInfo';
 
-class CourseNav extends Component{
-	constructor(){
+class CourseNav extends Component {
+	constructor() {
 		super();
 		this.state = {
 			courseName: ''
@@ -15,11 +15,11 @@ class CourseNav extends Component{
 		this.getCourseName = this.getCourseName.bind(this);
 	}
 
-	getCourseName(courseId){
+	getCourseName(courseId) {
 		console.log(courseId);
 		const url = `${window.apiHost}/teachers/courseInfo/${courseId}/get`;
 		axios.get(url)
-			.then((response)=>{
+			.then((response) => {
 				console.log(response);
 				this.setState({
 					courseName: response.data[0].courseName
@@ -27,23 +27,23 @@ class CourseNav extends Component{
 			});
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		var courseId = this.props.courseId;
 		console.log(courseId);
 		this.getCourseName(courseId);
 	}
 
-	render(){
+	render() {
 		// console.log(this.props.auth.teacherId);
 		// console.log(this.state);
 		// console.log(this.auth);
 		var studentItem;
-		if(this.props.auth.level === "teacher"){
+		if (this.props.auth.level === "teacher") {
 			studentItem = <NavItem><Link to={`/courseInfo/${this.props.auth.teacherId}/students`}>Students</Link></NavItem>
-		}else{
+		} else {
 			studentItem = '';
 		}
-		return(
+		return (
 			<Navbar className="course-nav" brand={this.state.courseName} left>
 				<Link to={`/syllabus`}><NavItem>Syllabus</NavItem></Link>
 				<Link to={`/courseInfo/${this.props.courseId}/assignments`}><NavItem>Assignments</NavItem></Link>
@@ -54,19 +54,19 @@ class CourseNav extends Component{
 	}
 }
 
-function mapStateToProps(state){
-// key = this.props.key
-// value = propety of RootReducer
-	return{
+function mapStateToProps(state) {
+	// key = this.props.key
+	// value = propety of RootReducer
+	return {
 		auth: state.auth,
 		courses: state.courses
 	}
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		getCourseInfo: GetCourseInfo
 	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CourseNav);
+export default connect(mapStateToProps, mapDispatchToProps)(CourseNav);
 

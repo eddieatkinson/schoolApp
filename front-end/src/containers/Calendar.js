@@ -12,13 +12,13 @@ import _ from 'lodash';
 
 
 BigCalendar.setLocalizer(
-	BigCalendar.momentLocalizer(moment) 
+	BigCalendar.momentLocalizer(moment)
 );
 
 
 
-class Calendar extends Component{
-	constructor(){
+class Calendar extends Component {
+	constructor() {
 		super();
 		// this.state = {
 		// 	calEventsList: []
@@ -26,10 +26,10 @@ class Calendar extends Component{
 	}
 
 
-	componentDidMount(){
+	componentDidMount() {
 		var userId;
 		var level = this.props.auth.level;
-		switch(level){
+		switch (level) {
 			case "teacher":
 				userId = this.props.auth.teacherId;
 				break;
@@ -40,7 +40,7 @@ class Calendar extends Component{
 				userId = this.props.auth.studentId;
 				break;
 			default:
-				break;	
+				break;
 		}
 		console.log("Calendar mounted");
 		this.props.getCalendarEvents(level, userId);
@@ -61,14 +61,14 @@ class Calendar extends Component{
 		// });	
 	}
 
-	componentWillReceiveProps(newProps){
+	componentWillReceiveProps(newProps) {
 		const same = (newProps.calEventsList.length === this.props.calEventsList.length);
 		console.log(newProps.calEventsList);
 		console.log(this.props.calEventsList);
-		if(!same){
+		if (!same) {
 			var userId;
 			var level = this.props.auth.level;
-			switch(level){
+			switch (level) {
 				case "teacher":
 					userId = this.props.auth.teacherId;
 					break;
@@ -79,66 +79,66 @@ class Calendar extends Component{
 					userId = this.props.auth.studentId;
 					break;
 				default:
-					break;	
+					break;
 			}
 			this.props.getCalendarEvents(level, userId);
-			}
 		}
-	
+	}
 
 
-	render(){
+
+	render() {
 		// This var is for the possible "views" on the upper right part of the calendar.
 		// For instance, "month, week, work week, day, agenda"
 		var possibleViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
 
 		var addEventsButton;
-		if(this.props.auth.level === "teacher"){
+		if (this.props.auth.level === "teacher") {
 			addEventsButton = <Link to='/addEvents'><Button className='newEvent'>New Event</Button></Link>
-		}else{
+		} else {
 			addEventsButton = '';
 		}
 
 		// console.log(this.props.calEventsList);
 
-		const calEvents = this.props.calEventsList.map((event)=>{
+		const calEvents = this.props.calEventsList.map((event) => {
 			event.start = new Date(event.start)
 			event.end = new Date(event.end)
-			return event 
+			return event
 		});
 
-		return(
+		return (
 			<div>
 				<Row>
 					<Col s={4}>
-						<img className='logoBlocks' src='/eduCrateblocks.png' alt=''/>
+						<img className='logoBlocks' src='/eduCrateblocks.png' alt='' />
 					</Col>
 				</Row>
-		  		<div className='container'>
-		  			{addEventsButton}
-		    			<BigCalendar
-			   				events={this.props.calEventsList}
-			   				views={possibleViews}
-			    			step={60}
-			    			defaultDate={new Date()}
-		    			/>
-		  		</div>
-			 </div>
+				<div className='container'>
+					{addEventsButton}
+					<BigCalendar
+						events={this.props.calEventsList}
+						views={possibleViews}
+						step={60}
+						defaultDate={new Date()}
+					/>
+				</div>
+			</div>
 		)
 	}
 }
 
 
-function mapStateToProps(state){
-	return{
+function mapStateToProps(state) {
+	return {
 		auth: state.auth,
 		calEventsList: state.calEventsList
 	}
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		getCalendarEvents: GetCalendarEvents
 	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Calendar);
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar);

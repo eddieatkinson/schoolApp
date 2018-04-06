@@ -5,23 +5,23 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import DataTables from 'material-ui-datatables';
 
-class Courses extends Component{
+class Courses extends Component {
 	// constructor(){
 	// 	super();
 	// }
 
-	componentWillReceiveProps(newProps){
+	componentWillReceiveProps(newProps) {
 		// console.log('=======NEW PROPS========');
 		// console.log(newProps);
 		// console.log('=======NEW PROPS========');
 	}
 
-	render(){
+	render() {
 
 		var dataTable = '';
 		// console.log(this.props.courses);
-		if(this.props.courses.list !== undefined){
-			dataTable = this.props.courses.list.map((course, index)=>{
+		if (this.props.courses.list !== undefined) {
+			dataTable = this.props.courses.list.map((course, index) => {
 				return (
 					<tr key={index}>
 						<td className='courseInfo'>
@@ -46,7 +46,7 @@ class Courses extends Component{
 					</tr>
 				</thead>
 				<tbody>
-				{dataTable}
+					{dataTable}
 				</tbody>
 			</Table>
 		);
@@ -54,17 +54,17 @@ class Courses extends Component{
 }
 
 
-function mapStateToProps(state){
-// key = this.props.key
-// value = propety of RootReducer
-	return{
+function mapStateToProps(state) {
+	// key = this.props.key
+	// value = propety of RootReducer
+	return {
 		auth: state.auth,
 		courses: state.courses
 	}
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Courses);
+export default connect(mapStateToProps, mapDispatchToProps)(Courses);

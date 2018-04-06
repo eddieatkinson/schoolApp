@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux';
 // import axios from 'axios';
 import AddAssignmentsAction from '../actions/AddAssignmentsAction';
 
-class AddAssignment extends Component{
-	constructor(){
+class AddAssignment extends Component {
+	constructor() {
 		super();
 		// this.state = {
 		// 	assignments: []
@@ -14,7 +14,7 @@ class AddAssignment extends Component{
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleSubmit(event){
+	handleSubmit(event) {
 		event.preventDefault();
 		// var status = this.props.match.params.status;
 		// console.log(status);
@@ -29,9 +29,9 @@ class AddAssignment extends Component{
 		// console.log(this);
 		this.props.addAssignmentsAction(formData);
 	}
-	
+
 	// const product = props.product;
-	render(){
+	render() {
 		console.log(this.props.match.params.courseId);
 		// var addAssignments = ''
 		// if(this.props.auth.statusId === 1){
@@ -39,11 +39,11 @@ class AddAssignment extends Component{
 		// 		<Button onClick={this.createAssignment}>Add assignment!</Button>
 		// 	)
 		// }
-		return(
+		return (
 			<form>
 				<Row>
-					<Input id='assignName' s={3} label="Assignment Name"/>
-					<Input id='assignDesc' s={3} label="Description"/>
+					<Input id='assignName' s={3} label="Assignment Name" />
+					<Input id='assignDesc' s={3} label="Description" />
 				</Row>
 				<Button className='addAssignmentsButton' onClick={this.handleSubmit} waves="light">Add Assignment</Button>
 			</form>
@@ -51,14 +51,14 @@ class AddAssignment extends Component{
 	}
 }
 
-function mapStateToProps(state){
-	return{
+function mapStateToProps(state) {
+	return {
 		auth: state.auth,
 		studentInfo: state.studentInfo
 	}
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		addAssignmentsAction: AddAssignmentsAction
 	}, dispatch);

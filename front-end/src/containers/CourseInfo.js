@@ -12,23 +12,23 @@ import Grades from './Grades';
 import Syllabus from './Syllabus';
 // import DataTables from 'material-ui-datatables';
 
-class CourseInfo extends Component{
+class CourseInfo extends Component {
 	// constructor(){
 	// 	super();
 	// }
 
-	componentWillReceiveProps(newProps){
+	componentWillReceiveProps(newProps) {
 		// console.log('=======NEW PROPS========');
 		// console.log(newProps);
 		// console.log('=======NEW PROPS========');
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		var courseId = this.props.match.params.courseId;
 		this.props.getCourseInfo(courseId);
 	}
 
-	render(){
+	render() {
 		// if(this.props.auth.level === "teacher")
 		return (
 			<div>
@@ -42,19 +42,19 @@ class CourseInfo extends Component{
 }
 
 
-function mapStateToProps(state){
-// key = this.props.key
-// value = propety of RootReducer
-	return{
+function mapStateToProps(state) {
+	// key = this.props.key
+	// value = propety of RootReducer
+	return {
 		auth: state.auth,
 		courses: state.courses,
 		assignments: state.assignments
 	}
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		getCourseInfo: GetCourseInfo
 	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CourseInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(CourseInfo);

@@ -9,15 +9,15 @@ import SweetAlert from 'sweetalert-react';
 import 'sweetalert/dist/sweetalert.css'
 
 
-class Inbox extends Component{
-	constructor(){
+class Inbox extends Component {
+	constructor() {
 		super();
 		this.state = ({
 			show: false
 		});
 	}
 
-	componentWillReceiveProps(newProps){
+	componentWillReceiveProps(newProps) {
 		console.log(this.props);
 		console.log(newProps);
 
@@ -73,9 +73,9 @@ class Inbox extends Component{
 		// console.log('=======NEW PROPS========');
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		console.log(this.props.match.params.status)
-		if(this.props.match.params.status === "sent"){
+		if (this.props.match.params.status === "sent") {
 			this.setState({
 				show: true
 			})
@@ -86,9 +86,9 @@ class Inbox extends Component{
 		console.log(this.props.auth);
 		var sent;
 		console.log(this.props.match);
-		if(this.props.match.path === '/sentMessages'){
+		if (this.props.match.path === '/sentMessages') {
 			sent = true;
-		}else{
+		} else {
 			sent = false;
 		}
 		// console.log(sent);
@@ -109,7 +109,7 @@ class Inbox extends Component{
 		var whichId = `${level}Id`;
 		console.log(whichId);
 		var userId;
-		switch(whichId){
+		switch (whichId) {
 			case "teacherId":
 				userId = this.props.auth.teacherId;
 				break;
@@ -120,14 +120,14 @@ class Inbox extends Component{
 				userId = this.props.auth.studentId;
 				break;
 			default:
-				break;	
+				break;
 		}
 		console.log(userId)
 		this.props.getInbox(status, userId, sent);
 		sent = false;
 	}
 
-	render(){
+	render() {
 		console.log(this.props.match.path);
 		console.log(this.props.inbox);
 		var level = this.props.auth.level;
@@ -140,7 +140,7 @@ class Inbox extends Component{
 		var userId;
 		var receiverNameArray = [];
 		var receiverName;
-		switch(whichId){
+		switch (whichId) {
 			case "teacherId":
 				userId = this.props.auth.teacherId;
 				break;
@@ -151,13 +151,13 @@ class Inbox extends Component{
 				userId = this.props.auth.studentId;
 				break;
 			default:
-				break;	
+				break;
 		}
-		if(this.props.match.path === '/sentMessages'){
+		if (this.props.match.path === '/sentMessages') {
 			toOrFrom = <th>To</th>
-			inboxInfo = inboxContents.map((item, index)=>{
+			inboxInfo = inboxContents.map((item, index) => {
 				console.log(item);
-				return(
+				return (
 					<tr key={index}>
 						<td>{item.date}</td>
 						<td>{item.receiverName}</td>
@@ -173,14 +173,14 @@ class Inbox extends Component{
 				// 			resolve
 				// 		});
 				// })
-				
+
 				// console.log(receiverName);
 			});
 			// console.log(receiverNameList);
-		}else{
+		} else {
 			toOrFrom = <th>From</th>
-			inboxInfo = inboxContents.map((item, index)=>{
-				return(
+			inboxInfo = inboxContents.map((item, index) => {
+				return (
 					<tr key={index} className={item.messageStatus}>
 						<td>{item.date}</td>
 						<td>{item.senderName}</td>
@@ -189,27 +189,27 @@ class Inbox extends Component{
 				)
 			});
 		}
-		
+
 
 		var messageToButton = '';
 		level = this.props.auth.level;
-		if(level === 'teacher'){
+		if (level === 'teacher') {
 			messageToButton = <div>
-								<Link to='/compose/students'><Button className='composeMessage'>Compose to Student</Button></Link>
-								<Link to='/compose/parents'><Button className='composeMessage'>Compose to Parent</Button></Link>
-							</div>
-		}else{
+				<Link to='/compose/students'><Button className='composeMessage'>Compose to Student</Button></Link>
+				<Link to='/compose/parents'><Button className='composeMessage'>Compose to Parent</Button></Link>
+			</div>
+		} else {
 			messageToButton = <Link to='/compose/teachers'><Button className='composeMessage'>New Message</Button></Link>
 		}
 		console.log(this.state.show)
-		return(
+		return (
 			<div>
 				<SweetAlert
-				        show={this.state.show}
-				        title="Status"
-				        text="Message Sent"
-				        onConfirm={() => this.setState({ show: false })}
-				      />				
+					show={this.state.show}
+					title="Status"
+					text="Message Sent"
+					onConfirm={() => this.setState({ show: false })}
+				/>
 				{messageToButton}
 				<Link to='/sentMessages'><Button className='sentMessage'>Sent Messages</Button></Link>
 				<Table bordered={true} hoverable={true} responsive={true}>
@@ -230,18 +230,18 @@ class Inbox extends Component{
 }
 
 
-function mapStateToProps(state){
-// key = this.props.key
-// value = propety of RootReducer
-	return{
+function mapStateToProps(state) {
+	// key = this.props.key
+	// value = propety of RootReducer
+	return {
 		auth: state.auth,
 		inbox: state.inbox
 	}
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		getInbox: GetInbox
 	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Inbox);
+export default connect(mapStateToProps, mapDispatchToProps)(Inbox);
