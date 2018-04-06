@@ -6,8 +6,8 @@ import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import AddAssignmentsAction from '../actions/AddAssignmentsAction';
 
-class Assignments extends Component{
-	constructor(){
+class Assignments extends Component {
+	constructor() {
 		super();
 		this.state = {
 			assignments: []
@@ -15,19 +15,19 @@ class Assignments extends Component{
 		this.createAssignment = this.createAssignment.bind(this);
 	}
 
-	createAssignment(){
+	createAssignment() {
 		// this.props.history.push(`/teachers/${this.props.match.params.courseId}/addAssignments`);
 		// this.props.history.push(`https://www.google.com`);
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		var courseId = this.props.match.params.courseId;
 		const url = `${window.apiHost}/teachers/assignments/${courseId}/get`; // route is for everyone, though it specifies "teachers"
 		axios.get(url)
-			.then((response)=>{
+			.then((response) => {
 				var majorAssStuff = response.data;
-				var assStuff = majorAssStuff.map((ass, index)=>{
-					return(
+				var assStuff = majorAssStuff.map((ass, index) => {
+					return (
 						<tr key={index}>
 							<td>{ass.assName}</td>
 							<td>{ass.assDesc}</td>
@@ -38,17 +38,17 @@ class Assignments extends Component{
 					assignments: assStuff
 				});
 			});
-	}	
+	}
 	// const product = props.product;
-	render(){
+	render() {
 		var addAnAssignment = ''
 		console.log(this.props);
-		if(this.props.auth.statusId === 1){
+		if (this.props.auth.statusId === 1) {
 			addAnAssignment = (
 				<Link to={`/teachers/${this.props.match.params.courseId}/addAssignments`}><Button className='addAssignment'>New Assignment</Button></Link>
 			)
 		}
-		return(
+		return (
 			<div>
 				<Table bordered={true} hoverable={true} responsive={true}>
 					<thead>
@@ -67,14 +67,14 @@ class Assignments extends Component{
 	}
 }
 
-function mapStateToProps(state){
-	return{
+function mapStateToProps(state) {
+	return {
 		auth: state.auth,
 		studentInfo: state.studentInfo
 	}
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		addAssignmentsAction: AddAssignmentsAction
 	}, dispatch);

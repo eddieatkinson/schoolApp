@@ -5,27 +5,27 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GetStudentInfo from '../actions/GetStudentInfo';
 
-class StudentInfo extends Component{
+class StudentInfo extends Component {
 	// constructor(){
 	// 	super();
 	// }
 
-	componentDidMount(){
+	componentDidMount() {
 		var studentId = this.props.match.params.studentId;
 		console.log(studentId);
 		this.props.getStudentInfo(studentId);
 
 	}
 
-	render(){
-		var studentParentInfo = this.props.studentInfo.map((info, index)=>{
+	render() {
+		var studentParentInfo = this.props.studentInfo.map((info, index) => {
 			console.log(info);
-			return(
+			return (
 				<tr>
 					<td>
-					<Link to={`/compose/parents/${info.parentFirstName} ${info.parentLastName}/${info.parentsId}`}>
-						{`${info.parentFirstName} ${info.parentLastName}`}
-					</Link>
+						<Link to={`/compose/parents/${info.parentFirstName} ${info.parentLastName}/${info.parentsId}`}>
+							{`${info.parentFirstName} ${info.parentLastName}`}
+						</Link>
 					</td>
 					<td>
 						{info.parentEmail}
@@ -39,7 +39,7 @@ class StudentInfo extends Component{
 		// console.log("You've made it this far!");
 		// console.log("The student info is:");
 		// console.log(this.props.studentInfo);
-		return(
+		return (
 			<Table bordered={true} hoverable={true} responsive={true}>
 				<thead>
 					<tr>
@@ -57,18 +57,18 @@ class StudentInfo extends Component{
 }
 
 
-function mapStateToProps(state){
-// key = this.props.key
-// value = propety of RootReducer
-	return{
+function mapStateToProps(state) {
+	// key = this.props.key
+	// value = propety of RootReducer
+	return {
 		auth: state.auth,
 		studentInfo: state.studentInfo
 	}
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		getStudentInfo: GetStudentInfo
 	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(StudentInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(StudentInfo);

@@ -7,13 +7,13 @@ import GetInbox from '../actions/GetInbox';
 import GetMessageToList from '../actions/GetMessageToList';
 import SendMessage from '../actions/SendMessage';
 
-class MessageComposition extends Component{
-	constructor(){
+class MessageComposition extends Component {
+	constructor() {
 		super();
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleSubmit(event){
+	handleSubmit(event) {
 		event.preventDefault();
 		var subject = document.getElementById('subject').value;
 		var body = document.getElementById('body').value;
@@ -21,7 +21,7 @@ class MessageComposition extends Component{
 		var receiverLevel = this.props.match.params.messageTarget;
 		receiverLevel = receiverLevel.slice(0, -1); // to remove the "s";
 		var receiverStatusId;
-		switch(receiverLevel){
+		switch (receiverLevel) {
 			case "teacher":
 				receiverStatusId = 1;
 				break;
@@ -32,14 +32,14 @@ class MessageComposition extends Component{
 				receiverStatusId = 3;
 				break;
 			default:
-				break;	
+				break;
 		}
 		var receiverId = this.props.match.params.messageTargetId;
 		var receiverName = this.props.match.params.messageTargetName;
 		var senderName = this.props.auth.fullName;
 		var senderLevel = this.props.auth.level;
 		var senderId;
-		switch(senderLevel){
+		switch (senderLevel) {
 			case "teacher":
 				senderId = "teacherId";
 				break;
@@ -50,7 +50,7 @@ class MessageComposition extends Component{
 				senderId = "studentId";
 				break;
 			default:
-				break;	
+				break;
 		}
 		senderId = this.props.auth.teacherId;
 		var senderStatusId = this.props.auth.statusId;
@@ -72,35 +72,35 @@ class MessageComposition extends Component{
 		this.props.history.push(`/${senderLevel}s/inbox/sent`);
 	}
 
-	componentWillReceiveProps(newProps){
+	componentWillReceiveProps(newProps) {
 		// console.log('=======NEW PROPS========');
 		// console.log(newProps);
 		// console.log('=======NEW PROPS========');
 	}
 
-	componentDidMount(){
-	// 	var level = this.props.auth.level;
-	// 	var messageTarget = this.props.match.params.messageTarget;
-	// 	var status = `${level}s`;
-	// 	var whichId = `${level}Id`;
-	// 	var userId;
-	// 	switch(whichId){
-	// 		case "teacherId":
-	// 			userId = this.props.auth.teacherId;
-	// 			break;
-	// 		case "parentId":
-	// 			userId = this.props.auth.parentId;
-	// 			break;
-	// 		case "studentId":
-	// 			userId = this.props.auth.studentId;
-	// 			break;
-	// 	}
-	// // 	console.log(userId)
-	// // 	this.props.getInbox(status, userId);
-	// this.props.getMessageToList(messageTarget, status, userId);
+	componentDidMount() {
+		// 	var level = this.props.auth.level;
+		// 	var messageTarget = this.props.match.params.messageTarget;
+		// 	var status = `${level}s`;
+		// 	var whichId = `${level}Id`;
+		// 	var userId;
+		// 	switch(whichId){
+		// 		case "teacherId":
+		// 			userId = this.props.auth.teacherId;
+		// 			break;
+		// 		case "parentId":
+		// 			userId = this.props.auth.parentId;
+		// 			break;
+		// 		case "studentId":
+		// 			userId = this.props.auth.studentId;
+		// 			break;
+		// 	}
+		// // 	console.log(userId)
+		// // 	this.props.getInbox(status, userId);
+		// this.props.getMessageToList(messageTarget, status, userId);
 	}
 
-	render(){
+	render() {
 		// var messageToListContents = this.props.messageToList;
 		// // console.log(this.props.messageToList);
 		// // var inboxContents = this.props.inbox;
@@ -109,7 +109,7 @@ class MessageComposition extends Component{
 		// 		<h6>{name.fullName}</h6>
 		// 	)
 		// });
-		return(
+		return (
 			<div>
 				<form>
 					<Row>
@@ -117,7 +117,7 @@ class MessageComposition extends Component{
 						<Input id="subject" label="Subject" />
 						<textarea id="body" label="Message"></textarea>
 					</Row>
-					<Button className='sendMessage' onClick={this.handleSubmit}>Send</Button> 
+					<Button className='sendMessage' onClick={this.handleSubmit}>Send</Button>
 				</form>
 			</div>
 		)
@@ -125,16 +125,16 @@ class MessageComposition extends Component{
 }
 
 
-function mapStateToProps(state){
-// key = this.props.key
-// value = propety of RootReducer
-	return{
+function mapStateToProps(state) {
+	// key = this.props.key
+	// value = propety of RootReducer
+	return {
 		auth: state.auth,
 		inbox: state.inbox,
 		messageToList: state.messageToList
 	}
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		getInbox: GetInbox,
 		getMessageToList: GetMessageToList,
@@ -142,4 +142,4 @@ function mapDispatchToProps(dispatch){
 	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(MessageComposition);
+export default connect(mapStateToProps, mapDispatchToProps)(MessageComposition);

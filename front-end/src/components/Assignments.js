@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import { Table } from 'react-materialize';
 import axios from 'axios';
 
-class Assignments extends Component{
-	constructor(){
+class Assignments extends Component {
+	constructor() {
 		super();
 		this.state = {
 			assignments: []
 		}
 	}
-	componentDidMount(){
+	componentDidMount() {
 		var courseId = this.props.match.params.courseId;
 		const url = `${window.apiHost}/teachers/assignments/${courseId}/get`;
 		axios.get(url)
-			.then((response)=>{
+			.then((response) => {
 				var majorAssStuff = response.data;
-				var assStuff = majorAssStuff.map((ass, index)=>{
-					return(
+				var assStuff = majorAssStuff.map((ass, index) => {
+					return (
 						<tr>
 							<td>{ass.assName}</td>
 							<td>{ass.desc}</td>
@@ -27,10 +27,10 @@ class Assignments extends Component{
 					assignments: assStuff
 				});
 			});
-	}	
+	}
 	// const product = props.product;
-	render(){
-		return(
+	render() {
+		return (
 			<Table>
 				<thead>
 					<tr>

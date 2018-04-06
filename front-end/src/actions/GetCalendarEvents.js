@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default function(level, userId){
+export default function (level, userId) {
 	console.log("GET_CALENDAR_EVENTS is running!");
 	var url = `${window.apiHost}/${level}s/${userId}/calendar/get`;
 	// console.log(url)
@@ -18,7 +18,7 @@ export default function(level, userId){
 	// // })
 	// });	
 
-	return{
+	return {
 		type: "GET_CALENDAR_EVENTS",
 		payload: axiosPromise
 	}

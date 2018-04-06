@@ -1,6 +1,6 @@
-export default function(){
+export default function () {
 	console.log("STOP_EDIT_ACTION is running!")
-	return{
+	return {
 		type: "STOP_EDIT_ACTION"
 	}
 }

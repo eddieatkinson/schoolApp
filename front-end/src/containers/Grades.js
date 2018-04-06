@@ -11,8 +11,8 @@ import SearchBar from './SearchBar';
 import _ from 'lodash';
 
 
-class Grades extends Component{
-	constructor(){
+class Grades extends Component {
+	constructor() {
 		super();
 		this.state = {
 			grades: []
@@ -23,11 +23,11 @@ class Grades extends Component{
 		this.handleSearch = this.handleSearch.bind(this);
 	}
 
-	changeStatus(event, aid, sid, index){
+	changeStatus(event, aid, sid, index) {
 		console.log("Change status");
 		var newStatus = event.target.previousSibling.childNodes[0].value
 		console.log(newStatus);
-		console.log("The assignment ID, Eddie!",aid);
+		console.log("The assignment ID, Eddie!", aid);
 		// console.log(this.state);
 		var newData = {
 			newStatus: newStatus,
@@ -39,51 +39,51 @@ class Grades extends Component{
 			url: `${window.apiHost}/teachers/changeStatus`,
 			method: 'POST',
 			data: newData
-		}).then((response)=>{
+		}).then((response) => {
 			console.log(response.data);
-			if(response.data.msg === 'statusUpdated'){
+			if (response.data.msg === 'statusUpdated') {
 				// make a copy of the grades state var so we can change the student
 				// var newGrades = {...this.state.grades};
 				var courseId = this.props.match.params.courseId;
 				var teacherId = this.props.auth.teacherId;
 				const url = `${window.apiHost}/teachers/grades/${courseId}/${teacherId}/get`;
 				axios.get(url)
-					.then((response)=>{
+					.then((response) => {
 						var gradeDataFull = response.data;
 						console.log(gradeDataFull);
-						var gradeData = gradeDataFull.map((grade, index)=>{
-							return(
+						var gradeData = gradeDataFull.map((grade, index) => {
+							return (
 								<tr key={index}>
 									<td>{`${grade.firstName} ${grade.lastName}`}</td>
 									<td>{grade.assName}</td>
 									<td>{grade.status}</td>
 									<td>
 										<Input id='newStatus' />
-										<Button  className='edit' onClick={(event)=>{
-											this.changeStatus(event,grade.aid,grade.sid, index)
+										<Button className='edit' onClick={(event) => {
+											this.changeStatus(event, grade.aid, grade.sid, index)
 										}}>
 											Change
 										</Button>
 									</td>
 									<td>{grade.grade}</td>
-									<td><Input id='newGrade' /><Button  className='edit' onClick={(event)=>{
-											this.changeGrade(event,grade.aid,grade.sid, index)
-										}}>
-											Change
+									<td><Input id='newGrade' /><Button className='edit' onClick={(event) => {
+										this.changeGrade(event, grade.aid, grade.sid, index)
+									}}>
+										Change
 										</Button></td>
 								</tr>
 							);
 						});
-					this.setState({
-						grades: gradeData
-					});
-				})
+						this.setState({
+							grades: gradeData
+						});
+					})
 			}
 		})
 		// this.props.stopEditAction();
 	}
 
-	changeGrade(event, aid, sid, index){
+	changeGrade(event, aid, sid, index) {
 		console.log("Change grade");
 		// var newGrade = document.getElementById('newGrade').value;
 		var newGrade = event.target.previousSibling.childNodes[0].value;
@@ -100,59 +100,59 @@ class Grades extends Component{
 			url: `${window.apiHost}/teachers/changeGrade`,
 			method: 'POST',
 			data: newData
-		}).then((response)=>{
+		}).then((response) => {
 			console.log(response.data);
-			if(response.data.msg === 'gradeUpdated'){
+			if (response.data.msg === 'gradeUpdated') {
 				// make a copy of the grades state var so we can change the student
 				// var newGrades = {...this.state.grades};
 				var courseId = this.props.match.params.courseId;
 				var teacherId = this.props.auth.teacherId;
 				const url = `${window.apiHost}/teachers/grades/${courseId}/${teacherId}/get`;
 				axios.get(url)
-					.then((response)=>{
+					.then((response) => {
 						var gradeDataFull = response.data;
 						console.log(gradeDataFull);
-						var gradeData = gradeDataFull.map((grade, index)=>{
-							return(
+						var gradeData = gradeDataFull.map((grade, index) => {
+							return (
 								<tr key={index}>
 									<td>{`${grade.firstName} ${grade.lastName}`}</td>
 									<td>{grade.assName}</td>
 									<td>{grade.status}</td>
 									<td>
 										<Input id='newStatus' />
-										<Button className='edit' onClick={(event)=>{
-											this.changeStatus(event,grade.aid,grade.sid, index)
+										<Button className='edit' onClick={(event) => {
+											this.changeStatus(event, grade.aid, grade.sid, index)
 										}}>
-											Change 
+											Change
 										</Button>
 									</td>
 									<td>{grade.grade}</td>
-									<td><Input id='newGrade' /><Button className='edit' onClick={(event)=>{
-											this.changeGrade(event,grade.aid,grade.sid, index)
-										}}>
-											Change
+									<td><Input id='newGrade' /><Button className='edit' onClick={(event) => {
+										this.changeGrade(event, grade.aid, grade.sid, index)
+									}}>
+										Change
 										</Button></td>
 								</tr>
 							);
 						});
-					this.setState({
-						grades: gradeData
-					});
-				})
+						this.setState({
+							grades: gradeData
+						});
+					})
 			}
 		})
 		// this.props.stopEditAction();
 	}
 
-	editInformation(){
+	editInformation() {
 		this.props.editAction();
 	}
 
-	componentWillReceiveProps(newProps){
+	componentWillReceiveProps(newProps) {
 		console.log(newProps);
 		var courseId = this.props.match.params.courseId;
 		var userId;
-		switch(this.props.auth.level){
+		switch (this.props.auth.level) {
 			case "teacher":
 				userId = this.props.auth.teacherId;
 				break;
@@ -163,41 +163,41 @@ class Grades extends Component{
 				userId = this.props.auth.studentId;
 				break;
 			default:
-				break;	
+				break;
 		}
 		const url = `${window.apiHost}/${this.props.auth.level}s/grades/${courseId}/${userId}/get`;
 		axios.get(url)
-			.then((response)=>{
+			.then((response) => {
 				var gradeDataFull = response.data;
-				if(this.props.editing){
-					var gradeData = gradeDataFull.map((grade, index)=>{
+				if (this.props.editing) {
+					var gradeData = gradeDataFull.map((grade, index) => {
 						console.log(grade);
-						return(
+						return (
 							<tr key={index}>
 								<td>{`${grade.firstName} ${grade.lastName}`}</td>
 								<td>{grade.assName}</td>
 								<td>{grade.status}</td>
 								<td>
 									<Input id='newStatus' />
-									<Button  className='edit' onClick={(event)=>{
-										this.changeStatus(event,grade.aid,grade.sid, index)
+									<Button className='edit' onClick={(event) => {
+										this.changeStatus(event, grade.aid, grade.sid, index)
 									}}>
 										Change
 									</Button>
 								</td>
 								<td>{grade.grade}</td>
-								<td><Input id='newGrade' /><Button className='edit' onClick={(event)=>{
-											this.changeGrade(event,grade.aid,grade.sid, index)
-										}}>
-											Change
+								<td><Input id='newGrade' /><Button className='edit' onClick={(event) => {
+									this.changeGrade(event, grade.aid, grade.sid, index)
+								}}>
+									Change
 										</Button></td>
 							</tr>
 						);
 					});
-				}else{
-						gradeData = gradeDataFull.map((grade, index)=>{
+				} else {
+					gradeData = gradeDataFull.map((grade, index) => {
 						console.log(grade);
-						return(
+						return (
 							<tr key={index}>
 								<td>{`${grade.firstName} ${grade.lastName}`}</td>
 								<td>{grade.assName}</td>
@@ -210,13 +210,13 @@ class Grades extends Component{
 				this.setState({
 					grades: gradeData
 				});
-			});	
+			});
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		var courseId = this.props.match.params.courseId;
 		var userId;
-		switch(this.props.auth.level){
+		switch (this.props.auth.level) {
 			case "teacher":
 				userId = this.props.auth.teacherId;
 				break;
@@ -227,41 +227,41 @@ class Grades extends Component{
 				userId = this.props.auth.studentId;
 				break;
 			default:
-				break;	
+				break;
 		}
 		const url = `${window.apiHost}/${this.props.auth.level}s/grades/${courseId}/${userId}/get`;
 		axios.get(url)
-			.then((response)=>{
+			.then((response) => {
 				var gradeDataFull = response.data;
-				if(this.props.editing){
-					var gradeData = gradeDataFull.map((grade, index)=>{
+				if (this.props.editing) {
+					var gradeData = gradeDataFull.map((grade, index) => {
 						console.log(grade);
-						return(
+						return (
 							<tr key={index}>
 								<td>{`${grade.firstName} ${grade.lastName}`}</td>
 								<td>{grade.assName}</td>
 								<td>{grade.status}</td>
 								<td>
 									<Input id='newStatus' />
-									<Button onClick={(event)=>{
-										this.changeStatus(event, grade.aid,grade.sid, index)
+									<Button onClick={(event) => {
+										this.changeStatus(event, grade.aid, grade.sid, index)
 									}}>
 										Change Status
 									</Button>
 								</td>
 								<td>{grade.grade}</td>
-								<td><Input id='newGrade' /><Button onClick={(event)=>{
-											this.changeGrade(event,grade.aid,grade.sid, index)
-										}}>
-											Change Grade
+								<td><Input id='newGrade' /><Button onClick={(event) => {
+									this.changeGrade(event, grade.aid, grade.sid, index)
+								}}>
+									Change Grade
 										</Button></td>
 							</tr>
 						);
 					});
-				}else{
-						gradeData = gradeDataFull.map((grade, index)=>{
+				} else {
+					gradeData = gradeDataFull.map((grade, index) => {
 						console.log(grade);
-						return(
+						return (
 							<tr key={index}>
 								<td>{`${grade.firstName} ${grade.lastName}`}</td>
 								<td>{grade.assName}</td>
@@ -275,13 +275,13 @@ class Grades extends Component{
 					grades: gradeData
 				});
 			});
-	}	
+	}
 
-	handleSearch(searchValue){
+	handleSearch(searchValue) {
 		console.log(searchValue);
 		var courseId = this.props.match.params.courseId;
 		var userId;
-		switch(this.props.auth.level){
+		switch (this.props.auth.level) {
 			case "teacher":
 				userId = this.props.auth.teacherId;
 				break;
@@ -292,54 +292,54 @@ class Grades extends Component{
 				userId = this.props.auth.studentId;
 				break;
 			default:
-				break;	
+				break;
 		}
 		const url = `${window.apiHost}/${this.props.auth.level}s/grades/${courseId}/${userId}/get`;
 		axios.get(url)
-			.then((response)=>{
+			.then((response) => {
 				var gradeDataFull = response.data;
 				console.log(gradeDataFull)
-				var filteredGrades = gradeDataFull.filter((grade)=>{
+				var filteredGrades = gradeDataFull.filter((grade) => {
 					for (var key in grade) {
-						console.log(key,grade)
-						if(typeof(grade[key]) === `string`){
-							if(grade[key].indexOf(searchValue) > -1){
-							return true;
+						console.log(key, grade)
+						if (typeof (grade[key]) === `string`) {
+							if (grade[key].indexOf(searchValue) > -1) {
+								return true;
 							}
 						}
 					}
 				})
-				var gradeData = filteredGrades.map((grade, index)=>{
-						console.log(grade);
-						return(
-							<tr key={index}>
-								<td>{`${grade.firstName} ${grade.lastName}`}</td>
-								<td>{grade.assName}</td>
-								<td>{grade.status}</td>
-								<td>{grade.grade}</td>
-							</tr>
-						);
-				});		
+				var gradeData = filteredGrades.map((grade, index) => {
+					console.log(grade);
+					return (
+						<tr key={index}>
+							<td>{`${grade.firstName} ${grade.lastName}`}</td>
+							<td>{grade.assName}</td>
+							<td>{grade.status}</td>
+							<td>{grade.grade}</td>
+						</tr>
+					);
+				});
 				this.setState({
 					grades: gradeData
-				});	
+				});
 			});
-		}
+	}
 
-	render(){
+	render() {
 		// console.log(this.state);
 		// var addGrade = '';
 
 		var changeStatusHeader;
 		var changeGradeHeader;
 		var editButton;
-		if(this.props.auth.level === "teacher"){
-			if(!this.props.editing){
+		if (this.props.auth.level === "teacher") {
+			if (!this.props.editing) {
 				editButton = <Button className='editChanges' onClick={this.editInformation}>Edit</Button>
-			}else{
+			} else {
 				editButton = <Button className='changes' onClick={this.props.stopEditAction}>Accept Changes</Button>
 			}
-		}else{
+		} else {
 			editButton = '';
 		}
 		// console.log(this.props);
@@ -348,16 +348,16 @@ class Grades extends Component{
 		// 		<Link to={`/teachers/${this.props.match.params.courseId}/addAssignments`}><Button>Add grade</Button></Link>
 		// 	)
 		// }
-		if(this.props.editing){
+		if (this.props.editing) {
 			changeStatusHeader = <th>Change Status</th>;
 			changeGradeHeader = <th>Change Grade</th>;
-		}else{
+		} else {
 			changeStatusHeader = '';
 			changeGradeHeader = '';
 		}
-		return(
+		return (
 			<div>
-				<SearchBar handleSearch={this.handleSearch}/>
+				<SearchBar handleSearch={this.handleSearch} />
 				{editButton}
 				<Table bordered={true} hoverable={true} responsive={true} >
 					<thead>
@@ -379,15 +379,15 @@ class Grades extends Component{
 	}
 }
 
-function mapStateToProps(state){
-	return{
+function mapStateToProps(state) {
+	return {
 		auth: state.auth,
 		studentInfo: state.studentInfo,
 		editing: state.editing
 	}
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		addAssignmentsAction: AddAssignmentsAction,
 		editAction: EditAction,

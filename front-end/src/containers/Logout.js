@@ -4,19 +4,19 @@ import { connect } from 'react-redux';
 import LogoutAction from '../actions/LogoutAction';
 import { bindActionCreators } from 'redux';
 
-class Logout extends Component{
+class Logout extends Component {
 	// constructor(){
 	// 	super();
 	// }
 
-	componentDidMount(){
+	componentDidMount() {
 		//run the logoutAction on load
 		this.props.logoutAction();
 		this.props.history.push('/');
 	}
 
-	render(){
-		return(
+	render() {
+		return (
 			<div>
 				Logging out...
 			</div>
@@ -24,7 +24,7 @@ class Logout extends Component{
 	}
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	// dispatch is the thing that takes any action and sends it out to all reducers
 	return bindActionCreators({
 		logoutAction: LogoutAction
