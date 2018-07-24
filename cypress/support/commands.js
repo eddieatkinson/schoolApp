@@ -10,11 +10,26 @@
 //
 //
 // -- This is a parent command --
-Cypress.Commands.add("login", (email, password) => { 
-  
-})
 
-//
+Cypress.Commands.add('login', () => {
+  cy.request({
+    method: "POST",
+    url: "/login/teacher",
+    body: {
+      msg: "loginTeacherSuccess",
+      token: `0XSOMQEVJPTbBihMEw7X30FEDJtbi6vJrottHHMH4IUol6Y7mxXyvwtX5dpQ`,
+      statusId: 1,
+      name: `Carrie`,
+      fullName: `CarrieBliss`,
+      teacherId: 2,
+      level: `teacher`
+    }
+  }).then(resp => {
+    window.localStorage.setItem("newToken", resp.body.user.token);
+  });
+});
+
+
 //
 // -- This is a child command --
 // Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })

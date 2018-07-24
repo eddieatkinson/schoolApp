@@ -6,17 +6,17 @@ var bcrypt = require('bcrypt-nodejs');
 var connection = mysql.createConnection(config);
 connection.connect();
 
-router.get('/countNewMessages/:studentId/get', (req, res)=>{
+router.get('/countNewMessages/:studentId/get', (req, res) => {
 	const studentId = req.params.studentId;
 	// console.log("TEACHER ID:")
 	// console.log(teacherId);
 	var coursesQuery = `SELECT COUNT(messageStatus)
 		FROM inbox
 		WHERE messageStatus = "new" and receiverId = ? AND receiverStatus = 3;`;
-	connection.query(coursesQuery, [studentId], (error, results)=>{
-		if(error){
+	connection.query(coursesQuery, [studentId], (error, results) => {
+		if (error) {
 			throw error;
-		}else{
+		} else {
 			console.log("============");
 			console.log(results);
 			console.log("============");
@@ -25,17 +25,17 @@ router.get('/countNewMessages/:studentId/get', (req, res)=>{
 	});
 });
 
-router.get('/courses/:studentId/get', (req, res)=>{
+router.get('/courses/:studentId/get', (req, res) => {
 	const studentId = req.params.studentId;
 	// console.log("TEACHER ID:")
 	// console.log(teacherId);
 	var coursesQuery = `SELECT DISTINCT * FROM courses
 		INNER JOIN students ON courses.teacherId = students.teacherId
 		WHERE students.studentId = ?;`;
-	connection.query(coursesQuery, [studentId], (error, results)=>{
-		if(error){
+	connection.query(coursesQuery, [studentId], (error, results) => {
+		if (error) {
 			throw error;
-		}else{
+		} else {
 			console.log("============");
 			console.log(results);
 			console.log("============");
@@ -44,7 +44,7 @@ router.get('/courses/:studentId/get', (req, res)=>{
 	});
 });
 
-router.get('/grades/:courseId/:studentId/get', (req, res)=>{
+router.get('/grades/:courseId/:studentId/get', (req, res) => {
 	const courseId = req.params.courseId;
 	const studentId = req.params.studentId;
 	// console.log("student ID:")
@@ -53,10 +53,10 @@ router.get('/grades/:courseId/:studentId/get', (req, res)=>{
 		INNER JOIN assignmentStatus ON students.studentId = assignmentStatus.sid
 		INNER JOIN assignments ON assignmentStatus.aid = assignments.id
 		WHERE assignmentStatus.cid = ? AND students.studentId = ?;`;
-	connection.query(gradesQuery, [courseId, studentId], (error, results)=>{
-		if(error){
+	connection.query(gradesQuery, [courseId, studentId], (error, results) => {
+		if (error) {
 			throw error;
-		}else{
+		} else {
 			console.log("============");
 			console.log(results);
 			console.log("============");
@@ -65,7 +65,7 @@ router.get('/grades/:courseId/:studentId/get', (req, res)=>{
 	});
 });
 
-router.get('/inbox/:userId/get', (req, res)=>{
+router.get('/inbox/:userId/get', (req, res) => {
 	const userId = req.params.userId;
 	// console.log("student ID:")
 	console.log('===========================================================');
@@ -84,13 +84,13 @@ router.get('/inbox/:userId/get', (req, res)=>{
 		INNER JOIN status s2 ON inbox.senderStatus = s2.statusId
 		WHERE inbox.receiverId = ? AND inbox.receiverStatus = 3
 		ORDER BY inbox.date DESC;`;
-	connection.query(inboxQuery, [userId], (error, results)=>{
-		if(error){
+	connection.query(inboxQuery, [userId], (error, results) => {
+		if (error) {
 			console.log("//////////////////////");
 			console.log("ERROR");
 			console.log("//////////////////////");
 			throw error;
-		}else{
+		} else {
 			console.log("============");
 			console.log(results);
 			console.log("============");
@@ -99,7 +99,7 @@ router.get('/inbox/:userId/get', (req, res)=>{
 	});
 });
 
-router.get('/sentMessages/:userId/get', (req, res)=>{
+router.get('/sentMessages/:userId/get', (req, res) => {
 	const userId = req.params.userId;
 	var sentMessageQuery = `SELECT inbox.id, inbox.subject, inbox.body, inbox.receiverStatus,
 		inbox.senderStatus, inbox.receiverName, inbox.receiverId, inbox.senderId, inbox.senderName, inbox.messageStatus,
@@ -110,10 +110,10 @@ router.get('/sentMessages/:userId/get', (req, res)=>{
 		INNER JOIN status s2 ON inbox.senderStatus = s2.statusId
 		WHERE inbox.senderId = ? AND inbox.senderStatus = 1
 		ORDER BY inbox.date DESC;`;
-	connection.query(sentMessageQuery, [userId], (error, results)=>{
-		if(error){
+	connection.query(sentMessageQuery, [userId], (error, results) => {
+		if (error) {
 			throw error;
-		}else{
+		} else {
 			console.log("============");
 			console.log(results);
 			console.log("============");
@@ -122,17 +122,17 @@ router.get('/sentMessages/:userId/get', (req, res)=>{
 	});
 });
 
-router.get('/messageToList/:studentId/:target/get', (req, res)=>{
+router.get('/messageToList/:studentId/:target/get', (req, res) => {
 	const targetTable = req.params.target;
 	console.log(targetTable);
 	const studentId = req.params.studentId;
 	var messageToQuery = `SELECT DISTINCT CONCAT(teachers.firstName, " ", teachers.lastName) AS fullName, teachers.teacherId AS id FROM teachers
 			INNER JOIN students ON students.teacherId = teachers.teacherId
 			WHERE students.studentId = ?;`;
-	connection.query(messageToQuery, [studentId], (error, results)=>{
-		if(error){
+	connection.query(messageToQuery, [studentId], (error, results) => {
+		if (error) {
 			throw error;
-		}else{
+		} else {
 			console.log("============");
 			console.log(results);
 			console.log("============");
@@ -141,7 +141,7 @@ router.get('/messageToList/:studentId/:target/get', (req, res)=>{
 	});
 });
 
-router.post('/sendMessage', (req, res)=>{
+router.post('/sendMessage', (req, res) => {
 	const subject = req.body.subject;
 	const body = req.body.body;
 	const receiverLevel = req.body.receiverLevel;
@@ -154,10 +154,10 @@ router.post('/sendMessage', (req, res)=>{
 	const updateGrade = `INSERT INTO inbox (subject, body, receiverStatus, senderStatus, receiverId, senderId, senderName)
 		VALUES
 		(?, ?, ?, ?, ?, ?, ?);`;
-	connection.query(updateGrade, [subject, body, receiverStatusId, senderStatusId, receiverId, senderId, senderName], (error, results)=>{
-		if(error){
+	connection.query(updateGrade, [subject, body, receiverStatusId, senderStatusId, receiverId, senderId, senderName], (error, results) => {
+		if (error) {
 			throw error;
-		}else{
+		} else {
 			res.json({
 				msg: "messageSent"
 			});
@@ -165,19 +165,19 @@ router.post('/sendMessage', (req, res)=>{
 	});
 });
 
-router.get('/:studentId/calendar/get', (req, res)=>{
+router.get('/:studentId/calendar/get', (req, res) => {
 	const studentId = req.params.studentId;
 	const getEvents = `SELECT * FROM calendar
 		INNER JOIN students ON students.teacherId = calendar.teacherId
 		WHERE students.studentId = ?;`;
-	connection.query(getEvents, [studentId], (error, results)=>{
-		if(error){
+	connection.query(getEvents, [studentId], (error, results) => {
+		if (error) {
 			throw error;
-		}else{
+		} else {
 			console.log(results)
 			res.json(results);
 		}
-	})	
+	})
 
 });
 /* GET users listing. */

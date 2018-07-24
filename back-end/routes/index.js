@@ -200,6 +200,7 @@ router.post('/login/teacher', (req, res)=>{
 					teacherId: teacherId,
 					level: level
 				});
+				console.log(newToken);
 			}else{
 				// wrong password
 				res.json({

@@ -1,6 +1,6 @@
 export default function(state = {}, action){
 	switch(action.type){
-		case "GET_COURSES":
+		case "GET_EPISODES":
 			var stateCopy = {...state};
 			stateCopy.list = action.payload.data;
 			return stateCopy;
