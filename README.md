@@ -1,5 +1,5 @@
 # eduCrate
-![logo](eduCrateblocks.png)
+![logo](/eduCrateblocks.png)
 
 ## Overview:
 __eduCrate__, a learning management system, offers a streamlined infrastructure advantageous for the blended learning environments of grade-school aged students. The software provides educators an authoring tool in which to deliver assignments, document the progress of students, record correspondence with parents, and otherwise manage and administer all other miscellaneous instructional content directly to the parents and students.
@@ -79,14 +79,16 @@ __eduCrate__, a learning management system, offers a streamlined infrastructure 
 ![demo](https://media.giphy.com/media/xULW8Kkp3P2eXJMBsQ/giphy.gif)
 
 ## Screenshots:
-### Log in page:
-![Log in page](https://github.com/eddieatkinson/schoolApp/blob/master/loginPage.png)
-### Assignment view from Dashboard: 
-![Assignment View](https://github.com/eddieatkinson/schoolApp/blob/master/courseView.png)
-### Calendar: 
-![Calendar](calendar.png)
-### Compose Message:
-![Inbox](inbox.png)
+
+Log in page:
+![Log in page](/loginPage.png)
+Assignment view from Dashboard: 
+![Assignment View](/courseView.png)
+Calendar: 
+![Calendar](/calendar.png)
+Compose Message:
+![Inbox](/inbox.png)
+
 
 
 
@@ -154,10 +156,7 @@ router.get('/sentMessages/:userId/get', (req, res)=>{
 		}
 		var level = this.props.auth.level;
 		var status = `${this.props.auth.level}s`;
-		console.log(status);
-		console.log(this.props.auth);
 		var sent;
-		console.log(this.props.match);
 		if(this.props.match.path === '/sentMessages'){
 			sent = true;
 		}else{
@@ -199,7 +198,6 @@ class Grades extends Component{
 	}
 
 changeGrade(event, aid, sid, index){
-		console.log("Change grade");
 		var newGrade = event.target.previousSibling.childNodes[0].value;
 		console.log(newGrade);
 		var newData = {
@@ -207,13 +205,11 @@ changeGrade(event, aid, sid, index){
 			aid: aid,
 			sid: sid
 		}
-		console.log(newData);
 		var axiosPromise = axios({
 			url: `${window.apiHost}/teachers/changeGrade`,
 			method: 'POST',
 			data: newData
 		}).then((response)=>{
-			console.log(response.data);
 			if(response.data.msg === 'gradeUpdated'){
 				// make a copy of the grades state var so we can change the student
 				// var newGrades = {...this.state.grades};
