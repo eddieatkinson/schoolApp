@@ -6,13 +6,13 @@ import { bindActionCreators } from 'redux';
 import RegisterAction from '../actions/RegisterAction';
 
 
-class Register extends Component{
-	constructor(){
+class Register extends Component {
+	constructor() {
 		super();
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleSubmit(event){
+	handleSubmit(event) {
 		event.preventDefault();
 		var firstName = document.getElementById('first-name').value;
 		var lastName = document.getElementById('last-name').value;
@@ -33,15 +33,15 @@ class Register extends Component{
 		this.props.registerAction(this.props.match.params.status, formData);
 	}
 
-	componentWillReceiveProps(newProps){
+	componentWillReceiveProps(newProps) {
 		console.log('=======NEW PROPS========');
 		console.log(newProps);
 		console.log('=======NEW PROPS========');
 	}
 
-	render(){
+	render() {
 		console.log("You've made it this far!");
-		return(
+		return (
 			<div className="container">
 				<Form>
 					<Row>
@@ -64,17 +64,17 @@ class Register extends Component{
 }
 
 
-function mapStateToProps(state){
-// key = this.props.key
-// value = propety of RootReducer
-	return{
+function mapStateToProps(state) {
+	// key = this.props.key
+	// value = propety of RootReducer
+	return {
 		auth: state.auth
 	}
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		registerAction: RegisterAction
 	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

@@ -2,6 +2,12 @@
   "name": "front-end",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "axios": "^0.17.1",
     "material-ui": "^0.20.0",
@@ -21,11 +27,5 @@
     "redux": "^3.7.2",
     "redux-promise": "^0.5.3",
     "sweetalert-react": "^0.4.11"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
   }
 }

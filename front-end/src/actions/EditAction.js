@@ -1,8 +1,8 @@
 // import axios from 'axios';
 
-export default function(){
+export default function () {
 	console.log("EDIT_ACTION is running!")
-	return{
+	return {
 		type: "EDIT_ACTION"
 	}
 }

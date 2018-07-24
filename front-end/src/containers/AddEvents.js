@@ -8,8 +8,8 @@ import AddEventsAction from '../actions/AddEventsAction';
 
 
 
-class AddEvents extends Component{
-	constructor(){
+class AddEvents extends Component {
+	constructor() {
 		super();
 		this.handleSubmit = this.handleSubmit.bind(this);
 		// this.getRadioValues = this.getRadioValues.bind(this);
@@ -18,14 +18,14 @@ class AddEvents extends Component{
 		// }
 	}
 
-	getRadioValues(form, name){
+	getRadioValues(form, name) {
 		console.log(form);
 		console.log(name);
 		var radios = form.elements[name];
 		console.log(radios);
 		var val;
-		for(let i = 0; i < radios.length; i++){
-			if(radios[i].checked){
+		for (let i = 0; i < radios.length; i++) {
+			if (radios[i].checked) {
 				val = radios[i].value;
 				break;
 			}
@@ -33,10 +33,10 @@ class AddEvents extends Component{
 		return val;
 	}
 
-	handleSubmit(event){
+	handleSubmit(event) {
 		var userId;
 		var level = this.props.auth.level;
-		switch(level){
+		switch (level) {
 			case "teacher":
 				userId = this.props.auth.teacherId;
 				break;
@@ -47,8 +47,8 @@ class AddEvents extends Component{
 				userId = this.props.auth.studentId;
 				break;
 			default:
-				break;	
-		}		
+				break;
+		}
 		console.log("You tried to add an event");
 		event.preventDefault();
 		var courseId = this.getRadioValues(document.getElementById('addEventsForm'), "course");
@@ -69,38 +69,38 @@ class AddEvents extends Component{
 		}
 		console.log(eventData);
 
-		this.props.addEventsAction(eventData,level, userId);
+		this.props.addEventsAction(eventData, level, userId);
 	}
 
-	componentWillReceiveProps(newProps){
+	componentWillReceiveProps(newProps) {
 		console.log(newProps.calEventsList)
 		console.log(this.props.calEventsList)
-		if(newProps.calEventsList.length !== this.props.calEventsList.length){
-			this.props.history.push('/teachers/calendar');				
+		if (newProps.calEventsList.length !== this.props.calEventsList.length) {
+			this.props.history.push('/teachers/calendar');
 		}
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		console.log(this.props.courses.list);
 	}
 
-	render(){
+	render() {
 		console.log(this.props.calEventsList)
-		var classList = this.props.courses.list.map((course, index)=>{
-			return(
+		var classList = this.props.courses.list.map((course, index) => {
+			return (
 				<label><Input type="radio" name="course" value={course.id} />{course.courseName}</label>
 			)
 		});
-		return(
+		return (
 			<div>
 				<form id="addEventsForm">
 					<Row className='addEvents'>
-						<Input id='title' label='Title'/>
-						<Input id='startDate' label="Start Date" type="date"/>
-						<Input id='endDate' label="End Date" type="date"/>
+						<Input id='title' label='Title' />
+						<Input id='startDate' label="Start Date" type="date" />
+						<Input id='endDate' label="End Date" type="date" />
 						<textarea id='description'></textarea>
 						{classList}
-						<Button className='add2Calendar' onClick={this.handleSubmit}>Add</Button>	
+						<Button className='add2Calendar' onClick={this.handleSubmit}>Add</Button>
 					</Row>
 				</form>
 			</div>
@@ -109,10 +109,10 @@ class AddEvents extends Component{
 }
 
 
-function mapStateToProps(state){
-// key = this.props.key
-// value = propety of RootReducer
-	return{
+function mapStateToProps(state) {
+	// key = this.props.key
+	// value = propety of RootReducer
+	return {
 		auth: state.auth,
 		inbox: state.inbox,
 		courses: state.courses,
@@ -120,11 +120,11 @@ function mapStateToProps(state){
 
 	}
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		getInbox: GetInbox,
 		addEventsAction: AddEventsAction
 	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(AddEvents);
+export default connect(mapStateToProps, mapDispatchToProps)(AddEvents);

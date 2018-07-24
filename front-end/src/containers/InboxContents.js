@@ -7,8 +7,8 @@ import { bindActionCreators } from 'redux';
 import GetInbox from '../actions/GetInbox';
 import GetMessageCount from '../actions/GetMessageCount';
 
-class InboxContents extends Component{
-	constructor(){
+class InboxContents extends Component {
+	constructor() {
 		super();
 		this.state = {
 			message: []
@@ -16,42 +16,42 @@ class InboxContents extends Component{
 		this.getMessage = this.getMessage.bind(this);
 	}
 
-	getMessage(doNotChange){
+	getMessage(doNotChange) {
 		var messageId = this.props.match.params.messageId;
 		var doNotChange = this.props.match.params.doNotChange;
 		console.log(doNotChange);
 		const url = `${window.apiHost}/teachers/message/${messageId}/${doNotChange}/get`; // uses "teachers" Express route but works for everyone
 		axios.get(url)
-			.then((response)=>{
+			.then((response) => {
 				this.setState({
 					message: response.data
 				});
 				var userId;
 				var level = this.props.auth.level;
-				switch(level){
-				case "teacher":
-					userId = this.props.auth.teacherId;
-					break;
-				case "parent":
-					userId = this.props.auth.parentId;
-					break;
-				case "student":
-					userId = this.props.auth.studentId;
-					break;
-				default:
-					break;	
+				switch (level) {
+					case "teacher":
+						userId = this.props.auth.teacherId;
+						break;
+					case "parent":
+						userId = this.props.auth.parentId;
+						break;
+					case "student":
+						userId = this.props.auth.studentId;
+						break;
+					default:
+						break;
 				}
 				this.props.getMessageCount(level, userId);
 			});
 	}
 
-	componentWillReceiveProps(newProps){
+	componentWillReceiveProps(newProps) {
 		// console.log('=======NEW PROPS========');
 		// console.log(newProps);
 		// console.log('=======NEW PROPS========');
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		var doNotChange = this.props.match.params.doNotChange;
 		this.getMessage(doNotChange);
 
@@ -76,14 +76,14 @@ class InboxContents extends Component{
 		// this.props.getInbox(status, userId);
 	}
 
-	render(){
+	render() {
 		// console.log(this.props.inbox);
 		var messageContents = this.state.message[0];
 		var messageDisplay = ''
 		console.log(messageContents);
 		var senderLevel;
-		if(messageContents !== undefined){
-			switch(messageContents.senderStatus){
+		if (messageContents !== undefined) {
+			switch (messageContents.senderStatus) {
 				case 1:
 					senderLevel = "teachers";
 					break;
@@ -118,7 +118,7 @@ class InboxContents extends Component{
 		// 		</tr>
 		// 	)
 		// });
-		return(
+		return (
 			<div>
 				{messageDisplay}
 			</div>
@@ -126,19 +126,19 @@ class InboxContents extends Component{
 	}
 }
 
-function mapStateToProps(state){
-// key = this.props.key
-// value = propety of RootReducer
-	return{
+function mapStateToProps(state) {
+	// key = this.props.key
+	// value = propety of RootReducer
+	return {
 		auth: state.auth,
 		inbox: state.inbox
 	}
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		getInbox: GetInbox,
 		getMessageCount: GetMessageCount
 	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(InboxContents);
+export default connect(mapStateToProps, mapDispatchToProps)(InboxContents);

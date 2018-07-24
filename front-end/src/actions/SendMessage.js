@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default function(formData){
+export default function (formData) {
 	// const url = `${window.apiHost}/teachers/courses/${teacherId}/get`;
 	console.log("SEND_MESSAGE is running!");
 	var axiosPromise;
@@ -11,7 +11,7 @@ export default function(formData){
 		data: formData
 	});
 
-	return{
+	return {
 		type: "SEND_MESSAGE",
 		payload: axiosPromise
 	}

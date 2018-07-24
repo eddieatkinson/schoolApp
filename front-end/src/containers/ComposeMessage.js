@@ -7,24 +7,24 @@ import GetInbox from '../actions/GetInbox';
 import GetMessageToList from '../actions/GetMessageToList';
 import MessageComposition from './MessageComposition';
 
-class ComposeMessage extends Component{
+class ComposeMessage extends Component {
 	// constructor(){
 	// 	super();
 	// }
 
-	componentWillReceiveProps(newProps){
+	componentWillReceiveProps(newProps) {
 		// console.log('=======NEW PROPS========');
 		// console.log(newProps);
 		// console.log('=======NEW PROPS========');
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		var level = this.props.auth.level;
 		var messageTarget = this.props.match.params.messageTarget;
 		var status = `${level}s`;
 		var whichId = `${level}Id`;
 		var userId;
-		switch(whichId){
+		switch (whichId) {
 			case "teacherId":
 				userId = this.props.auth.teacherId;
 				break;
@@ -35,34 +35,34 @@ class ComposeMessage extends Component{
 				userId = this.props.auth.studentId;
 				break;
 			default:
-				break;	
+				break;
 		}
-	// 	console.log(userId)
-	// 	this.props.getInbox(status, userId);
-	this.props.getMessageToList(messageTarget, status, userId);
+		// 	console.log(userId)
+		// 	this.props.getInbox(status, userId);
+		this.props.getMessageToList(messageTarget, status, userId);
 	}
 
-	render(){
+	render() {
 		var messageToListContents = this.props.messageToList;
 		// console.log(this.props.messageToList);
 		// var inboxContents = this.props.inbox;
-		var messageToListNames = messageToListContents.map((name, index)=>{
-			return(
+		var messageToListNames = messageToListContents.map((name, index) => {
+			return (
 				<h6 className='messageList' key={index}><Link to={`/compose/${this.props.match.params.messageTarget}/${name.fullName}/${name.id}`}>{name.fullName}</Link></h6>
 			)
 		});
 		var messageTo = "";
 		var messageTarget = this.props.match.params.messageTarget;
 		var messageToParams = this.props.match.params.messageTargetName;
-		if(messageToParams !== '0'){
+		if (messageToParams !== '0') {
 			messageTo = messageToParams;
 		}
-		return(
+		return (
 			<div className='messageHeader  '>
 				<Col s={12} m={6}>
 					<CardPanel className="card-panel">
-					<Route path='/compose/:messageTarget/:messageTargetName/:messageTargetId' component={MessageComposition} />
-					<h6>Who would you like to send a message to?</h6>
+						<Route path='/compose/:messageTarget/:messageTargetName/:messageTargetId' component={MessageComposition} />
+						<h6>Who would you like to send a message to?</h6>
 						<span>{messageToListNames}</span>
 					</CardPanel>
 				</Col>
@@ -72,20 +72,20 @@ class ComposeMessage extends Component{
 }
 
 
-function mapStateToProps(state){
-// key = this.props.key
-// value = propety of RootReducer
-	return{
+function mapStateToProps(state) {
+	// key = this.props.key
+	// value = propety of RootReducer
+	return {
 		auth: state.auth,
 		inbox: state.inbox,
 		messageToList: state.messageToList
 	}
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		getInbox: GetInbox,
 		getMessageToList: GetMessageToList
 	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(ComposeMessage);
+export default connect(mapStateToProps, mapDispatchToProps)(ComposeMessage);

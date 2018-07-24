@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import {Col, Row } from 'react-materialize';
+import { Col, Row } from 'react-materialize';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Navbar from './Navbar';
@@ -17,39 +17,39 @@ import Logout from './Logout';
 
 
 
-class Parents extends Component{
+class Parents extends Component {
 	// constructor(){
 	// 	super();
 	// }
 
-	componentWillReceiveProps(newProps){
+	componentWillReceiveProps(newProps) {
 		// console.log('=======NEW PROPS========');
 		// console.log(newProps);
 		// console.log('=======NEW PROPS========');
 	}
-	componentDidMount(){
+	componentDidMount() {
 		// console.log(this.props.auth)
 		this.props.getCourses(this.props.auth.level, this.props.auth.parentId);
 	}
-	render(){
+	render() {
 		console.log("You've made it this far!");
-		return(
+		return (
 			<Router>
 				<div>
 					<Row>
-						<Col s={2} style={{padding: 0}}>
+						<Col s={2} style={{ padding: 0 }}>
 							<Navbar />
 						</Col>
-						<Col s={10} style={{'marginLeft':220}}>
+						<Col s={10} style={{ 'marginLeft': 220 }}>
 							<Route path='/courseInfo/:courseId' component={CourseInfo} />
 							<Route exact path='/parents' component={Courses} />
 							<Route path='/parents/courses' component={Courses} />
-							<Route exact path='/parents/inbox' component={Inbox}/>
-							<Route path='/parents/inbox/:status' component={Inbox}/>
+							<Route exact path='/parents/inbox' component={Inbox} />
+							<Route path='/parents/inbox/:status' component={Inbox} />
 							<Route path='/parents/:messageId/inboxContents' component={InboxContents} />
 							<Route path='/compose/:messageTarget' component={ComposeMessage} />
-							<Route path='/teachers/calendar' component={Calendar}/>
-							<Route path='/logout' component={Logout}/>
+							<Route path='/teachers/calendar' component={Calendar} />
+							<Route path='/logout' component={Logout} />
 						</Col>
 					</Row>
 				</div>
@@ -59,18 +59,18 @@ class Parents extends Component{
 }
 
 
-function mapStateToProps(state){
-// key = this.props.key
-// value = propety of RootReducer
-	return{
+function mapStateToProps(state) {
+	// key = this.props.key
+	// value = propety of RootReducer
+	return {
 		auth: state.auth,
 		courses: state.courses
 	}
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
 		getCourses: GetCourses
 	}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Parents);
+export default connect(mapStateToProps, mapDispatchToProps)(Parents);
